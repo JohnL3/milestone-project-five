@@ -1,0 +1,316 @@
+body,
+html {
+	margin: 0;
+	background: #f1ececb3;
+}
+
+
+/********************************************django register login forms *******************************/
+.nonfield,
+.login form:first-child ul {
+	grid-row: 1;
+	grid-column: 2;
+}
+
+.all-columns {
+	grid-column: 1/-1;
+}
+
+.errorlist {
+	list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  color: red;
+  font-size: 18px;
+  font-weight: 600;
+  background: #f1d0d0;
+  padding: 5px;
+  text-align: center;
+}
+
+.register,
+.login {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	align-items: center;
+}
+
+/************* success/error message blocks ************************/
+.alert-success {
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+	color: #468847;
+}
+
+.alert {
+	padding: 15px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	padding-top: 60px;
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.error {
+	font-weight: 600;
+	color: red;
+}
+
+/*****************************************************************************/
+
+a {
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 600;
+	color: darkslategray;
+}
+
+#burger {
+	width: 30px;
+	margin: auto;
+	grid-column: 2;
+}
+
+.burger {
+	display: block;
+	border: 2px solid white;
+	margin: 5px 0;
+}
+
+.form-box-register,
+.form-box-login {
+	display: none;
+}
+
+.title {
+	font-size: 24px;
+	display: grid;
+	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-bottom: 2px solid darksalmon;
+	grid-template-columns: 1fr 40px;
+	height: 60px;
+	color: #9e4222;
+}
+
+.form-box-login,
+.form-box-register,
+form {
+	box-sizing: border-box;
+	padding: 5px;
+}
+
+.signup-login-header ul {
+	list-style: none;
+	border-bottom: 4px solid lightsalmon;
+	padding-left: 0px;
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	text-align: center;
+	margin-bottom: 5px;
+	padding-top: 120px;
+}
+
+.signup-tab,
+.li-first {
+	display: inline-block;
+	padding: 20px;
+	background-color: lightsalmon;
+	margin-right: 2%;
+	font-weight: 600;
+	color: white;
+}
+
+.login-tab,
+.li-second {
+	display: inline-block;
+	background-color: #ffbea4;
+	padding: 20px;
+	font-weight: 600;
+	color: darkslategray;
+}
+
+.tab-page-holder {
+	-ms-grid-column: 1;
+	grid-column: 1;
+	-ms-grid-row: 1;
+	grid-row: 1;
+	position: relative;
+	z-index: 12;
+	background: white;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 40px;
+	background: #f1ececb3;
+}
+
+.main-signup-page {
+	margin-top: 20px;
+	-ms-grid-column: 1;
+	grid-column: 1;
+	-ms-grid-row: 1;
+	grid-row: 1;
+	position: relative;
+	z-index: 12;
+	width: 100%;
+}
+
+.register label,
+.login label {
+	font-size: 18px;
+	font-weight: bold;
+	color: darkslategray;
+}
+
+.main-signup-page input {
+	display: block;
+	margin: 5px 0;
+	height: 35px;
+	padding-left: 5px;
+	width: 99%;
+	font-size: 20px;
+}
+
+.main-signup-page button {
+	width: 120px;
+	margin-top: 5px;
+	width: 100px;
+	margin-top: 5px;
+	font-size: 15px;
+	padding: 8px 15px;
+	font-weight: bold;
+	color: darkslategray;
+	-webkit-box-shadow: 2px 2px 2px darkslategrey;
+	box-shadow: 2px 2px 2px darkslategrey;
+}
+
+.issue-title {
+	color: darkslategray;
+}
+
+.btn-new-issue {
+	background-color: darksalmon;
+	border-color: #ecbeae;
+	outline: navajowhite;
+	color: darkslategray;
+	font-weight: 600;
+}
+
+header {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	box-sizing: border-box;
+	background: lightsalmon;
+	width: 100%;
+	position: fixed;
+	z-index: 30;
+	top: 0;
+}
+
+nav {
+	display: none;
+	grid-column: 1;
+}
+
+nav ul {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav ul a {
+	color: papayawhip;
+}
+
+nav ul li:hover {
+	background: #e48762;
+}
+
+nav ul li {
+	padding: 8px 5px;
+}
+
+.issue-icon {
+	width: 25px;
+	height: auto;
+}
+
+.issue-box {
+	display: grid;
+	grid-template-columns: 30px auto;
+}
+
+.issue-header {
+	margin-bottom: 5px;
+}
+
+.page-heading {
+	display: grid;
+	grid-template-columns: 1fr 100px;
+	width: 90%;
+	margin: 0 auto;
+	align-items: center;
+}
+
+.page-heading input {
+	height: 35px;
+}
+
+.issue-box {
+	box-sizing: border-box;
+	border: 1px solid lightgray;
+	padding: 5px;
+	margin-bottom: 2px;
+}
+
+.issue-by {
+	grid-column: 2
+}
+
+@media only screen and (min-width: 768px) {
+	#burger {
+		display: none;
+	}
+	.alert {
+		padding-top: 80px;
+	}
+	nav {
+		display: grid;
+		grid-column: 2;
+		height: 68px;
+		align-items: center;
+	}
+
+	nav ul li {
+		padding: 25px 5px;
+		display: inline;
+	}
+
+	.signup-login-header ul {
+		float: none;
+		max-width: 600px;
+		margin: 0 auto;
+		padding-top: 120px;
+	}
+
+	.issue-box,
+	.page-heading {
+		width: 75%;
+		margin: 2px auto;
+	}
+
+	.title {
+		border-bottom: none;
+		height: auto;
+	}
+}

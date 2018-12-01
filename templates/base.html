@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% block page_title %}
+		{% endblock page_title %}
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+		
+	</head>
+	<body>
+		<header>
+			  <div class='title'>
+				<span>Bugs & Features</span>
+				
+				<div id='burger'>
+					<span class='burger'></span>
+					<span class='burger'></span>
+					<span class='burger'></span>
+				</div>
+				
+			  </div>
+			  {% block nav %}
+			 
+			  {% endblock nav %}
+		  </header>
+		  {% if messages %}
+			  <div class="alert alert-success">
+				  <div class='message'>
+					  {% for message in messages %}
+						  <span {% if message.tags %} class="{{ message.tags }} type"{% endif %}>{{ message }}</span>
+					  {% endfor %}
+				  </div>
+			  </div>
+		  {% endif %}
+		  
+		  {% block content %} {% endblock %}
+		  
+		  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		  {% block body_js %}
+		  {% endblock body_js %}
+		  <script>
+			setTimeout(function(){ $('.alert').remove();}, 6000)
+		  </script>
+	</body>
+</html>

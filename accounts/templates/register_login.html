@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block page_title %}<title>Register/Login</title>{% endblock page_title %}
+
+
+{% block nav %}
+<nav>
+	<ul>
+	  <a href='{% url "index" %}'><li>HOME</li></a>
+	  <a href='#'><li>BLOG</li></a>
+	</ul>
+</nav>
+
+{% endblock nav %}
+
+
+{% block content %}
+
+<div class='signup-login-header'>
+	<ul>
+		<li class='signup-tab sm'>REGISTER</li>
+		<li class='login-tab'>LOGIN</li>
+	</ul>
+</div>
+
+<div class='tab-page-holder'>
+	<div class='main-signup-page'>
+		<div class='form-box-login'>
+			<form method="POST" action='{% url "login" %}' class='login'>
+				{% csrf_token %}
+				{{ login_form }}
+				<button type="submit">Login</button>
+			</form>
+		</div>
+		
+		<div class='form-box-register'>
+			<form method="POST" action='{% url "register" %}' class='register'>
+				{% csrf_token %}
+				{{ registration_form }}
+				<button type="submit">Register</button>
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block body_js %}
+<script src="{% static 'js/registerLogin.js' %}"></script>
+{% endblock body_js %}
