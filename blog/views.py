@@ -21,14 +21,20 @@ def single_post(request, pk):
 @login_required   
 def create_edit_post(request, pk=None):
     '''Create or edit a post'''
-    
+
     post = get_object_or_404(Post, pk=pk) if pk else None
     if request.method == 'POST':
-        form = BlogPostForm(request.POST, request.FILES, instance=post)
-        if form.is_valid():
-            post=form.save()
-            return redirect(single_post, post.pk)
+        if request.user.is_superuser:
+            form = BlogPostForm(request.POST, request.FILES, instance=post)
+            if form.is_valid():
+                post=form.save()
+                return redirect(single_post, post.pk)
+        else:
+            form = BlogPostForm(instance=post)
+            return render(request, 'blogform.html', {'form': form})
+            
     else:
         form = BlogPostForm(instance=post)
         return render(request, 'blogform.html', {'form': form})
     
+        
