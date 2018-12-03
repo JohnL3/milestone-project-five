@@ -1,5 +1,10 @@
-{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
-<title>Home Page</title>{% endblock page_title%} {% block nav %}
+{% extends 'base.html' %} {% load static from staticfiles %} 
+
+{% block page_title %}
+<title>Home Page</title>
+{% endblock page_title%} 
+
+{% block nav %}
 <nav>
 	<ul>
 		{% if user.is_authenticated %}
@@ -9,11 +14,11 @@
 		<a href='#'>
 			<li>FEATURES</li>
 		</a>
-		<a href='#'>
+		<a href='{% url "get_posts" %}'>
 			<li>BLOG</li>
 		</a>
 		{% else %}
-		<a href='#'>
+		<a href='{% url "get_posts" %}'>
 			<li>BLOG</li>
 		</a>
 		{% endif %} {% if user.is_authenticated %}
@@ -28,14 +33,18 @@
 	</ul>
 </nav>
 
-{% endblock nav %} {% block content %}
+{% endblock nav %}
+
+{% block content %}
 <div class='title-section'>
 	<h1>Welcome to Bugs & FEATURES</h1>
 </div>
 <div class='img-section'>
-	<img src="/media/images/bug.jpg">
+	
 </div>
 
-{% endblock content %} {% block body_js %}
+{% endblock content %}
+
+{% block body_js %}
 <script src="{% static 'js/home.js' %}"></script>
 {% endblock body_js %}
