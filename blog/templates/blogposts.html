@@ -40,11 +40,12 @@
 		<div class='part-post'>
 			<p>
 				{{ post.content }}
-				<a href="{% url 'single_post' post.id %}" class="">Read more</a>
+		
 			</p>
+				<a href="{% url 'single_post' post.id %}" class="">Read more</a>
 			<div class='details'>
 				<span>Views:</span><span>{{ post.views }}</span>
-				<span>Published:</span><span>{{ post.published_date }}</span>
+				<span>Published:</span><span class='date'>{{ post.published_date }}</span>
 			</div>
 		</div>
 	</section>
@@ -53,5 +54,5 @@
 {% endblock content %}
 
 {% block body_js %}
-
+<script src="{% static 'js/blog.js' %}"></script>
 {% endblock body_js %}
