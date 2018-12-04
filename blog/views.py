@@ -18,23 +18,25 @@ def single_post(request, pk):
     post.save()
     return render(request, 'singlepost.html', {'post': post})
     
-@login_required   
+   
 def create_edit_post(request, pk=None):
     '''Create or edit a post'''
-
-    post = get_object_or_404(Post, pk=pk) if pk else None
-    if request.method == 'POST':
-        if request.user.is_superuser:
-            form = BlogPostForm(request.POST, request.FILES, instance=post)
-            if form.is_valid():
-                post=form.save()
-                return redirect(single_post, post.pk)
+    if not request.user or request.user.is_superuser or request.user.is_staff:
+        post = get_object_or_404(Post, pk=pk) if pk else None
+        if request.method == 'POST':
+            if request.user.is_superuser:
+                form = BlogPostForm(request.POST, request.FILES, instance=post)
+                if form.is_valid():
+                    post=form.save()
+                    return redirect(single_post, post.pk)
+            else:
+                form = BlogPostForm(instance=post)
+                return render(request, 'blogform.html', {'form': form})
+                
         else:
             form = BlogPostForm(instance=post)
             return render(request, 'blogform.html', {'form': form})
-            
     else:
-        form = BlogPostForm(instance=post)
-        return render(request, 'blogform.html', {'form': form})
+        return redirect(reverse('get_posts'))
     
         
