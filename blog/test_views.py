@@ -98,7 +98,6 @@ class Test_blog_views(TestCase):
         
         client.post('/accounts/login/', {'username': 'JohnL3', 'password': 'test1'})
         
-        data = {'title': 'test', 'content': 'hello'}
         
         page = client.post('/blog/posts/new/',{'title': 'test', 'content': 'hello'}, follow=True)
         
