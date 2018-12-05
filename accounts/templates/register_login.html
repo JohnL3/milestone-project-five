@@ -5,6 +5,9 @@
 
 
 {% block nav %}
+
+<!-- Navigation section -->
+
 <nav>
 	<ul>
 	  <a href='{% url "index" %}'><li>HOME</li></a>
@@ -17,6 +20,8 @@
 
 {% block content %}
 
+<!-- register/login tabs -->
+
 <div class='signup-login-header'>
 	<ul>
 		<li class='signup-tab sm'>REGISTER</li>
@@ -24,7 +29,12 @@
 	</ul>
 </div>
 
+
+
 <div class='tab-page-holder'>
+	
+	<!-- form for login -->
+	
 	<div class='main-signup-page'>
 		<div class='form-box-login'>
 			<form method="POST" action='{% url "login" %}' class='login'>
@@ -33,6 +43,8 @@
 				<button type="submit">Login</button>
 			</form>
 		</div>
+		
+		<!-- form for register -->
 		
 		<div class='form-box-register'>
 			<form method="POST" action='{% url "register" %}' class='register'>
