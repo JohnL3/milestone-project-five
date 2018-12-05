@@ -16,6 +16,7 @@
 			<a href='#'><li>FEATURES</li></a>
 		{% else %}
 			<a href='{% url "index" %}'><li>HOME</li></a>
+			<a href='{% url "get_posts" %}'><li>BLOG</li></a>
 		{% endif %}
 		
 		{% if user.is_authenticated %}
