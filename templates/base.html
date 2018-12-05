@@ -11,6 +11,8 @@
 		
 	</head>
 	<body>
+		
+		<!-- header section -->
 		<header>
 			  <div class='title'>
 				<span>Bugs & Features</span>
@@ -22,10 +24,15 @@
 				</div>
 				
 			  </div>
+			  
+			  <!-- block for nav -->
 			  {% block nav %}
 			 
 			  {% endblock nav %}
 		  </header>
+		  
+		  <!-- flash message section -->
+		  
 		  {% if messages %}
 			  <div class="alert alert-success">
 				  <div class='message'>
