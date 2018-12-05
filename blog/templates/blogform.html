@@ -7,6 +7,8 @@
 
 {% block nav %}
 
+<!- Naigation Links -->
+
 <nav>
 	<ul>
 		{% if user.is_authenticated %}
@@ -30,6 +32,9 @@
 
 {% block content %}
 <h1>New Post</h1>
+
+<!- Blog Form -->
+
 <form method='POST' enctype='multipart/form-data' class='create-post-form'>
     {% csrf_token %}
     {{ form.as_p }}
