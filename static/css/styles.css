@@ -67,6 +67,12 @@ a {
 	color: darkslategray;
 }
 
+.side-padding {
+  padding: 0 5px;
+}
+
+/********************************************************************************/
+
 #burger {
 	width: 30px;
 	margin: auto;
@@ -243,6 +249,8 @@ nav ul li {
 	padding: 8px 5px;
 }
 
+/************************************************************************/
+
 .issue-icon {
 	width: 25px;
 	height: auto;
@@ -263,6 +271,7 @@ nav ul li {
 	width: 90%;
 	margin: 0 auto;
 	align-items: center;
+	margin-top: 80px;
 }
 
 .page-heading input {
@@ -278,6 +287,112 @@ nav ul li {
 
 .issue-by {
 	grid-column: 2
+}
+/****************************************************************************/
+
+.comment-issue-header {
+	margin-top: 80px;
+	box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.page-heading {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  width: 90%;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.page-heading input {
+  height: 35px;
+}
+
+.issue-box {
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  padding: 5px;
+  margin-bottom: 2px;
+}
+
+.issue-by {
+  grid-column: 2
+}
+
+.write-comment-head,
+.comment-head {
+  border: 1px solid lightgray;
+  margin-top: 20px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.write-comment-head {
+  margin-bottom: 3px;
+}
+
+.comment-area p,
+.comment-head span {
+  padding-left: 10px;
+}
+.issue-header-section .user-name {
+  font-weight: 600;
+  display: none;
+}
+
+.comment-area {
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  padding: 10px;
+  border-top: none;
+}
+
+.write-comment-head ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.write-comment-head ul li {
+  display: inline;
+  padding-right: 10px;
+}
+
+.write {
+  border: 1px solid lightgray;
+  padding-top: 3px;
+  padding-left: 7px;
+  padding-bottom: 11px;
+  border-bottom: 2px solid white;
+}
+
+.preview {
+  padding-left: 10px;
+}
+.comment-footer button {
+  padding: 7px 12px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  resize: vertical;
+  font-size: 18px;
+}
+.issue-header-section {
+  display: flex;
+  align-items: center;
+}
+.issue-header-section label {
+  background: green;
+  padding: 8px 20px;
+  color: white;
+  border-radius: 3px;
 }
 
 /****************************************************************************/
@@ -329,6 +444,12 @@ section {
 	padding: 7px 20px;
 }
 
+@media only screen and (min-width: 375px) {
+	.issue-header-section .user-name {
+		display: inline;
+	}
+}
+
 @media only screen and (min-width: 768px) {
 	#burger {
 		display: none;
@@ -354,18 +475,66 @@ section {
 		margin: 0 auto;
 		padding-top: 120px;
 	}
+	
+/******************************************************************************/	
 
 	.issue-box,
 	.page-heading {
 		width: 75%;
 		margin: 2px auto;
 	}
+	
+	.page-heading {
+		margin-top: 80px;
+	}
 
 	.title {
 		border-bottom: none;
 		height: auto;
 	}
+/************************************************************************/
 
+.comment-issue-header {
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 100px;
+    padding: 0;
+  }
+
+  .comment-head {
+    margin-bottom: 0;
+  }
+
+  .comment,
+  .comment-area {
+    grid-column: 2;
+  }
+
+  .write-comment-area,
+  .surround {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    margin-top: 20px;
+    background: red;
+  }
+
+  .write-comment-area {
+    margin-bottom: 60px;
+  }
+  .comment-footer {
+    grid-column: 2;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    padding: 10px;
+  }
 /************************************************************************/
 
 	section {
