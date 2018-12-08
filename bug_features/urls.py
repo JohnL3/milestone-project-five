@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from accounts import urls as urls_accounts
 from blog import urls as urls_blog
+from bugs import urls as urls_bugs
 from accounts .views import index
 from django.views.static import serve
 from .settings import MEDIA_ROOT
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^accounts/', include( urls_accounts )),
     url(r'^blog/', include( urls_blog)),
+    url(r'^bugs/', include( urls_bugs)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
 ]
 
