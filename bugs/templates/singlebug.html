@@ -33,57 +33,72 @@
 
 {% block content %}
 <div class='comment-issue-header'>
-	<h1>My User Name not showing on my page</h1>
+	<h1>My User Name not showing on my page #1022</h1>
+	
+	<div class='issue-count'><span>Upvote count: </span><span>3</span></div>
 
 	<div class='issue-header-section'>
-		<label>Open</label>
-		<span class='user-name side-padding'>Ems_1</span>
-		<span class='side-padding'>opened on: </span>
-		<span class='side-padding date'>DEC-5-2018, 10:45:54</span>
-	</div>
-</div>
-<div class='surround'>
-	<div class='avatar'></div>
-	<div class='comment-head'>
-		<span class='user-name'>Ems_1</span>
-		<span>commented: </span>
-		<span>2018-12-5, 10:45:54</span>
-	</div>
-
-	<div class='comment-area'>
-		<p>When I go to my profile page my username is not showing up beside the "Welcome: "</p>
+		<div class='issue-details'>
+			<label>Open</label>
+			<span class='user-name side-padding'>Ems_1</span>
+			<span class='side-padding'>opened on: </span>
+			<span class='side-padding date'>DEC-5-2018, 10:45:54</span>
+		</div>
+		
+		<div class='upvote-bug'>
+			<span>Upvote if you have this bug</span>
+			<button class='upvote-btn'>UPVOTE</button>
+		</div>
+		
 	</div>
 </div>
 
-<div class='surround'>
-	<div class='avatar'></div>
-	<div class='comment-head'>
-		<span class='user-name'>JohnL3</span>
-		<span>commented: </span>
-		<span>2018-12-5, 11:31:24</span>
+<div class='comment-container'>
+	
+	<div class='surround'>
+		<div class='avatar'></div>
+		<div class='comment-head'>
+			<span class='user-name'>Ems_1</span>
+			<span>commented: </span>
+			<span>2018-12-5, 10:45:54</span>
+		</div>
+	
+		<div class='comment-area'>
+			<p>When I go to my profile page my username is not showing up beside the "Welcome: "</p>
+		</div>
 	</div>
-	<div class='comment-area'>
-		<p>Ok I will look into this ... </p>
+	
+
+	<div class='surround'>
+		<div class='avatar'></div>
+		<div class='comment-head'>
+			<span class='user-name'>JohnL3</span>
+			<span>commented: </span>
+			<span>2018-12-5, 11:31:24</span>
+		</div>
+		<div class='comment-area'>
+			<p>Ok I will look into this ... </p>
+		</div>
 	</div>
-</div>
-
-<div class='write-comment-area'>
-	<div class='avatar'></div>
-
-	<div class='write-comment-head'>
-		<ul>
-			<li class='write'>Write</li>
-			<li class='preview'>Preview</li>
-		</ul>
-	</div>
-
-	<div class='comment'>
-		<textarea rows='5'>
-
-          </textarea>
-	</div>
-	<div class='comment-footer'>
-		<button>comment</button>
+	
+	<div class='write-comment-area'>
+		<div class='avatar'></div>
+	
+		<div class='write-comment-head'>
+			<ul>
+				<li class='write'>Write</li>
+				<li class='preview'>Preview</li>
+			</ul>
+		</div>
+	
+		<div class='comment'>
+			<textarea rows='5'>
+	
+	          </textarea>
+		</div>
+		<div class='comment-footer'>
+			<button>comment</button>
+		</div>
 	</div>
 </div>
 {% endblock content %}
