@@ -14,7 +14,7 @@
 		{% if user.is_authenticated %}
 			<a href='{% url "index" %}'><li>HOME</li></a>
 			<a href='{% url "get_posts" %}'><li>BLOG</li></a>
-			<a href='#'><li>BUGS</li></a>
+			<a href='{% url "bugs" %}'><li>BUGS</li></a>
 			<a href='#'><li>FEATURES</li></a>
 		{% else %}
 			<a href='{% url "index" %}'><li>HOME</li></a>
