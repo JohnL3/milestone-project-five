@@ -307,6 +307,19 @@ nav ul li {
   margin-bottom: 40px;
 }
 
+.surround {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  margin: 20px auto;
+}
+
+.avatar {
+  width: 40px;
+  grid-row: 1;
+  grid-column: 1;
+  margin: 10px 5px;
+}
+
 .page-heading {
   display: grid;
   grid-template-columns: 1fr 100px;
@@ -334,7 +347,7 @@ nav ul li {
 .write-comment-head,
 .comment-head {
   border: 1px solid lightgray;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   height: 45px;
   display: flex;
   align-items: center;
@@ -342,8 +355,23 @@ nav ul li {
   padding-left: 10px;
 }
 
+.comment-head {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  grid-column: 1/-1;
+  grid-row: 1;
+  padding: 5px;
+  padding-left: 50px;
+  margin-top: 0;
+  height: 60px;
+}
+
 .write-comment-head {
   margin-bottom: 3px;
+}
+
+.user-name {
+	grid-column: 1/-1;
 }
 
 .comment-head span {
@@ -361,6 +389,8 @@ nav ul li {
   box-sizing: border-box;
   padding: 10px;
   border-top: none;
+  grid-column: 1/-1;
+  grid-row: 2;
 }
 
 .write-comment-head ul {
@@ -415,8 +445,13 @@ textarea {
   text-align: center;
   width: 100%;
   margin-bottom: 0;
-  background-color: #fd0202d4;
+  background-color: red;
   padding: 5px;
+  color: white;
+}
+
+.upvote-bug button {
+	padding: 5px;
 }
 
 .issue-count {
@@ -424,6 +459,10 @@ textarea {
   margin-bottom: 10px;
   text-align: left;
   font-size: 130%;
+}
+
+.avatar img {
+	width: 100%;
 }
 
 /****************************************************************************/
@@ -538,7 +577,17 @@ section {
   }
 
   .comment-head {
+  	grid-column: 2;
     margin-bottom: 0;
+    display: flex;
+    padding-left: 10px;
+    /* grid-template-columns: 105px 1fr; */
+    /* grid-column: 1/-1; */
+    /* grid-row: 1; */
+    /* padding: 5px 40px; */
+    /* padding-left: 50px; */
+    /* margin-top: 0; */
+     height: 45px;
   }
 
   .comment,
@@ -553,12 +602,17 @@ section {
     width: 75%;
     margin: 0 auto;
   }
+  
+  .surround {
+  	margin-bottom: 20px;
+  }
 
   .avatar {
     width: 44px;
     height: 44px;
     margin-top: 20px;
     background: red;
+    margin: 0;
   }
 
   .write-comment-area {
