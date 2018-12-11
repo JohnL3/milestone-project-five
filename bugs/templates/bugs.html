@@ -40,23 +40,26 @@
 </div>
 
 <!-- Bug issue section -->
-
+{% for bug in bugs %}
 <div class='outer-issue'>
 	<div class='issue-box'>
 		<div class="issue-icon"></div>
 		<div class="issue-header">
-			<a href="#">My User Name not showing on my page</a>
+			<a href="{% url 'bug_details' bug.id %}">{{ bug.bug_title }}</a>
 		</div>
 		<div class="issue-by">
 			<time datetime="2018-11-24"></time>
 			<span>
-	         #2 Opened <span>Dec-5-2018</span> by Ems_1
+	         #{{ bug.id }} Opened <span>{{ bug.created_date }}</span> by {{ bug.bug_author }}
 			</span>
 		</div>
 	</div>
 	
 </div>
+{% endfor %}
 
+
+<!--
 <div class='issue-box'>
 	<div class="issue-icon"></div>
 	<div class="issue-header">
@@ -68,7 +71,7 @@
        </span>
 	</div>
 </div>
-
+-->
 {% endblock content %}
 
 {% block body_js %}

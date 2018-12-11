@@ -36,16 +36,16 @@
 <!-- header section of page -->
 
 <div class='comment-issue-header'>
-	<h1>My User Name not showing on my page #1022</h1>
+	<h1>My User Name not showing on my page #{{ bug.id}}</h1>
 	
-	<div class='issue-count'><span>Upvote count: </span><span>3</span></div>
+	<div class='issue-count'><span>Upvote count: </span><span>{{ bug.upvotes}}</span></div>
 
 	<div class='issue-header-section'>
 		<div class='issue-details'>
 			<label>Open</label>
-			<span class='user-name side-padding'>Ems_1</span>
+			<span class='user-name side-padding'>{{ bug.bug_author }}</span>
 			<span class='side-padding'>opened on: </span>
-			<span class='side-padding date'>DEC-5-2018, 10:45:54</span>
+			<span class='side-padding date'>{{ bug.created_date }}</span>
 		</div>
 		
 		<div class='upvote-bug'>
@@ -66,17 +66,18 @@
 			<img src="/media/images/user.jpg" alt='avatar'>
 		</div>
 		<div class='comment-head'>
-			<span class='user-name'>Ems_1</span>
+			<span class='user-name'>{{ bug.bug_author }}</span>
 			<span>commented: </span>
-			<span>2018-12-5, 10:45:54</span>
+			<span>{{ bug.created_date }}</span>
 		</div>
 	
+	
 		<div class='comment-area'>
-			<p>When I go to my profile page my username is not showing up beside the "Welcome: "</p>
+			<p>{{ bug.initial_comment }}</p>
 		</div>
 	</div>
 	
-
+	{% for comment in comments %}
 	<div class='surround'>
 		<div class='avatar'>
 			<img src="/media/images/admin.jpg" alt='avatar'>
@@ -90,27 +91,29 @@
 			<p>Ok I will look into this ... </p>
 		</div>
 	</div>
+	{% endfor %}
 	
 	<!-- Area to write a comment -->
 	
 	<div class='write-comment-area'>
 		<div class='avatar'></div>
-	
-		<div class='write-comment-head'>
-			<ul>
-				<li class='write'>Write</li>
-				<li class='preview'>Preview</li>
-			</ul>
-		</div>
-	
-		<div class='comment'>
-			<textarea rows='5'>
-	
-	          </textarea>
-		</div>
-		<div class='comment-footer'>
-			<button>comment</button>
-		</div>
+		<form>
+			<div class='write-comment-head'>
+				<ul>
+					<li class='write'>Write</li>
+					<li class='preview'>Preview</li>
+				</ul>
+			</div>
+		
+			<div class='comment'>
+				<textarea rows='5'>
+		
+		          </textarea>
+			</div>
+			<div class='comment-footer'>
+				<button>comment</button>
+			</div>
+		</form>
 	</div>
 	
 	{% if user.is_superuser or user.is_staff %}
