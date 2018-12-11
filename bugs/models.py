@@ -21,7 +21,7 @@ class Bug(models.Model):
     
     
     def __str__(self):
-        return self.description
+        return self.bug_title
         
         
 class BugComment(models.Model):
@@ -32,7 +32,7 @@ class BugComment(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.comment_author
+        return str(self.comment_author)
         
 
 class  BugVotes(models.Model):
