@@ -113,6 +113,17 @@
 		</div>
 	</div>
 	
+	{% if user.is_superuser or user.is_staff %}
+	<div class='bug-status'>
+		<label>Set Status</label>
+		<select>
+			<option>Open</option>
+			<option>Doing</option>
+			<option>Done</option>
+		</select>
+	</div>
+	{% endif %}
+	
 </div>
 {% endblock content %}
 
