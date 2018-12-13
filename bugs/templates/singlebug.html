@@ -1,66 +1,73 @@
-{% extends 'base.html' %} 
-{% load static from staticfiles %} 
-
-{% block page_title %}
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
 <title>Bug detail</title>
-{% endblock page_title %}
-
-{% block nav %}
+{% endblock page_title %} {% block nav %}
 
 <!-- Naigation Links -->
 
 <nav>
 	<ul>
 		{% if user.is_authenticated %}
-			<a href='{% url "index" %}'><li>HOME</li></a>
-			<a href='{% url "get_posts" %}'><li>BLOG</li></a>
-			<a href='{% url "bugs" %}'><li>BUGS</li></a>
-			<a href='#'><li>FEATURES</li></a>
+		<a href='{% url "index" %}'>
+			<li>HOME</li>
+		</a>
+		<a href='{% url "get_posts" %}'>
+			<li>BLOG</li>
+		</a>
+		<a href='{% url "bugs" %}'>
+			<li>BUGS</li>
+		</a>
+		<a href='#'>
+			<li>FEATURES</li>
+		</a>
 		{% else %}
-			<a href='{% url "index" %}'><li>HOME</li></a>
-			<a href='{% url "get_posts" %}'><li>BLOG</li></a>
-		{% endif %}
-		
-		{% if user.is_authenticated %}
-			<a href='{% url "logout" %}'><li>LOGOUT</li></a>
+		<a href='{% url "index" %}'>
+			<li>HOME</li>
+		</a>
+		<a href='{% url "get_posts" %}'>
+			<li>BLOG</li>
+		</a>
+		{% endif %} {% if user.is_authenticated %}
+		<a href='{% url "logout" %}'>
+			<li>LOGOUT</li>
+		</a>
 		{% else %}
-			<a href='{% url "register_login" %}'><li>REGISTER/LOGIN</li></a>
+		<a href='{% url "register_login" %}'>
+			<li>REGISTER/LOGIN</li>
+		</a>
 		{% endif %}
 	</ul>
 </nav>
 
-{% endblock nav %}
-
-{% block content %}
+{% endblock nav %} {% block content %}
 
 <!-- header section of page -->
 
 <div class='comment-issue-header'>
-	<h1>My User Name not showing on my page #{{ bug.id}}</h1>
-	
+	<h1>My User Name not showing on my page #<span class='bug-id' id='{{bug.id}}'>{{ bug.id}}</span></h1>
+
 	<div class='issue-count'><span>Upvote count: </span><span>{{ bug.upvotes}}</span></div>
 
 	<div class='issue-header-section'>
 		<div class='issue-details'>
-			<label>Open</label>
+			<label>{{ bug_status }}</label>
 			<span class='user-name side-padding'>{{ bug.bug_author }}</span>
 			<span class='side-padding'>opened on: </span>
 			<span class='side-padding date'>{{ bug.created_date }}</span>
 		</div>
-		
+
 		<div class='upvote-bug'>
 			<span class='side-padding'>Upvote if you have this bug</span>
 			<button class='upvote-btn'>UPVOTE</button>
 		</div>
-		
+
 	</div>
 </div>
 
 
 <div class='comment-container'>
-	
+
 	<!-- Details of bug -->
-	
+
 	<div class='surround'>
 		<div class='avatar'>
 			<img src="/media/images/user.jpg" alt='avatar'>
@@ -70,52 +77,68 @@
 			<span>commented: </span>
 			<span>{{ bug.created_date }}</span>
 		</div>
-	
-	
+
+
 		<div class='comment-area'>
 			<p>{{ bug.initial_comment }}</p>
 		</div>
 	</div>
-	
-	{% for comment in comments %}
-	<div class='surround'>
-		<div class='avatar'>
-			<img src="/media/images/admin.jpg" alt='avatar'>
-		</div>
-		<div class='comment-head'>
-			<span class='user-name'>JohnL3</span>
-			<span>commented: </span>
-			<span>2018-12-5, 11:31:24</span>
-		</div>
-		<div class='comment-area'>
-			<p>Ok I will look into this ... </p>
-		</div>
-	</div>
-	{% endfor %}
-	
-	<!-- Area to write a comment -->
-	
-	<div class='write-comment-area'>
-		<div class='avatar'></div>
-		<form>
-			<div class='write-comment-head'>
-				<ul>
-					<li class='write'>Write</li>
-					<li class='preview'>Preview</li>
-				</ul>
+	<div id='all-comments'>
+		{% for comment in comments %}
+		<div class='surround'>
+			<div class='avatar'>
+				{% if comment.author_status == 'A' %}
+					<img class='{{ comment.user_status }}' src="/media/images/admin.jpg" alt='avatar'>
+				{% elif comment.author_status == 'S' %}
+					<img class='{{ comment.user_status }}' src="/media/images/staff.jpg" alt='avatar'>
+				{% else %}
+					<img class='{{ comment.user_status }}' src="/media/images/user.jpg" alt='avatar'>
+				{% endif %}
 			</div>
-		
-			<div class='comment'>
-				<textarea rows='5'>
-		
-		          </textarea>
+			<div class='comment-head'>
+				<span class='user-name'>{{ comment.comment_author}}</span>
+				<span>commented: </span>
+				<span>{{ comment.created_date }}</span>
+			</div>
+			<div class='comment-area'>
+				<p> {{ comment.comment }} </p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<!-- Area to write a comment -->
+
+	<div class='write-comment-area'>
+		<div class='avatar'>
+			{% if user.is_superuser %}
+			<img src="/media/images/admin.jpg" alt='avatar'>
+			{% elif user.is_staff %}
+			<img src="/media/images/staff.jpg" alt='avatar'>
+			{% else %}
+			<img src="/media/images/user.jpg" alt='avatar'>
+			{% endif%}
+		</div>
+
+		<div class='write-comment-head'>
+			<ul>
+				<li class='write'>Write</li>
+				<li class='preview'>Preview</li>
+			</ul>
+		</div>
+		<form  id='comment-form' method='POST' action="{% url 'bug_details' bug.id %}" enctype='multipart/form-data' class='create-comment-form'>
+			<div id='{{ user_id }}' class='comment'>
+
+				{% csrf_token %} 
+				{{ form }}
+
 			</div>
 			<div class='comment-footer'>
 				<button>comment</button>
 			</div>
 		</form>
 	</div>
-	
+
 	{% if user.is_superuser or user.is_staff %}
 	<div class='bug-status'>
 		<label>Set Status</label>
@@ -126,10 +149,8 @@
 		</select>
 	</div>
 	{% endif %}
-	
-</div>
-{% endblock content %}
 
-{% block body_js %}
+</div>
+{% endblock content %} {% block body_js %}
 <script src="{% static 'js/bugs.js' %}"></script>
 {% endblock body_js %}
