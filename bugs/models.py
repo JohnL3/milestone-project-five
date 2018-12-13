@@ -26,10 +26,17 @@ class Bug(models.Model):
         
 class BugComment(models.Model):
     ''' Single bug comment'''
+    AUTHOR_STATUS = (
+            ('A', 'Admin'),
+            ('S', 'Staff'),
+            ('U', 'User')
+        )
     
+    bug_id = models.ForeignKey(Bug)
     comment = models.TextField(blank=False)
-    comment_author = models.ForeignKey(User, default=None)
-    created_date = models.DateTimeField(auto_now_add=True)
+    comment_author = models.ForeignKey(User)
+    created_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    author_status = models.CharField(max_length=1, choices=AUTHOR_STATUS, default='U')
     
     def __str__(self):
         return str(self.comment_author)
@@ -38,8 +45,8 @@ class BugComment(models.Model):
 class  BugVotes(models.Model):
     ''' upvote bug'''
     
-    voter_id = models.ForeignKey(User, default=None)
-    bug_id = models.ForeignKey(Bug, default=None)
+    voter_id = models.ForeignKey(User)
+    bug_id = models.ForeignKey(Bug)
     
     
     class Meta:
