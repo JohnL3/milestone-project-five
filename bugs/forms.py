@@ -11,7 +11,19 @@ class BugForm(forms.ModelForm):
 class BugCommentForm(forms.ModelForm):
     class Meta:
         model = BugComment
-        fields = ("comment")
+        fields = ["comment", "created_date"]
+        widgets = {
+            'comment': forms.Textarea(attrs={
+                'id': 'comment-text',
+                'required': True,
+                'placeholder': 'Detail your issue here...'
+            }),
+            'created_date': forms.TextInput(attrs={
+                'id': 'date-comment',
+                'type': 'hidden'
+            })
+        }
+        
         
         
         
