@@ -72,6 +72,9 @@ a {
   padding: 0 5px;
 }
 
+.closed {
+	
+}
 /********************************************************************************/
 
 #burger {
@@ -396,6 +399,7 @@ nav ul li {
 .write-comment-head ul {
   list-style-type: none;
   padding-left: 0;
+  margin-top: 20px;
 }
 
 .write-comment-head ul li {
@@ -438,6 +442,7 @@ textarea {
   padding: 8px 20px;
   color: white;
   border-radius: 3px;
+  float: left;
 }
 
 .upvote-bug {
@@ -465,19 +470,35 @@ textarea {
 	width: 100%;
 }
 
-.bug-status {
-  margin-top: 10px;
-}
-
 .bug-status label {
 	font-size: 120%;
   padding-right: 10px;
   font-weight: 600;
 }
 
+.comment-footer {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+#comment-form {
+	border-right: 1px solid lightgray;
+	border-left: 1px solid lightgray;
+}
+.comment-footer button {
+	font-size: 16px;
+}
+.bug-status {
+	display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .bug-status select {
 	padding: 5px 7px;
-  font-size: 110%;
+  font-size: 100%;
 }
 /****************************************************************************/
 .blog-container {
@@ -642,6 +663,7 @@ section {
     box-sizing: border-box;
     padding: 10px;
   }
+  
 /************************************************************************/
 
 	section {
@@ -660,10 +682,6 @@ section {
     margin: 0 auto;
 	}
 	
-	.bug-status {
-		width: 75%;
-    margin: 0 auto;
-	}
 }
 
 @media only screen and (min-width: 800px) {
