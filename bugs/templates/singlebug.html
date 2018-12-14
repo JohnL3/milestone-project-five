@@ -43,13 +43,13 @@
 <!-- header section of page -->
 
 <div class='comment-issue-header'>
-	<h1>My User Name not showing on my page #<span class='bug-id' id='{{bug.id}}'>{{ bug.id}}</span></h1>
+	<h1>{{ bug.bug_title }} #<span class='bug-id' id='{{bug.id}}'>{{ bug.id}}</span></h1>
 
-	<div class='issue-count'><span>Upvote count: </span><span>{{ bug.upvotes}}</span></div>
+	<div class='issue-count'><span>Upvote count: </span><span id='upvote-count'>{{ bug.upvotes}}</span></div>
 
 	<div class='issue-header-section'>
 		<div class='issue-details'>
-			<label>{{ bug_status }}</label>
+			<label id='status' >{{ bug_status }}</label>
 			<span class='user-name side-padding'>{{ bug.bug_author }}</span>
 			<span class='side-padding'>opened on: </span>
 			<span class='side-padding date'>{{ bug.created_date }}</span>
@@ -73,7 +73,7 @@
 			<img src="/media/images/user.jpg" alt='avatar'>
 		</div>
 		<div class='comment-head'>
-			<span class='user-name'>{{ bug.bug_author }}</span>
+			<span class='user-name'>{{ bug.bugauthor }}</span>
 			<span>commented: </span>
 			<span>{{ bug.created_date }}</span>
 		</div>
@@ -96,7 +96,7 @@
 				{% endif %}
 			</div>
 			<div class='comment-head'>
-				<span class='user-name'>{{ comment.comment_author}}</span>
+				<span class='user-name'>{{ comment.commentauthor}}</span>
 				<span>commented: </span>
 				<span>{{ comment.created_date }}</span>
 			</div>
@@ -134,21 +134,25 @@
 
 			</div>
 			<div class='comment-footer'>
+				{% if bug_status == 'Closed' %}
+				<button disabled >comment</button>
+				{% else %}
 				<button>comment</button>
+				{% endif %}
+		
+			{% if user.is_superuser or user.is_staff %}
+			<div class='bug-status'>
+				<label>Set Status</label>
+				<select id='status-select' class='set-bug-status'>
+					<option value='O'>Open</option>
+					<option value='D'>Doing</option>
+					<option value='C'>Closed</option>
+				</select>
+			</div>
+			{% endif %}
 			</div>
 		</form>
 	</div>
-
-	{% if user.is_superuser or user.is_staff %}
-	<div class='bug-status'>
-		<label>Set Status</label>
-		<select>
-			<option>Open</option>
-			<option>Doing</option>
-			<option>Done</option>
-		</select>
-	</div>
-	{% endif %}
 
 </div>
 {% endblock content %} {% block body_js %}
