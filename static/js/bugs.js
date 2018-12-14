@@ -26,11 +26,13 @@ function changeDateView() {
 }
 
 changeDateView();
-
+let tx = $('#status').text();
+$( "#status-select").val(tx[0]);
 
 $('#comment-form').on('submit', function(event){
     event.preventDefault();
     console.log("form submitted!");
+
     create_comment();
 });
 
@@ -42,9 +44,7 @@ function create_comment() {
     data.comment = $('#comment-text').val();
     data.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
     data.created_date = $('#date-comment').val();
-    
-    
-    //console.log('DATE', data.created_date);
+    data.bug_status = $( ".set-bug-status option:selected" ).val();
     
     let url ='/bugs/'+bug_id+"/";
     
@@ -53,28 +53,69 @@ function create_comment() {
         type : "POST", 
         data : data,
         success : function(json) {
-            $('#comment-text').val(''); 
+            $('#comment-text').val('');
             console.log(json);
-            console.log("successfully done yeeeeeee");
+            
+            if (!json.message){
+            $('#status').text(json.bug_status);
+            // create a new comment box and append to dom
             createNewComment(json);
+            } else {
+                alert('comment is closed');
+            }
         },
-    }); 
+    });
+    
 }
 
+
+$('.upvote-btn').click(function(){
+    let data = {};
+    data.bugid = +$('.bug-id').prop('id');
+    data.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
+    
+    let url ='/bugs/upvote/';
+    
+    $.ajax({
+        url : url,
+        type : "POST", 
+        data : data,
+        success : function(json) {
+            
+            if (!json.message){
+                console.log(json);
+                $('#upvote-count').text(json.count);
+            } else {
+                console.log(json.message);
+            }
+        },
+    });
+    
+});
+
 function createNewComment(json) {
+    
+    //destructure json
+    ({bug_id, bug_status, comment_text,created_date, user_id, user_type, username}={...json});
+    
+    // get avatar image depending on user type
+    let img = (user_type === 'A')? 'admin.jpg': (user_type === 'S')? 'staff.jpg': 'user.jpg';
+    
+    // create comment section
     let surround = `<div class='surround'>
         <div class='avatar'>
-            <img src='/media/images/admin.jpg' alt='avatar'>
+            <img src='/media/images/${img}' alt='avatar'>
         </div>
         <div class='comment-head'>
-            <span class='user-name'>${json.username}</span>
+            <span class='user-name'>${username}</span>
             <span class='user'>Commented: </span>
-            <span class='user'>${json.created_date}</span>
+            <span class='user'>${created_date}</span>
         </div>
         <div class='comment-area'>
-            <p>${json.comment_text}</p>
+            <p>${comment_text}</p>
         </div>
     </div>`;
     
     $('#all-comments').append(surround);
 }
+
