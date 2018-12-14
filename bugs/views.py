@@ -22,56 +22,80 @@ def bug_details(request, pk):
     
     if request.method == 'POST':
         
-        # get the users comment about the bug
-        comment_text = request.POST.get('comment')
-       
-        # have to get a instance of foregin key
-        bug = Bug.objects.get(id = pk)
+        # checking if comment status is closed
+        bug = Bug.objects.get(pk=pk)
         
-        # have to get instance of foregin key
-        user = User.objects.get(id = request.user.id)
+        print(bug.bug_status)
+        # if status not closed proceed eles return message stateing commenting is close
+        # doing a check here in case anyone tries to get around my disableing comment section on frontend
+        if not bug.bug_status == 'C':
         
-        # wont accept date format so cant add it to model
-        created_date = request.POST.get('created_date')
-        
-        if request.user.is_superuser:
-            user_status = 'A'
-        elif request.user.is_staff:
-            user_status = 'S'
-        else:
-            user_status = 'U'
-        
-        # save comment to the database
-        comment = BugComment(bug_id = bug, comment=comment_text, comment_author = user, author_status = user_status)
-        comment.save()
-        
-        
-        username = request.user.username
-        
+            if request.user.is_superuser:
+                # superuser can change the status of bug from open to doing to closed
+                bug_status = request.POST.get('bug_status')
+                #Bug.objects.filter(id = pk).update(bug_status=bug_status)
+                if not bug_status == bug.bug_status:
+                    bug.bug_status = bug_status
+                    bug.save()
+                
+                
+            # get the users comment about the bug
+            comment_text = request.POST.get('comment')
+           
+            # have to get a instance of foregin key
+            #bug = Bug.objects.get(id = pk)
             
-        response_data = {}
+            # have to get instance of foregin key
+            #user = User.objects.get(id=request.user.id)
+            #print('USER',user)
+            
+            # wont accept date format so cant add it to model
+            created_date = request.POST.get('created_date')
+            
+            # setting status so I can display appropriate avatar with comment
+            if request.user.is_superuser:
+                user_status = 'A'
+            elif request.user.is_staff:
+                user_status = 'S'
+            else:
+                user_status = 'U'
+            
+            # save comment to the database
+            comment = BugComment(bugid_id = pk, comment=comment_text, commentauthor_id = request.user.id, author_status = user_status)
+            comment.save()
+            
         
-        response_data['comment_text'] = comment_text
-        response_data['bug_id'] = pk
-        response_data['user_id'] = request.user.id
-        response_data['created_date'] = created_date
-        response_data['username'] = username
-        response_data['user_type'] = user_status
-        
-        return HttpResponse(
-            json.dumps(response_data),
-            content_type="application/json"
-        )
+            response_data = {}
+            
+            response_data['comment_text'] = comment_text
+            response_data['bug_id'] = pk
+            response_data['user_id'] = request.user.id
+            response_data['created_date'] = created_date
+            response_data['username'] = request.user.username
+            response_data['user_type'] = user_status
+            response_data['bug_status']= bug.get_bug_status_display()
+            
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+        else:
+            response_data = {}
+            response_data['message'] = 'Commenting is closed'
+            
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
     else:
         
         # get a bug by an id 
         bug = get_object_or_404(Bug, pk=pk)
-        
-        
+       
         bug_status = bug.get_bug_status_display()
         
         # get all comments associated with bug
-        comments = BugComment.objects.filter(bug_id=pk)
+        comments = BugComment.objects.filter(bugid=pk)
         
         ''' Send a form down for users to add comments on bug issue'''
         form = BugCommentForm()
@@ -85,5 +109,51 @@ def bug_details(request, pk):
         }
            
         return render(request, 'singlebug.html', context)
+   
     
+@login_required   
+def upvote(request):
     
+    if request.method == 'POST':
+    
+        response_data = {}
+        
+        voterid = request.user.id
+        bugid = request.POST.get('bugid')
+        
+        # get the bug object by id
+        upvotes = Bug.objects.get(pk=bugid)
+        
+        # check if the bugid voterid combination has allready being used
+        upvote = BugVotes.objects.filter(bugid=bugid, voterid=voterid)
+        
+        #if combination has not being used allow to vote else return
+        if not upvote:
+            
+            # save the vote to databaase
+            upvote = BugVotes(bugid_id = bugid, voterid_id = request.user.id)
+            upvote.save()
+            
+            #count votes for specific bug by id
+            count = BugVotes.objects.filter(bugid_id=bugid).count()
+            
+            # update upvotes field in specific bug
+            upvotes.upvotes = count
+            upvotes.save()
+            
+            
+            response_data['count'] = count
+    
+            return HttpResponse(
+                    json.dumps(response_data),
+                    content_type="application/json"
+                )
+            
+        else:
+            response_data = {}
+            response_data['message'] = 'You allready upvoted this!!'
+    
+            return HttpResponse(
+                    json.dumps(response_data),
+                    content_type="application/json"
+                )
