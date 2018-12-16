@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpR
 import json
 from django.utils import timezone
 from .models import Bug, BugComment, BugVotes
-from .forms import BugCommentForm
+from .forms import BugCommentForm, BugForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -18,22 +18,23 @@ def get_bugs(request):
 
 @login_required
 def bug_details(request, pk):
-    '''Create a view that returns a single bug details'''
+    '''Get and post to a singel bug detail'''
     
     if request.method == 'POST':
         
-        # checking if comment status is closed
+        # get bug object 
         bug = Bug.objects.get(pk=pk)
         
-        print(bug.bug_status)
-        # if status not closed proceed eles return message stateing commenting is close
+        # if bug_status not closed proceed eles return message stateing commenting is close
         # doing a check here in case anyone tries to get around my disableing comment section on frontend
         if not bug.bug_status == 'C':
         
             if request.user.is_superuser:
+                
                 # superuser can change the status of bug from open to doing to closed
                 bug_status = request.POST.get('bug_status')
-                #Bug.objects.filter(id = pk).update(bug_status=bug_status)
+                
+                #update bug status if it has changed
                 if not bug_status == bug.bug_status:
                     bug.bug_status = bug_status
                     bug.save()
@@ -42,16 +43,9 @@ def bug_details(request, pk):
             # get the users comment about the bug
             comment_text = request.POST.get('comment')
            
-            # have to get a instance of foregin key
-            #bug = Bug.objects.get(id = pk)
-            
-            # have to get instance of foregin key
-            #user = User.objects.get(id=request.user.id)
-            #print('USER',user)
-            
             # wont accept date format so cant add it to model
             created_date = request.POST.get('created_date')
-            
+            print('CREATED', created_date)
             # setting status so I can display appropriate avatar with comment
             if request.user.is_superuser:
                 user_status = 'A'
@@ -113,6 +107,7 @@ def bug_details(request, pk):
     
 @login_required   
 def upvote(request):
+    '''Upvote a bug'''
     
     if request.method == 'POST':
     
@@ -157,3 +152,30 @@ def upvote(request):
                     json.dumps(response_data),
                     content_type="application/json"
                 )
+
+
+@login_required
+def bug_issue(request, pk=None):
+    ''' Add new issue to database or get bug form'''
+    
+    if request.method == 'POST':
+        #get instance of bug object
+        bug = Bug()
+        
+        bug_title = request.POST.get('bug_title')
+        initial_comment =request.POST.get('initial_comment')
+        
+        #get the author id
+        author_id = request.user.id
+        
+        # fill in the details and save
+        bug.bug_title=bug_title 
+        bug.bugauthor_id=author_id
+        bug.initial_comment=initial_comment
+        bug.save()
+
+        return redirect(get_bugs)
+    else:
+        #get form and send with html
+        form = BugForm()
+        return render(request, 'bug_form.html',{'form': form})
