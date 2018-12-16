@@ -36,7 +36,9 @@
 
 <div class='page-heading'>
 	<h1 class='issue-title'>Bug Tickets</h1>
-	<input class='btn-new-issue' type='button' value='New Issue'>
+	<div class='btn-new-issue'>
+		<a href ='{% url "issue" %}'>New Issue</a>
+	</div>
 </div>
 
 <!-- Bug issue section -->
@@ -50,7 +52,7 @@
 		<div class="issue-by">
 			<time datetime="2018-11-24"></time>
 			<span>
-	         #{{ bug.id }} Opened <span>{{ bug.created_date }}</span> by {{ bug.bug_author }}
+	         #{{ bug.id }} Opened <span>{{ bug.created_date }}</span>
 			</span>
 		</div>
 	</div>
