@@ -1,0 +1,78 @@
+{% extends 'base.html' %} 
+{% load static from staticfiles %} 
+
+{% block page_title %}
+<title>Bug Form</title>
+{% endblock page_title%} 
+
+{% block nav %}
+
+<!-- Navigation section -->
+
+<nav>
+	<ul>
+		{% if user.is_authenticated %}
+		<a href='{% url "bugs" %}'>
+			<li>BUGS</li>
+		</a>
+		<a href='#'>
+			<li>FEATURES</li>
+		</a>
+		<a href='{% url "get_posts" %}'>
+			<li>BLOG</li>
+		</a>
+		{% else %}
+		<a href='{% url "get_posts" %}'>
+			<li>BLOG</li>
+		</a>
+		{% endif %} {% if user.is_authenticated %}
+		<a href='{% url "logout" %}'>
+			<li>LOGOUT</li>
+		</a>
+		{% else %}
+		<a href='{% url "register_login" %}'>
+			<li>REGISTER/LOGIN</li>
+		</a>
+		{% endif %}
+	</ul>
+</nav>
+
+{% endblock nav %}
+
+{% block content %}
+<div class='title-section'>
+	
+</div>
+
+<!-- The form section -->
+
+<div class='bug-form-container'>
+    <form  method='POST'  enctype='multipart/form-data' class='create-comment-form'>
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name == "bug_title" %}
+            
+                <div class='{{ field.name }}'>
+                    <label style='padding-left: 2px'>{{ field.label|upper }}</label>
+                    {{ field }}
+                    <div><label>ISSUE DETAILS</label></div>
+                </div>
+                
+            {% else %}
+            
+                <div class='{{ field.name }}'>
+                    {{ field }}
+                    <div class='comment-footer issue'><button class='submit-btn'>Submit</button></div>
+                </div>
+            
+            {% endif %}
+        {% endfor%}
+       
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block body_js %}
+<script src="{% static 'js/bugForm.js' %}"></script> 
+{% endblock body_js %}
