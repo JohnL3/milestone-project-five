@@ -70,7 +70,13 @@
 
 	<div class='surround'>
 		<div class='avatar'>
-			<img src="/media/images/user.jpg" alt='avatar'>
+			{% if comment.author_status == 'A' %}
+				<img class='{{ comment.user_status }}' src="/media/images/admin.jpg" alt='avatar'>
+			{% elif comment.author_status == 'S' %}
+				<img class='{{ comment.user_status }}' src="/media/images/staff.jpg" alt='avatar'>
+			{% else %}
+				<img class='{{ comment.user_status }}' src="/media/images/user.jpg" alt='avatar'>
+			{% endif %}
 		</div>
 		<div class='comment-head'>
 			<span class='user-name'>{{ bug.bugauthor }}</span>
@@ -129,8 +135,15 @@
 		<form  id='comment-form' method='POST' action="{% url 'bug_details' bug.id %}" enctype='multipart/form-data' class='create-comment-form'>
 			<div id='{{ user_id }}' class='comment'>
 
-				{% csrf_token %} 
-				{{ form }}
+				{% csrf_token %}
+				{% for field in form %}
+            	{% if field.name == "comment" %}
+				{{ field }}
+				{% else %}
+				{{ field }}
+				{% endif %}
+				
+				{% endfor %}
 
 			</div>
 			<div class='comment-footer'>
