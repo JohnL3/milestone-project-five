@@ -72,8 +72,17 @@ a {
   padding: 0 5px;
 }
 
-.closed {
-	
+label {
+	font-size: 18px;
+  font-weight: bold;
+  color: darkslategray;	
+}
+
+button,
+select {
+  font-size: 110%;
+  font-weight: bold;
+  color: darkslategray;
 }
 /********************************************************************************/
 
@@ -179,6 +188,7 @@ form {
 	color: darkslategray;
 }
 
+.create-comment-form input,
 .create-post-form input,
 .main-signup-page input {
 	display: block;
@@ -208,11 +218,10 @@ form {
 }
 
 .btn-new-issue {
-	background-color: darksalmon;
-	border-color: #ecbeae;
-	outline: navajowhite;
-	color: darkslategray;
-	font-weight: 600;
+	display: flex;
+  justify-content: center;
+  padding: 7px;
+  border: 1px solid darkslategray;
 }
 
 header {
@@ -457,6 +466,8 @@ textarea {
 
 .upvote-bug button {
 	padding: 5px;
+	font-size: 100%;
+	cursor: pointer;
 }
 
 .issue-count {
@@ -480,15 +491,23 @@ textarea {
   display: grid;
   grid-template-columns: 95px 1fr;
   align-items: center;
-  grid-gap: 10px;
+  grid-gap: 5px;
+  margin-top: 5px;
+}
+
+.comment-footer.issue {
+  border: none;
+  padding: 0;
+  margin-top: 10px;
 }
 
 #comment-form {
-	border-right: 1px solid lightgray;
-	border-left: 1px solid lightgray;
+	border: 1px solid lightgray;
+  border-top: none;
 }
 .comment-footer button {
 	font-size: 16px;
+	cursor: pointer;
 }
 .bug-status {
 	display: flex;
@@ -497,9 +516,47 @@ textarea {
 }
 
 .bug-status select {
-	padding: 5px 7px;
+	padding: 7px;
   font-size: 100%;
+  cursor: pointer;
 }
+
+/****************************************************************************/
+
+.title-section {
+	margin-top: 80px;
+}
+
+.bug_title {
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  padding: 10px 5px;
+  margin-bottom: 2px;
+  padding-bottom: 0px;
+}
+
+.bug_title div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  height: 25px;
+  border: 1px solid lightgray;
+  width: 150px;
+  margin-left: 10px;
+  border-bottom: 2px solid white;
+  margin-top: 0px;
+  position: relative;
+  top: 2px;
+  padding-top: 3px;
+}
+
+.initial_comment {
+	box-sizing: border-box;
+  padding: 10px 5px;
+  border: 1px solid lightgray;
+  border-top: none;
+}
+
 /****************************************************************************/
 .blog-container {
 	margin-top: 100px;
@@ -659,11 +716,15 @@ section {
   }
   .comment-footer {
     grid-column: 2;
-    border: 1px solid lightgray;
     box-sizing: border-box;
     padding: 10px;
   }
-  
+
+/************************************************************************/
+.bug-form-container{
+	width: 65%;
+	margin: 0 auto;
+}
 /************************************************************************/
 
 	section {
