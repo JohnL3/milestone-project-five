@@ -28,7 +28,7 @@ $('.submit-btn').click(function(){
         type : "POST", 
         data : data,
         success : function(json) {
-            
+            window.location = '/bugs/'
         },
     });
     
