@@ -161,7 +161,7 @@ def bug_issue(request, pk=None):
     if request.method == 'POST':
         #get instance of bug object
         bug = Bug()
-        
+        print('Here with Bug')
         bug_title = request.POST.get('bug_title')
         initial_comment =request.POST.get('initial_comment')
         
@@ -173,8 +173,9 @@ def bug_issue(request, pk=None):
         bug.bugauthor_id=author_id
         bug.initial_comment=initial_comment
         bug.save()
-
-        return redirect(get_bugs)
+        
+        response = {'status_code': 1} 
+        return HttpResponse(json.dumps(response), content_type='application/json')
     else:
         #get form and send with html
         form = BugForm()
