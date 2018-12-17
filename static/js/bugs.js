@@ -73,7 +73,7 @@ $('.upvote-btn').click(function(){
     let data = {};
     data.bugid = +$('.bug-id').prop('id');
     data.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
-    
+    console.log(data);
     let url ='/bugs/upvote/';
     
     $.ajax({
