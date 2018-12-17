@@ -45,17 +45,13 @@ def bug_details(request, pk):
            
             # wont accept date format so cant add it to model
             created_date = request.POST.get('created_date')
-            print('CREATED', created_date)
-            # setting status so I can display appropriate avatar with comment
-            if request.user.is_superuser:
-                user_status = 'A'
-            elif request.user.is_staff:
-                user_status = 'S'
-            else:
-                user_status = 'U'
+           
+            
+            #get users avatar url
+            author_avatar = request.user.profile.avatar_url
             
             # save comment to the database
-            comment = BugComment(bugid_id = pk, comment=comment_text, commentauthor_id = request.user.id, author_status = user_status)
+            comment = BugComment(bugid_id = pk, comment=comment_text, commentauthor_id = request.user.id, author_avatar = author_avatar)
             comment.save()
             
         
@@ -66,7 +62,7 @@ def bug_details(request, pk):
             response_data['user_id'] = request.user.id
             response_data['created_date'] = created_date
             response_data['username'] = request.user.username
-            response_data['user_type'] = user_status
+            response_data['avatar_url'] = request.user.profile.avatar_url
             response_data['bug_status']= bug.get_bug_status_display()
             
             return HttpResponse(
@@ -82,7 +78,7 @@ def bug_details(request, pk):
                 content_type="application/json"
             )
     else:
-        
+        print('Avatar url',request.user.profile.avatar_url)
         # get a bug by an id 
         bug = get_object_or_404(Bug, pk=pk)
        
@@ -99,7 +95,8 @@ def bug_details(request, pk):
             'user_id': request.user.id,
             'form': form,
             'comments': comments,
-            'bug_status': bug_status
+            'bug_status': bug_status,
+            'avatar_url': request.user.profile.avatar_url
         }
            
         return render(request, 'singlebug.html', context)
@@ -172,6 +169,7 @@ def bug_issue(request, pk=None):
         bug.bug_title=bug_title 
         bug.bugauthor_id=author_id
         bug.initial_comment=initial_comment
+        bug.bug_author_avatar=request.user.profile.avatar_url
         bug.save()
         
         response = {'status_code': 1} 
