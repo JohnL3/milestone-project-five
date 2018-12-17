@@ -96,15 +96,15 @@ $('.upvote-btn').click(function(){
 function createNewComment(json) {
     
     //destructure json
-    ({bug_id, bug_status, comment_text,created_date, user_id, user_type, username}={...json});
+    ({avatar_url, bug_id, bug_status, comment_text,created_date, user_id, username}={...json});
     
-    // get avatar image depending on user type
-    let img = (user_type === 'A')? 'admin.jpg': (user_type === 'S')? 'staff.jpg': 'user.jpg';
+    // get avatar image url
+    let img = avatar_url; 
     
     // create comment section
     let surround = `<div class='surround'>
         <div class='avatar'>
-            <img src='/media/images/${img}' alt='avatar'>
+            <img src='${img}' alt='avatar'>
         </div>
         <div class='comment-head'>
             <span class='user-name'>${username}</span>
