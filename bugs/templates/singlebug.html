@@ -70,13 +70,9 @@
 
 	<div class='surround'>
 		<div class='avatar'>
-			{% if comment.author_status == 'A' %}
-				<img class='{{ comment.user_status }}' src="/media/images/admin.jpg" alt='avatar'>
-			{% elif comment.author_status == 'S' %}
-				<img class='{{ comment.user_status }}' src="/media/images/staff.jpg" alt='avatar'>
-			{% else %}
-				<img class='{{ comment.user_status }}' src="/media/images/user.jpg" alt='avatar'>
-			{% endif %}
+			
+				<img class='' src="{{ bug.bug_author_avatar }}" alt='avatar'>
+			
 		</div>
 		<div class='comment-head'>
 			<span class='user-name'>{{ bug.bugauthor }}</span>
@@ -93,13 +89,7 @@
 		{% for comment in comments %}
 		<div class='surround'>
 			<div class='avatar'>
-				{% if comment.author_status == 'A' %}
-					<img class='{{ comment.user_status }}' src="/media/images/admin.jpg" alt='avatar'>
-				{% elif comment.author_status == 'S' %}
-					<img class='{{ comment.user_status }}' src="/media/images/staff.jpg" alt='avatar'>
-				{% else %}
-					<img class='{{ comment.user_status }}' src="/media/images/user.jpg" alt='avatar'>
-				{% endif %}
+					<img class='' src="{{ comment.author_avatar }}" alt='avatar'>
 			</div>
 			<div class='comment-head'>
 				<span class='user-name'>{{ comment.commentauthor}}</span>
@@ -117,13 +107,7 @@
 
 	<div class='write-comment-area'>
 		<div class='avatar'>
-			{% if user.is_superuser %}
-			<img src="/media/images/admin.jpg" alt='avatar'>
-			{% elif user.is_staff %}
-			<img src="/media/images/staff.jpg" alt='avatar'>
-			{% else %}
-			<img src="/media/images/user.jpg" alt='avatar'>
-			{% endif%}
+			<img src="{{ avatar_url }}" alt='avatar'>
 		</div>
 
 		<div class='write-comment-head'>
