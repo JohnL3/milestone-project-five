@@ -524,7 +524,11 @@ textarea {
 /****************************************************************************/
 
 .title-section {
-	margin-top: 80px;
+  margin-top: 80px;
+  box-sizing: border-box;
+  font-size: 70%;
+  text-align: center;
+  color: darkslategray;
 }
 
 .bug_title {
@@ -610,9 +614,18 @@ section {
 	.issue-header-section .user-name {
 		display: inline;
 	}
+	
+	.title-section {
+		font-size: 80%;
+	}
 }
 
 @media only screen and (min-width: 768px) {
+	.title-section {
+		font-size: 100%;
+		margin-top: 90px;
+	}
+	
 	#burger {
 		display: none;
 	}
