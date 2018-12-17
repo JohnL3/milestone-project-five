@@ -1,21 +1,10 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 
-{% block page_title %}<title>Register/Login</title>{% endblock page_title %}
+{% block page_title %}
+<title>Register/Login</title>
+{% endblock page_title %}
 
-
-{% block nav %}
-
-<!-- Navigation section -->
-
-<nav>
-	<ul>
-	  <a href='{% url "index" %}'><li>HOME</li></a>
-	  <a href='{% url "get_posts" %}'><li>BLOG</li></a>
-	</ul>
-</nav>
-
-{% endblock nav %}
 
 
 {% block content %}
