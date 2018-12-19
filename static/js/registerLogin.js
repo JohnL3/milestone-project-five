@@ -48,19 +48,19 @@ $( window ).resize(function() {
 });
 
 $('.login-tab').click(function(){
-    $(this).css('background', 'lightsalmon');
+    $(this).css('background', '#151414');
     $(this).css('color', 'white');
-    $('.signup-tab').css('background', '#ffbea4');
-    $('.signup-tab').css('color', 'darkslategray');
+    $('.signup-tab').css('background', '#282929');
+    $('.signup-tab').css('color', 'white');
     $('.form-box-register').css('display', 'none');
     $('.form-box-login').css('display', 'block');
 });
 
 $('.signup-tab').click(function(){
-    $(this).css('background', 'lightsalmon');
+    $(this).css('background', '#151414');
     $(this).css('color', 'white');
-    $('.login-tab').css('background', '#ffbea4');
-    $('.login-tab').css('color', 'darkslategray');
+    $('.login-tab').css('background', '#282929');
+    $('.login-tab').css('color', 'white');
     $('.form-box-register').css('display', 'block');
     $('.form-box-login').css('display', 'none');
 });
