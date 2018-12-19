@@ -1,0 +1,62 @@
+{% extends 'base.html' %} 
+{% load static from staticfiles %} 
+
+{% block page_title %}
+<title>Profile Page</title>
+{% endblock page_title%} 
+
+{% block content %}
+<div class="profile-header">
+    <div class="profile-header-title">
+      
+    </div>
+
+    <div class='profile-header-section'>
+      <div class="profile-avatar">
+        <img src='{{avatar}}'>
+      </div>
+      <div class="profile-name">
+        <span> {{user.username}}</span>
+      </div>
+    </div>
+
+    <!-- Profile Tabs -->
+    
+    <ul class='profile-tabs'>
+      <li class='profile-tab-active'><span>My Features</span></li>
+      <li><span>My Issues</span></li>
+      <li><span>Edit Profile</span></li>
+    </ul>
+    
+    <!-- Edit Profile section -->
+    
+    <div class='change-avatar'>
+      <span>Image: 50px by 50px</span>
+      <form>
+          {% csrf_token%}
+          {% for item in profile_form %}
+          {% if item.name == 'image' %}
+          
+          <div class='img-box'>
+              <div class='img-preview'>
+                  <img class='preview'>
+              </div>
+              <div class='avatar-file'>
+                  <span>Choose File</span>
+                  {{ item }}
+              </div>
+          </div>
+    
+          {% endif %}
+          {% endfor %}
+      </form>
+    </div>
+
+    
+</div>
+
+{% endblock content %}
+
+{% block body_js %}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock body_js %}
