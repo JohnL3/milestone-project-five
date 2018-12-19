@@ -3,6 +3,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
+from .forms import ProfileForm
 
 @login_required
 def logout(request):
@@ -74,3 +75,14 @@ def register(request):
     
     login_form= UserLoginForm 
     return render(request, 'register_login.html', {'registration_form': registration_form, 'login_form': login_form})
+
+
+@login_required  
+def profile(request):
+    
+    user = request.user
+    avatar = request.user.profile.avatar_url
+    profile_form = ProfileForm()
+    
+    print('User',avatar)
+    return render(request, 'profile.html',{'user': user, 'avatar': avatar, 'profile_form': profile_form})
