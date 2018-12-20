@@ -630,6 +630,9 @@ section {
 }
 
 /*********************profile*************************/
+.edit-profile {
+	display: none;
+}
 
 .profile-header {
 	margin-top: 80px;
@@ -732,6 +735,12 @@ section {
     grid-row: 1;
     opacity: 0;
     font-size: 7px;
+    cursor: pointer;
+}
+
+.edit-profile-btn {
+    padding: 5px 10px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
