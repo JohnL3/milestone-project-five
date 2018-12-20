@@ -5,10 +5,10 @@
     if(msg && msg.includes('incorrect..')) {
         $('.form-box-register').css('display', 'none');
         $('.form-box-login').css('display', 'block');
-        $('.login-tab').css('background', 'lightsalmon');
+        $('.login-tab').css('background', '#151414');
         $('.login-tab').css('color', 'white');
-        $('.signup-tab').css('background', '#ffbea4');
-        $('.signup-tab').css('color', 'darkslategray');
+        $('.signup-tab').css('background', '#282929');
+        $('.signup-tab').css('color', 'white');
         
     } else {
        $('.form-box-register').css('display', 'block'); 
