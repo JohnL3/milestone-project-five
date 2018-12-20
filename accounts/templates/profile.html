@@ -23,23 +23,23 @@
     <!-- Profile Tabs -->
     
     <ul class='profile-tabs'>
-      <li class='profile-tab-active'><span>My Features</span></li>
-      <li><span>My Issues</span></li>
-      <li><span>Edit Profile</span></li>
+      <li class='tab-a profile-tab-active'><span>My Features</span></li>
+      <li class='tab-b'><span>My Issues</span></li>
+      <li class='tab-c'><span>Edit Profile</span></li>
     </ul>
     
     <!-- Edit Profile section -->
     
-    <div class='change-avatar'>
+    <div class='edit-profile'>
       <span>Image: 50px by 50px</span>
-      <form>
+      <form id='profile-edit-form' method='POST' enctype='multipart/form-data'>
           {% csrf_token%}
           {% for item in profile_form %}
           {% if item.name == 'image' %}
           
           <div class='img-box'>
-              <div class='img-preview'>
-                  <img class='preview'>
+              <div  id='preview' class='img-preview'>
+                  
               </div>
               <div class='avatar-file'>
                   <span>Choose File</span>
@@ -49,6 +49,7 @@
     
           {% endif %}
           {% endfor %}
+          <button class='edit-profile-btn'>Submit</button>
       </form>
     </div>
 
