@@ -1,5 +1,5 @@
 let fileUpload = document.getElementById('id_image');
-let myData = '';
+
 $('#burger').click(function(){
     if($('nav').css('display') === 'none'){
         $('nav').css('display','grid');
@@ -25,6 +25,7 @@ $('.tab-c').click(function(){
     $('.tab-a').removeClass('profile-tab-active');
     
     $('.tab-b').removeClass('profile-tab-active');
+    $('.user-issues').css('display', 'none');
     
 });
 
@@ -33,29 +34,32 @@ $('.tab-a').click(function(){
     
     
     $('.tab-b').removeClass('profile-tab-active');
-    
+    $('.user-issues').css('display', 'none');
     $('.tab-c').removeClass('profile-tab-active');
     $('.edit-profile').css('display', 'none');
+     $('#pre').remove();
 });
 
 $('.tab-b').click(function(){
     $(this).addClass('profile-tab-active');
-    
+    $('.user-issues').css('display', 'block');
     
     $('.tab-a').removeClass('profile-tab-active');
     
     $('.tab-c').removeClass('profile-tab-active');
     $('.edit-profile').css('display', 'none');
+     $('#pre').remove();
 });
 
 let formData = new FormData();
+
 fileUpload.addEventListener('change', function(event){
+    
     let preview = document.getElementById('preview');
     let file = event.target.files[0];
     let size = file.size / 1024;
-    let name = file.name;
-    console.log('NAME', name, 'Size',size);
-    if(size < 500) {
+   
+    if(size < 200) {
         size = Math.round(size*100)/100;
         
         let IMAGE = '';
@@ -65,7 +69,7 @@ fileUpload.addEventListener('change', function(event){
               IMAGE = document.createElement('IMG');
               IMAGE.id = 'pre';
               IMAGE.src = URL.createObjectURL(file);
-              console.log('[FILE] ',file.name);
+              console.log(IMAGE.width);
               preview.prepend(IMAGE);
               URL.revokeObjectURL(file);
             } else {
@@ -73,12 +77,14 @@ fileUpload.addEventListener('change', function(event){
               prev.src = URL.createObjectURL(file);
               document.getElementById("pre").style.maxWidth = '50px';
             }
-        //let formData = new FormData();
+        
 	    formData.append('file', file);
-	    myData = formData;
 	    
     } else {
-        alert('Image file size is too large.')
+        $('.img-error').css('display', 'inline');
+        setTimeout(function(){
+            $('.img-error').css('display', 'none');
+        },3000);
     }
     
 });
@@ -87,8 +93,7 @@ fileUpload.addEventListener('change', function(event){
 $('#profile-edit-form').on('submit', function(event){
     event.preventDefault();
     let csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
-    let arr = [csrfmiddlewaretoken];
-    //formData.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
+    
     formData.append('csrfmiddlewaretoken', csrfmiddlewaretoken);
     let url ='/accounts/profile/';
     
@@ -99,16 +104,12 @@ $('#profile-edit-form').on('submit', function(event){
         processData:false,
         contentType: false,
         success : function(json) {
+            
             $('#comment-text').val('');
             console.log(json);
-            
-            if (!json.message){
-                console.log('sorted');
-            // create a new comment box and append to dom
-            
-            } else {
-                console.log('Back');
-            }
+            $('#pre').remove();
+            $("#img-avatar").attr("src",json.avatar_url);
+
         },
     });
     
