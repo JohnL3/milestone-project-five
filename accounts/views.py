@@ -6,6 +6,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 import json
+from bugs.models import Bug
 
 
 @login_required
@@ -96,12 +97,20 @@ def profile(request):
             user.profile.image = image
             user.profile.save()
             
-        return JsonResponse({'error': False, 'message': 'all good'})
+            avatar_url = user.profile.avatar_url
+            
+        return JsonResponse({'error': False, 'avatar_url': avatar_url})
     else:
         
         user = request.user
         avatar = request.user.profile.avatar_url
         profile_form = ProfileForm()
         
-        print('User',avatar)
-        return render(request, 'profile.html',{'user': user, 'avatar': avatar, 'profile_form': profile_form})
+        my_issues = Bug.objects.filter(bugauthor=request.user.id)
+       
+        return render(request, 'profile.html',
+        {'user': user, 
+        'avatar': avatar, 
+        'profile_form': profile_form,
+        'my_issues': my_issues
+        })
