@@ -21,7 +21,7 @@
 		<h1>{{ post.title }}</h1>
 		<div class='part-post'>
 			<p>
-				{{ post.content }}
+				{{ post.content|truncatewords:30 }}
 		
 			</p>
 				<a href="{% url 'single_post' post.id %}" class="">Read more</a>
