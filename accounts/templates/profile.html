@@ -13,7 +13,7 @@
 
     <div class='profile-header-section'>
       <div class="profile-avatar">
-        <img src='{{avatar}}'>
+        <img id='img-avatar' src='{{avatar}}' alt='avatar image'>
       </div>
       <div class="profile-name">
         <span> {{user.username}}</span>
@@ -49,11 +49,38 @@
     
           {% endif %}
           {% endfor %}
-          <button class='edit-profile-btn'>Submit</button>
+          <button class='edit-profile-btn'>Submit</button> <span class='img-error error' >File size to large!!</span>
       </form>
     </div>
 
-    
+  <!-- Show users bug Issues -->
+  <div class='user-issues'>
+  	<div class='issue-new'>
+  		<div class='new-issue'>
+		<a href ='{% url "issue" %}'>New Issue</a>
+	</div>
+  	</div>
+    <div class='issue-area-header'>
+      <span>ID</span>
+      <span>STATUS</span>
+      <span>TITLE</span>
+      <span class='date-header'>DATE</span>
+    </div>
+  {% for issue in my_issues %}
+  <div class='issue-table'>
+    <span>{{issue.id}}</span>
+    {% if issue.bug_status == 'O' %}
+    <span>Open</span>
+    {% elif issue.bug_status == 'D' %}
+    <span>Doing</span>
+    {% else %}
+    <span>Closed</span>
+    {% endif %}
+    <a href='{% url "bug_details" issue.id %}'><span>{{issue.bug_title}}</span></a>
+    <span class='date-section'>{{issue.created_date}}</span>
+  </div>
+  {% endfor%}
+  </div>
 </div>
 
 {% endblock content %}
