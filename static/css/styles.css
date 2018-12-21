@@ -37,6 +37,10 @@ html {
 	align-items: center;
 }
 
+.small-screen {
+	display: none !important;
+}
+
 /************* success/error message blocks ************************/
 
 .alert-success {
@@ -91,6 +95,9 @@ select {
 	color: darkslategray;
 }
 
+button:disabled {
+	cursor: not-allowed !important;
+}
 /********************************************************************************/
 
 #burger {
@@ -225,11 +232,19 @@ form {
 	color: darkslategray;
 }
 
-.btn-new-issue {
+.new-issue {
 	display: flex;
 	justify-content: center;
-	padding: 7px;
 	border: 1px solid darkslategray;
+}
+
+.new-issue a {
+	padding: 6px 13px;
+}
+
+.new-issue:hover {
+    background: #e6e3e3;
+    border: 2px solid #636363;
 }
 
 header {
@@ -342,9 +357,14 @@ nav ul li {
 
 .avatar {
 	width: 40px;
+	height: 40px;
 	grid-row: 1;
 	grid-column: 1;
 	margin: 10px 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
 }
 
 .page-heading {
@@ -455,6 +475,11 @@ textarea {
 	font-size: 18px;
 }
 
+.issue-details {
+	display: flex;
+	align-items: center;
+}
+
 .issue-header-section {
 	display: flex;
 	align-items: center;
@@ -464,26 +489,37 @@ textarea {
 
 .issue-header-section label {
 	background: green;
-	padding: 8px 20px;
+	padding: 8px 16px;
 	color: white;
 	border-radius: 3px;
 	float: left;
 }
 
-.upvote-bug {
-	margin: 20px 0;
-	text-align: center;
-	width: 100%;
-	margin-bottom: 0;
-	background-color: red;
-	padding: 5px;
-	color: white;
+.upvote-btn  {
+	padding: 8px 25px;
+    font-size: 65%;
+    font-weight: 600;
+    color: darkslategray;
+    cursor: pointer;
 }
 
-.upvote-bug button {
-	padding: 5px;
-	font-size: 100%;
-	cursor: pointer;
+.upvote {
+	display: flex;
+	justify-content: center;
+}
+
+/*
+element.style {
+    padding: 8px 25px;
+    font-size: 65%;
+    font-weight: 600;
+    color: darkslategray;
+}
+*/
+.upvote-btn:hover {
+    background: #e6e3e3;
+    border: none;
+    border: 1px solid #636363;
 }
 
 .issue-count {
@@ -491,6 +527,10 @@ textarea {
 	margin-bottom: 10px;
 	text-align: left;
 	font-size: 130%;
+	display: grid;
+    grid-template-columns: 125px 30px 100px;
+    align-items: center;
+    height: 40px;
 }
 
 .avatar img {
@@ -505,7 +545,7 @@ textarea {
 
 .comment-footer {
 	display: grid;
-	grid-template-columns: 95px 1fr;
+	grid-template-columns: 100px 1fr;
 	align-items: center;
 	grid-gap: 5px;
 	margin-top: 5px;
@@ -644,6 +684,10 @@ section {
 	width: 50px;
 	height: 50px;
 	background: lightsteelblue;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .profile-avatar img {
@@ -705,6 +749,10 @@ section {
     width: 50px;
     height: 50px;
     background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .avatar-file {
@@ -744,6 +792,59 @@ section {
     cursor: pointer;
 }
 
+#pre {
+	width: 100%;
+}
+
+.img-error {
+	display: none;
+}
+
+.user-issues {
+	display: none;
+}
+
+
+.issue-new {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    align-items: center;
+    height: 40px;
+}
+
+.issue-new .new-issue {
+	grid-column: 2;
+}
+
+.issue-area-header {
+	display: grid;
+    grid-template-columns: 50px 65px 1fr 165px;
+    grid-column-gap: 5px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding: 2px 0;
+}
+
+.issue-table {
+    display: grid;
+    grid-template-columns: 50px 50px 1fr auto;
+    text-align: center;
+    grid-column-gap: 5px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    border: 1px solid lightgray;
+    margin: 5px 0;
+    align-items: center;
+}
+
+.date-header,
+.date-section {
+	display: none;
+}
+
 @media only screen and (min-width: 375px) {
 	.issue-header-section .user-name {
 		display: inline;
@@ -764,6 +865,10 @@ section {
 }
 
 @media only screen and (min-width: 768px) {
+	.small-screen {
+		display: inline !important;
+	}
+	
 	.title-section {
 		font-size: 100%;
 		margin-top: 90px;
@@ -897,6 +1002,11 @@ section {
 		width: 70%;
 		margin: 100px auto;
 		padding: 0;
+	}
+	
+	.date-header,
+	.date-section {
+		display: inline;
 	}
 
 }
