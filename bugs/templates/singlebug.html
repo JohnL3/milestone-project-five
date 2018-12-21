@@ -9,7 +9,14 @@
 <div class='comment-issue-header'>
 	<h1>{{ bug.bug_title }} #<span class='bug-id' id='{{bug.id}}'>{{ bug.id}}</span></h1>
 
-	<div class='issue-count'><span>Upvote count: </span><span id='upvote-count'>{{ bug.upvotes}}</span></div>
+	<div class='issue-count'>
+		<span>Upvote count: </span><span id='upvote-count'>{{ bug.upvotes}}</span>
+		{% if not bug_status == 'Closed' %}
+		<div class='upvote'>
+			<button class='upvote-btn'>Upvote</button>
+		</div>
+		{% endif %}
+	</div>
 
 	<div class='issue-header-section'>
 		<div class='issue-details'>
@@ -18,12 +25,7 @@
 			<span class='side-padding'>opened on: </span>
 			<span class='side-padding date'>{{ bug.created_date }}</span>
 		</div>
-
-		<div class='upvote-bug'>
-			<span class='side-padding'>Upvote if you have this bug</span>
-			<button class='upvote-btn'>UPVOTE</button>
-		</div>
-
+	
 	</div>
 </div>
 
@@ -41,7 +43,7 @@
 		<div class='comment-head'>
 			<span class='user-name'>{{ bug.bugauthor }}</span>
 			<span>commented: </span>
-			<span>{{ bug.created_date }}</span>
+			<span class='date'>{{ bug.created_date }}</span>
 		</div>
 
 
@@ -58,7 +60,7 @@
 			<div class='comment-head'>
 				<span class='user-name'>{{ comment.commentauthor}}</span>
 				<span>commented: </span>
-				<span>{{ comment.created_date }}</span>
+				<span class='date'>{{ comment.created_date }}</span>
 			</div>
 			<div class='comment-area'>
 				<p> {{ comment.comment }} </p>
@@ -68,18 +70,21 @@
 	</div>
 
 	<!-- Area to write a comment -->
-
+	
+	{% if not bug_status == 'Closed' %}
 	<div class='write-comment-area'>
-		<div class='avatar'>
+		<div class='avatar small-screen'>
 			<img src="{{ avatar_url }}" alt='avatar'>
 		</div>
-
+		
+		
 		<div class='write-comment-head'>
 			<ul>
 				<li class='write'>Write</li>
 				<li class='preview'>Preview</li>
 			</ul>
 		</div>
+		
 		<form  id='comment-form' method='POST' action="{% url 'bug_details' bug.id %}" enctype='multipart/form-data' class='create-comment-form'>
 			<div id='{{ user_id }}' class='comment'>
 
@@ -113,6 +118,7 @@
 			{% endif %}
 			</div>
 		</form>
+		{% endif %}
 	</div>
 
 </div>
