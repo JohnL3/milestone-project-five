@@ -630,6 +630,18 @@ section {
 	padding: 0 10px;
 }
 
+.blog-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    overflow: hidden;
+}
+
+.blog-img img {
+	width: 100%;
+}
+
 .details {
 	display: grid;
 	grid-template-columns: 60px 30px 90px auto;
@@ -654,6 +666,12 @@ section {
 
 .part-post a {
 	font-size: 18px;
+}
+
+.create-post-form #id_image {
+	opacity:initial !important;
+	font-size: 20px;
+	padding-left: 0;
 }
 
 .create-post-form textarea {
