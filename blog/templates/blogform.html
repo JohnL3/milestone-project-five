@@ -2,7 +2,7 @@
 {% load static from staticfiles %} 
 
 {% block page_title %}
-<title>New Post</title>
+<title>Post Form</title>
 {% endblock page_title %}
 
 
@@ -13,7 +13,23 @@
 
 <form method='POST' enctype='multipart/form-data' class='create-post-form'>
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    {% for item in form %}
+        {% if item.name == 'title' %}
+        <label>{{item.label }}</label>
+        {{ item }}
+        {% endif%}
+    {% if item.name == 'content'%}
+        <label>{{item.label }}</label>
+        {{ item }}
+        {% endif %}
+    {% if item.name == 'image'%}
+            <div class='img-section'>
+                <label>{{item.label }}</label>
+                {{ item }}
+            </div>
+    {% endif %}
+    {% endfor %}
     <button type='submit'>Save</button>
     
 </form>
