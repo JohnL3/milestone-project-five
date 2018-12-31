@@ -24,13 +24,15 @@
 		<div class="issue-icon"></div>
 		<div class="issue-header">
 			<a href="{% url 'bug_details' bug.id %}">{{ bug.bug_title }}</a>
+			
 		</div>
 		<div class="issue-by">
-			<time datetime="2018-11-24"></time>
+			<time datetime="{{ bug.created_date }}"></time>
 			<span>
 	         #{{ bug.id }} Opened <span>{{ bug.created_date }}</span>
 			</span>
 		</div>
+		
 	</div>
 	
 </div>
