@@ -5,7 +5,6 @@ html {
 	font-size: 16px;
 }
 
-
 /********************************************django register login forms *******************************/
 
 .nonfield,
@@ -98,6 +97,39 @@ select {
 button:disabled {
 	cursor: not-allowed !important;
 }
+
+input[type='checkbox'] {
+	height: 16px!important;
+	width: 16px!important;
+}
+
+/* Special for blog post form */
+
+.img-section {
+    display: grid;
+    grid-template-columns: 50px 10px 1fr;
+    grid-template-rows: 40px;
+    align-items: center;
+    margin-top: 10px;
+}
+.img-section br {
+	display: none;
+}
+
+.img-section a {
+	grid-row: 1;
+    grid-column: 3/-1;
+}
+
+.img-section #id_image {
+	grid-row: 3;
+    grid-column: 1/-1;
+}
+
+#image-clear_id {
+	grid-column: 3;
+	grid-row: 2;
+}
 /********************************************************************************/
 
 #burger {
@@ -124,7 +156,6 @@ button:disabled {
 	padding-left: 20px;
 	padding-right: 20px;
 	border-bottom: 2px solid white;
-	/*darksalmon;*/
 	grid-template-columns: 1fr 40px;
 	height: 60px;
 	color: #9e4222;
@@ -138,7 +169,6 @@ form {
 }
 
 .signup-login-header ul {
-	list-style: none;
 	border-bottom: 4px solid #151414;
 	padding-left: 0px;
 	display: -ms-grid;
@@ -195,6 +225,7 @@ form {
 	width: 100%;
 }
 
+/*
 .create-post-form label,
 .register label,
 .login label {
@@ -202,6 +233,7 @@ form {
 	font-weight: bold;
 	color: darkslategray;
 }
+*/
 
 .create-comment-form input,
 .create-post-form input,
@@ -623,6 +655,10 @@ element.style {
 
 .blog-container {
 	margin-top: 100px;
+}
+
+.part-post {
+	margin-bottom: 30px;
 }
 
 section {
