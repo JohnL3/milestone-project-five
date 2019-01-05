@@ -12,7 +12,7 @@
 	<!-- Single Blog Post -->
 	
 	<section>
-		{% if post.img %}
+		{% if post.image %}
         <div class='blog-img'>
 			<img src='/media/{{ post.image }}' alt=''>
 		</div>
@@ -26,12 +26,13 @@
 			<div class='details'>
 				<span>Views:</span><span>{{ post.views }}</span>
 				<span>Published:</span><span class='date'>{{ post.published_date }}</span>
+				
 				{% if user.is_superuser or user.is_staff %}
 				<div class='edit-post'>
 					<a href='{% url "edit_post" post.id %}' >Edit Post</a></span>
 				</div>
-				
 				{% endif %}
+				
 			</div>
 		</div>
 	</section>
