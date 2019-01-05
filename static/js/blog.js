@@ -15,14 +15,17 @@ $( window ).resize(function() {
   }
 });
 
+
 function changeDateView() {
     // to remove the time in date
     let regex = /\d{4}\,/;
     
-    let dateView = $('.date').text();
-    let num = dateView.search(regex);
-    dateView = dateView.substr(0,num+4);
-    $('.date').text(dateView);
+    let dateView = $('.date');
+    $('.date').each(function(){
+        let num = $(this).text().search(regex);
+        let date = $(this).text().substr(0, num+4);
+        $(this).text(date);
+    });
 }
 
 changeDateView();
