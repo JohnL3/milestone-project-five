@@ -31,10 +31,12 @@ def create_edit_post(request, pk=None):
                     return redirect(single_post, post.pk)
             else:
                 form = BlogPostForm(instance=post)
+                
                 return render(request, 'blogform.html', {'form': form})
                 
         else:
             form = BlogPostForm(instance=post)
+            
             return render(request, 'blogform.html', {'form': form})
     else:
         return redirect(reverse('get_posts'))
