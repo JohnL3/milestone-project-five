@@ -19,15 +19,22 @@ function changeDateView() {
     // to remove the time in date
     let regex = /\d{4}\,/;
     
-    let dateView = $('.date').text();
-    let num = dateView.search(regex);
-    dateView = dateView.substr(0,num+4);
-    $('.date').text(dateView);
+    let dateView = $('.date');
+    $('.date').each(function(){
+        let num = $(this).text().search(regex);
+        let date = $(this).text().substr(0, num+4);
+        $(this).text(date);
+    });
 }
 
 changeDateView();
+
+// get bug status from label on html.page
 let tx = $('#status').text();
+
+//set the option showing in select to the value of the status got from the label at top of html.page
 $( "#status-select").val(tx[0]);
+
 
 $('#comment-form').on('submit', function(event){
     event.preventDefault();
@@ -100,6 +107,9 @@ function createNewComment(json) {
     
     // get avatar image url
     let img = avatar_url; 
+    let regex = /\s/;
+    let num = created_date.search(regex);
+    created_date = created_date.substr(0,num);
     
     // create comment section
     let surround = `<div class='surround'>
@@ -109,7 +119,7 @@ function createNewComment(json) {
         <div class='comment-head'>
             <span class='user-name'>${username}</span>
             <span class='user'>Commented: </span>
-            <span class='user'>${created_date}</span>
+            <span class='date'>${created_date}</span>
         </div>
         <div class='comment-area'>
             <p>${comment_text}</p>
