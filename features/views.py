@@ -7,17 +7,19 @@ from accounts.models import User
 @login_required
 def get_features(request):
     '''Get a list of all features and render them'''
-    
+    user = User.objects.get(pk=request.user.id)
     features = Feature.objects.filter(paid=True)
-    print('features',features)
-    return render(request,'features.html', {'features': features})
+    show_button = Feature.objects.filter(paid=False, feature_author=user)
+    
+    return render(request,'features.html', {'features': features, 'show_button': show_button})
     
 
 def single_feature(request, pk):
     '''Create a view that returns a single feature'''
-    feature = get_object_or_404(Feature, pk=pk)
     
-    return render(request, 'singlefeature.html', {'feature': feature})
+    feature = get_object_or_404(Feature, pk=pk)
+    username = feature.feature_author
+    return render(request, 'singlefeature.html', {'feature': feature, 'username': username})
     
 
 def feature_form(request, pk=None):

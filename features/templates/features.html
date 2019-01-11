@@ -5,14 +5,16 @@
 	<div>
 		<ul>
 			<li>You may suggest a feature by clicking the Suggest Feature button.</li>
-			<li>You cannot suggest another feature until you pay for a previous feature you have suggested.</li>
+			<li>Suggest Feature button will not be available until you pay for a previous feature you have suggested.</li>
 			<li>A Feature you suggest will not be visible to others until you have payed for it.</li>
 			<li>All Feature suggestions will cost €50.00</li>
 		</ul>
 	</div>
+	{% if not show_button %}
 	<div class='add-feature-btn'>
 		<span class='add-feature'><a href='{% url "details" %}'>Suggest Feature</a></span>
 	</div>
+	{% endif %}
 
 	<hr>
 </div>

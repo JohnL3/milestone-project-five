@@ -109,10 +109,13 @@ def profile(request):
         
         my_issues = Bug.objects.filter(bugauthor=request.user.id)
         features = Feature.objects.filter(feature_author=request.user.id)
+        show_button = Feature.objects.filter(paid=False, feature_author=user)
+        
         return render(request, 'profile.html',
         {'user': user, 
         'avatar': avatar, 
         'profile_form': profile_form,
         'my_issues': my_issues,
-        'features': features
+        'features': features,
+        'show_button': show_button
         })

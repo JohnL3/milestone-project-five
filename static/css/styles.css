@@ -95,6 +95,7 @@ select {
 	color: darkslategray;
 }
 
+a:disabled,
 button:disabled {
 	cursor: not-allowed !important;
 }
@@ -887,6 +888,11 @@ section {
 .feature-new .new-feature,
 .issue-new .new-issue {
 	grid-column: 2;
+}
+
+.feature-disallowed {
+	background-color: #ec8989;
+	border: 1px solid #ff4f4f;
 }
 
 .issue-area-header {
