@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
+<title>Feature Form</title>
+{% endblock page_title %} {% block content %}
+<div class='title-section'>
+	<h1>Fill in Feature details below</h1>
+</div>
+
+<!-- The form section -->
+
+<div class='bug-form-container'>
+    <form  method='POST'  enctype='multipart/form-data' class='create-comment-form'>
+        {% csrf_token %}
+        
+        <!-- Pull out individual fields in form -->
+        {% for field in form %}
+        
+            {% if field.name == "feature_title" %}
+            
+                <div class='{{ field.name }}'>
+                    <label style='padding-left: 2px'>{{ field.label|upper }}</label>
+                    {{ field }}
+                    <div><label>FEATURE DETAILS</label></div>
+                </div>
+                
+            {% else %}
+            
+                <div class='feature-details'>
+                    {{ field }}
+                    <div class='comment-footer issue'><button method='POST' enctype='multipart/form-data' class='submit-btn'>Submit</button></div>
+                </div>
+            
+            {% endif %}
+        {% endfor%}
+       
+    </form>
+</div>
+
+
+{% endblock content %} {% block body_js %}
+<script src="{% static 'js/feature.js' %}"></script>
+{% endblock body_js %}

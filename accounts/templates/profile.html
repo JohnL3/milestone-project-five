@@ -81,6 +81,35 @@
   </div>
   {% endfor%}
   </div>
+  
+  <!-- Features -->
+  
+  <div class='user-features'>
+  	<div class='feature-new'>
+  		<div class='new-feature'>
+		<a href ='{% url "details" %}'>New Feature</a>
+	</div>
+  	</div>
+    <div class='issue-area-header'>
+      <span>ID</span>
+      <span>STATUS</span>
+      <span>TITLE</span>
+      <span class='date-header'>DATE</span>
+    </div>
+  {% for feature in features %}
+  <div class='issue-table'>
+    <span>{{feature.id}}</span>
+    {% if feature.paid %}
+    <span>Paid</span>
+    {% else %}
+    <span class='feature-owed'>Owed</span>
+    {% endif %}
+    <a href='{% url "single_feature" feature.id %}'><span>{{feature.feature_title}}</span></a>
+    <span class='date-section'>{{ feature.created_date }}</span>
+  </div>
+  {% endfor%}
+  </div>
+  
 </div>
 
 {% endblock content %}

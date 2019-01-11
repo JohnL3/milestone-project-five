@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
+<title>Feature</title>
+{% endblock page_title %} {% block content %}
+
+<div class='single-feature-header'>
+    <span id='{{ feature.id }}'>Feature Name: </span> <span>{{ feature.feature_title }}</span>
+</div>
+
+<div class='single-feature-details'>
+    <h2>Feature Details</h2>
+    <p>{{ feature.details }}</p>
+    <hr>
+</div>
+
+<div class='single-feature-section'>
+    {% if feature.paid == False %}
+    <div class='single-feature-payment'>
+        <span><a href='#'>Pay Now</a></span>
+    </div>
+    {% else %}
+    <div class='single-feature-payment'>
+        
+    </div>
+    {% endif %}
+    
+    {% if feature.paid == False %}
+    <div class='single-feature-add-to-cart'>
+        
+    </div>
+    {% else %}
+    <div class='single-feature-add-to-cart'>
+        <span><a href='#'>Add to cart</a></span>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %} {% block body_js %}
+<script src="{% static 'js/feature.js' %}"></script>
+{% endblock body_js %}

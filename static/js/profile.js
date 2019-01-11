@@ -26,12 +26,12 @@ $('.tab-c').click(function(){
     
     $('.tab-b').removeClass('profile-tab-active');
     $('.user-issues').css('display', 'none');
-    
+    $('.user-features').css('display', 'none');
 });
 
 $('.tab-a').click(function(){
     $(this).addClass('profile-tab-active');
-    
+    $('.user-features').css('display', 'block');
     
     $('.tab-b').removeClass('profile-tab-active');
     $('.user-issues').css('display', 'none');
@@ -48,6 +48,7 @@ $('.tab-b').click(function(){
     
     $('.tab-c').removeClass('profile-tab-active');
     $('.edit-profile').css('display', 'none');
+    $('.user-features').css('display', 'none');
      $('#pre').remove();
 });
 

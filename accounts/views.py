@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 import json
 from bugs.models import Bug
+from features.models import Feature
 
 
 @login_required
@@ -107,10 +108,11 @@ def profile(request):
         profile_form = ProfileForm()
         
         my_issues = Bug.objects.filter(bugauthor=request.user.id)
-       
+        features = Feature.objects.filter(feature_author=request.user.id)
         return render(request, 'profile.html',
         {'user': user, 
         'avatar': avatar, 
         'profile_form': profile_form,
-        'my_issues': my_issues
+        'my_issues': my_issues,
+        'features': features
         })

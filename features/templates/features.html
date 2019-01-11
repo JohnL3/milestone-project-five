@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
+<title>Features</title>
+{% endblock page_title %} {% block content %}
+<div class='feature-instructions'>
+	<div>
+		<ul>
+			<li>You may suggest a feature by clicking the Suggest Feature button.</li>
+			<li>You cannot suggest another feature until you pay for a previous feature you have suggested.</li>
+			<li>A Feature you suggest will not be visible to others until you have payed for it.</li>
+			<li>All Feature suggestions will cost €50.00</li>
+		</ul>
+	</div>
+	<div class='add-feature-btn'>
+		<span class='add-feature'><a href='{% url "details" %}'>Suggest Feature</a></span>
+	</div>
+
+	<hr>
+</div>
+
+<div class='feature-header'>
+	<h1>Browse available Features Below</h1>
+</div>
+
+<div class='feature-container'>
+	{% for item in features %}
+	<div id='{{ item.id }}' class='feature-box' name='{{ item.feature_author }}'>
+
+		<span class='feature-title'>{{ item.feature_title }}</span>
+		<div class='box-quan'>
+			<span>Purchased by:</span>
+			<span> {{ item.purchased }} </span><span>users</span>
+		</div>
+
+		<div class='box-link'>
+			<span><a href='{% url "single_feature" item.id %}'>View Details</a></span>
+			<button class='feature-add'>Add to cart</button>
+		</div>
+	</div>
+	{% endfor %}
+
+</div>
+{% endblock content %} {% block body_js %}
+<script src="{% static 'js/feature.js' %}"></script>
+{% endblock body_js %}
