@@ -37,6 +37,12 @@ def feature_form(request, pk=None):
             feature=form.save(commit=False)
             feature.feature_author = user
             feature.save()
+            cart = request.session.get('cart', {})
+            item_id = feature.pk
+            
+            cart[item_id] = cart.get(item_id, 1)
+            request.session['cart'] = cart
+           
             return redirect(single_feature, feature.pk)
     
     else:
