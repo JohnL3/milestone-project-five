@@ -3,7 +3,7 @@
 {% endblock page_title %} {% block content %}
 
 <div class='single-feature-header'>
-    <span id='{{ feature.id }}'>Feature Name: </span> <span>{{ feature.feature_title }}</span>
+    <span class='feature-id' id='{{ feature.id }}'>Feature Name: </span> <span>{{ feature.feature_title }}</span>
 </div>
 
 <div class='single-feature-details'>
@@ -16,7 +16,7 @@
 <div class='single-feature-section'>
     {% if feature.paid == False %}
     <div class='single-feature-payment'>
-        <span><a href='#'>Pay Now</a></span>
+        <span><a href="{% url 'view_cart' %}">Pay Now</a></span>
     </div>
     {% else %}
     <div class='single-feature-payment'>
@@ -24,14 +24,20 @@
     </div>
     {% endif %}
     
+    <span class='feature-success-msg'></span>
+    
     {% if feature.paid == False %}
     <div class='single-feature-add-to-cart'>
         
     </div>
     {% else %}
+    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+        {% csrf_token %}
     <div class='single-feature-add-to-cart'>
-        <span><a href='#'>Add to cart</a></span>
+        <!-- <span><a href="{% url 'view_cart' %}">Add to cart</a></span> -->
+        <button class="feature-submit-btn" type="submit">Add to cart</button>
     </div>
+    </form>
     {% endif %}
 </div>
 
