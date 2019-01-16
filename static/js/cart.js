@@ -15,6 +15,12 @@ $( window ).resize(function() {
   }
 });
 
+function setDisabled() {
+    $('.disable').prop('checked','checked');
+    $('.disable').attr('disabled','disabled');
+    $('.cart-amt').text('50');
+}
+setDisabled();
 
 //Updates the total of features to be purchased in cart
 $('input[type="checkbox"]').change(function(){
