@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static from staticfiles %} 
+
+{% block page_title %}
+<title>Cart</title>
+{% endblock page_title%} 
+
+{% block content %}
+<div class='cart-header'>
+    <div class='cart-header-section'>
+        <p>Tick checkbox of Items you wish to purchase now.</p>
+        <p>Items you wish to remove from cart, can be removed by clicking on the red X.</p>
+    </div>
+    <div class='cart-header-titles'>
+        <span>ID</span>
+        <span>Title</span>
+        <span class='align-start'>Cost</span>
+        <span class='align-start'>Pay</span>
+    </div>
+    {% for item in cart_items %}
+    <div class='cart-item'>
+        <span class='cart-item-id'>{{ item.feature.id }}</span>
+        <span class='cart-item-name'>{{ item.feature.feature_title }}</span>
+        <span class='align-start'>€50.00</span>
+        <input type='checkbox' class='align-start'>
+        {% if item.feature.paid %}
+       <form>
+           {% csrf_token %}
+            <span id='{{ item.feature.id }}' class='cart-remove'>X</span>
+        </form>
+        {% endif %}
+    </div>
+    
+    {% endfor %}
+    <hr>
+    <div class='cart-total'>
+        <span class='cart-label'>Total</span>
+        <span>€</span>
+        <span class='cart-amt'>0</span>
+    </div>
+    
+    <div class='cart-checkout'>
+        <button class='cart-checkout-btn'>Checkout</button>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block body_js %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock body_js %}
