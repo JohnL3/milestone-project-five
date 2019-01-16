@@ -21,7 +21,13 @@
         <span class='cart-item-id'>{{ item.feature.id }}</span>
         <span class='cart-item-name'>{{ item.feature.feature_title }}</span>
         <span class='align-start'>€50.00</span>
+        
+        {% if item.feature.paid %}
         <input type='checkbox' class='align-start'>
+        {% else %}
+        <input type='checkbox' class='align-start disable'>
+        {% endif %}
+        
         {% if item.feature.paid %}
        <form>
            {% csrf_token %}
