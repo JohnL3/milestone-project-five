@@ -20,6 +20,7 @@ from blog import urls as urls_blog
 from bugs import urls as urls_bugs
 from features import urls as urls_features
 from accounts .views import index
+from cart import urls as urls_cart
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 
@@ -30,6 +31,7 @@ urlpatterns = [
     url(r'^blog/', include( urls_blog)),
     url(r'^bugs/', include( urls_bugs)),
     url(r'^features/', include(urls_features)),
+    url(r'^cart/', include(urls_cart)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
 ]
 
