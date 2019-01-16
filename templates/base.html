@@ -66,6 +66,14 @@
 						<li>REGISTER/LOGIN</li>
 					</a>
 					{% endif %}
+					<a href="{% url 'view_cart' %}">
+						<li>CART
+							{% if feature_count %}
+                            <label class="badge badge-warning">{{ feature_count }}</label>
+                           	{% endif %}
+                        </li>
+                            
+					</a>
 				</ul>
 			</nav>
 	
