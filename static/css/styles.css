@@ -109,6 +109,13 @@ input[type='checkbox'] {
 	width: 16px!important;
 }
 
+.badge {
+	padding: 0 9px;
+	border-radius: 9px;
+	background-color: white;
+	color: brown;
+}
+
 /* Special for blog post form */
 
 .img-section {
@@ -164,7 +171,7 @@ input[type='checkbox'] {
 	padding-left: 20px;
 	padding-right: 20px;
 	border-bottom: 2px solid white;
-	grid-template-columns: 1fr 40px;
+	grid-template-columns: 1fr;
 	height: 60px;
 	color: #9e4222;
 }
@@ -885,6 +892,7 @@ section {
 	align-items: center;
 	height: 40px;
 }
+
 .feature-new .new-feature,
 .issue-new .new-issue {
 	grid-column: 2;
@@ -929,14 +937,15 @@ section {
 	color: red!important;
 	font-weight: 600!important;
 }
+
 .add-feature-btn {
 	margin-bottom: 20px;
 }
 
 .add-feature-btn span {
 	padding: 5px 10px;
-    background: lightgray;
-    border: 1px solid gray;
+	background: lightgray;
+	border: 1px solid gray;
 }
 
 .add-feature-btn a {
@@ -1038,14 +1047,41 @@ section {
 
 .single-feature-section {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 105px 1fr 95px;
+	box-sizing: border-box;
+    padding: 0 5px;
+}
+
+.single-feature-section form {
+	grid-column: 3;
+}
+
+.feature-success-msg {
+    color: green;
+    align-self: center;
+    justify-self: end;
+    padding-right: 10px;
 }
 
 .single-feature-add-to-cart,
 .single-feature-payment {
 	box-sizing: border-box;
-	padding: 10px 10px;
 	display: flex;
+}
+
+.cart-checkout-btn,
+.feature-submit-btn {
+	padding: 7px 5px;
+    background-color: green;
+    border: 1px solid darkgreen;
+    color: white;
+}
+
+.cart-checkout-btn:hover,
+.feature-submit-btn:hover {
+	background-color: #3caf3c!important;
+	cursor: pointer;
+	border: 1px solid #64b564;
 }
 
 .single-feature-add-to-cart {
@@ -1060,7 +1096,7 @@ section {
 	cursor: pointer;
 }
 
-.single-feature-add-to-cart span{
+.single-feature-add-to-cart span {
 	width: 80px;
 	float: right;
 }
@@ -1070,6 +1106,74 @@ section {
 .single-feature-payment a {
 	color: white!important;
 }
+
+/************************************Cart***************************************/
+
+.cart-header {
+	padding-top: 60px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.cart-header-titles {
+	box-sizing: border-box;
+	padding-top: 40px;
+	display: grid;
+	grid-template-columns: 40px 1fr 60px 40px 25px;
+	margin-bottom: 15px;
+	border-bottom: 2px solid black;
+	text-align: center;
+	font-size: 120%;
+    font-weight: 600;
+}
+
+.cart-item {
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: 40px 1fr 60px 40px 25px;
+	text-align: center;
+	align-items: center;
+	margin: 5px 0;
+}
+
+.cart-remove {
+	color: red;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.align-start {
+	justify-self: flex-start;
+}
+
+.cart-header hr {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.cart-total {
+	display: grid;
+	grid-template-columns: 40px 1fr 65px 10px 50px;
+}
+
+.cart-label {
+	grid-column: 3;
+}
+
+.cart-checkout {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px!important;
+}
+
+.cart-header-section {
+    box-sizing: border-box;
+    padding-top: 40px;
+    font-size: 110%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 
 @media only screen and (min-width: 375px) {
 	.issue-header-section .user-name {
@@ -1091,6 +1195,10 @@ section {
 }
 
 @media only screen and (min-width: 768px) {
+	.title {
+		padding-right: 0;
+	}
+
 	.small-screen {
 		display: inline !important;
 	}
@@ -1195,7 +1303,7 @@ section {
 	.write-comment-area {
 		margin-bottom: 60px;
 	}
-	
+
 	.feature-footer,
 	.comment-footer {
 		grid-column: 2;
@@ -1254,8 +1362,8 @@ section {
 	.add-feature-btn span {
 		float: right;
 		padding: 5px 10px;
-    	background: lightgray;
-    	border: 1px solid gray;
+		background: lightgray;
+		border: 1px solid gray;
 	}
 
 	hr {
@@ -1297,7 +1405,7 @@ section {
 		width: 70%;
 		margin: 0 auto;
 	}
-	
+
 	.single-feature-details hr {
 		width: 100%;
 	}
@@ -1309,6 +1417,34 @@ section {
 
 	.single-feature-section {
 		width: 70%;
+		margin: 0 auto;
+	}
+
+	/*************************************************************************/
+	.cart-header-titles {
+		box-sizing: border-box;
+		padding-top: 40px;
+		width: 95%;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 40px 1fr 60px 40px 25px;
+		margin-bottom: 15px;
+		border-bottom: 2px solid black;
+		text-align: center;
+	}
+	.cart-checkout,
+	.cart-total,
+	.cart-item {
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	.cart-header hr {
+		width: 95%;
+	}
+	
+	.cart-header-section {
+		width: 95%;
 		margin: 0 auto;
 	}
 
@@ -1326,15 +1462,21 @@ section {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		max-width: 90%;
 	}
-
+	
 	.feature-instructions,
 	.feature-header {
 		width: 90%;
 		margin: 0 auto;
 		text-align: center;
 	}
+	
 
 	.feature-instructions {
 		margin-top: 67px;
+	}
+	
+	.cart-header {
+		width: 80%;
+		margin: 0 auto;
 	}
 }
