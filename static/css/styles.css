@@ -1049,7 +1049,7 @@ section {
 	display: grid;
 	grid-template-columns: 105px 1fr 95px;
 	box-sizing: border-box;
-    padding: 0 5px;
+	padding: 0 5px;
 }
 
 .single-feature-section form {
@@ -1057,10 +1057,10 @@ section {
 }
 
 .feature-success-msg {
-    color: green;
-    align-self: center;
-    justify-self: end;
-    padding-right: 10px;
+	color: green;
+	align-self: center;
+	justify-self: end;
+	padding-right: 10px;
 }
 
 .single-feature-add-to-cart,
@@ -1072,9 +1072,9 @@ section {
 .cart-checkout-btn,
 .feature-submit-btn {
 	padding: 7px 5px;
-    background-color: green;
-    border: 1px solid darkgreen;
-    color: white;
+	background-color: green;
+	border: 1px solid darkgreen;
+	color: white;
 }
 
 .cart-checkout-btn:hover,
@@ -1119,18 +1119,18 @@ section {
 	box-sizing: border-box;
 	padding-top: 40px;
 	display: grid;
-	grid-template-columns: 40px 1fr 60px 40px 25px;
+	grid-template-columns: 40px 1fr 60px;
 	margin-bottom: 15px;
 	border-bottom: 2px solid black;
 	text-align: center;
 	font-size: 120%;
-    font-weight: 600;
+	font-weight: 600;
 }
 
 .cart-item {
 	box-sizing: border-box;
 	display: grid;
-	grid-template-columns: 40px 1fr 60px 40px 25px;
+	grid-template-columns: 40px 1fr 60px;
 	text-align: center;
 	align-items: center;
 	margin: 5px 0;
@@ -1167,13 +1167,56 @@ section {
 }
 
 .cart-header-section {
-    box-sizing: border-box;
-    padding-top: 40px;
-    font-size: 110%;
-    padding-left: 5px;
-    padding-right: 5px;
+	box-sizing: border-box;
+	padding-top: 40px;
+	font-size: 110%;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
+/*****************************************************************************/
+
+.checkout-header {
+	padding-top: 60px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.checkout-header-titles {
+	box-sizing: border-box;
+	padding-top: 40px;
+	display: grid;
+	grid-template-columns:40px 1fr 60px;
+	margin-bottom: 15px;
+	border-bottom: 2px solid black;
+	text-align: center;
+	font-size: 120%;
+	font-weight: 600;
+}
+
+.checkout-item {
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: 40px 1fr 60px;
+	text-align: center;
+	align-items: center;
+	margin: 5px 0;
+	box-sizing: border-box;
+    padding: 2px 0;
+}
+
+.checkout-total {
+	display: grid;
+	grid-template-columns: 1fr 50px 10px 50px;
+}
+
+.checkout-label {
+	grid-column: 2;
+}
+
+.checkout-header hr {
+	margin-top: 10px;
+}
 
 @media only screen and (min-width: 375px) {
 	.issue-header-section .user-name {
@@ -1427,7 +1470,7 @@ section {
 		width: 95%;
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 40px 1fr 60px 40px 25px;
+		grid-template-columns: 40px 1fr 60px;
 		margin-bottom: 15px;
 		border-bottom: 2px solid black;
 		text-align: center;
@@ -1442,10 +1485,28 @@ section {
 	.cart-header hr {
 		width: 95%;
 	}
-	
+
 	.cart-header-section {
 		width: 95%;
 		margin: 0 auto;
+	}
+
+	/**************************checkout*********************************************/
+	
+	.checkout-header-titles {
+		width: 95%;
+		margin: 0 auto;
+		margin-bottom: 15px;
+	}
+	
+	.checkout-total,
+	.checkout-item {
+		width: 95%;
+		margin: 0 auto;
+	}
+	
+	.checkout-header hr {
+		width: 95%
 	}
 
 }
@@ -1462,19 +1523,20 @@ section {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		max-width: 90%;
 	}
-	
+
 	.feature-instructions,
 	.feature-header {
 		width: 90%;
 		margin: 0 auto;
 		text-align: center;
 	}
-	
+
 
 	.feature-instructions {
 		margin-top: 67px;
 	}
 	
+	.checkout-header,
 	.cart-header {
 		width: 80%;
 		margin: 0 auto;
