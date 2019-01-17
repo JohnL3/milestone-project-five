@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% load static from staticfiles %} 
+
+{% block page_title %}
+<title>Checkout</title>
+{% endblock page_title%} 
+
+{% block content %}
+<div class='checkout-header'>
+	<div class='checkout-header-titles'>
+        <span>ID</span>
+        <span>Title</span>
+        <span class='align-start'>Cost</span>
+    </div>
+    
+    {% for item in cart_items %}
+    <div class='checkout-item'>
+        <span class='cart-item-id'>{{ item.feature.id }}</span>
+        <span class='cart-item-name'>{{ item.feature.feature_title }}</span>
+        <span class='align-start'>€50.00</span>
+        
+    </div>
+    
+    {% endfor %}
+    
+    <hr>
+    <div class='checkout-total'>
+        <span class='checkout-label'>Total</span>
+        <span>€</span>
+        <span class='cart-amt'>{{total}}</span>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block body_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock body_js %}
