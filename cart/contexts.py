@@ -7,9 +7,10 @@ def cart_contents(request):
     Ensures that the cart contents are available when rendering every page
     """
     
+    owed_for = Feature.objects.filter(paid=False, feature_author=request.user.id)
+    
     cart = request.session.get('cart', {})
     
-    print('cart contexts',cart)
     cart_items = []
     total = 0
     feature_count = 0
@@ -17,7 +18,15 @@ def cart_contents(request):
         feature = get_object_or_404(Feature, pk=item_id)
         
         total += quantity * 50
+       
         feature_count += quantity
         cart_items.append({'item_id':item_id, 'quantity': quantity, 'feature': feature})
-        
+    
+    #if user has suggested feature and it is not paid for and relogs in, add that feature to cart
+    if owed_for:
+        for feature in owed_for:
+            total+=50
+            feature_count+=1
+            cart_items.append({'item_id': feature.id, 'quantity': 1, 'feature': feature})
+            
     return { 'cart_items': cart_items, 'total': total, 'feature_count': feature_count }
