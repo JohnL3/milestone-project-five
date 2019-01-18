@@ -7,26 +7,19 @@
 {% block content %}
 <div class='cart-header'>
     <div class='cart-header-section'>
-        <p>Tick checkbox of Items you wish to purchase now.</p>
         <p>Items you wish to remove from cart, can be removed by clicking on the red X.</p>
+        <p>Suggested features not yet paid for cannot be removed from cart.</p>
     </div>
     <div class='cart-header-titles'>
         <span>ID</span>
         <span>Title</span>
         <span class='align-start'>Cost</span>
-        <span class='align-start'>Pay</span>
     </div>
     {% for item in cart_items %}
     <div class='cart-item'>
         <span class='cart-item-id'>{{ item.feature.id }}</span>
         <span class='cart-item-name'>{{ item.feature.feature_title }}</span>
         <span class='align-start'>€50.00</span>
-        
-        {% if item.feature.paid %}
-        <input type='checkbox' class='align-start'>
-        {% else %}
-        <input type='checkbox' class='align-start disable'>
-        {% endif %}
         
         {% if item.feature.paid %}
        <form>
@@ -41,11 +34,11 @@
     <div class='cart-total'>
         <span class='cart-label'>Total</span>
         <span>€</span>
-        <span class='cart-amt'>0</span>
+        <span class='cart-amt'>{{total}}</span>
     </div>
     
     <div class='cart-checkout'>
-        <button class='cart-checkout-btn'>Checkout</button>
+        <a class='cart-checkout-btn' href="{% url 'checkout' %}" class="btn" role="button">Checkout</a>
     </div>
 </div>
 
