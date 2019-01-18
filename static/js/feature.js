@@ -28,7 +28,7 @@ $('.feature-submit-btn').click(function(){
         type : "POST", 
         data : data,
         success : function(data) {
-            console.log(data);
+            
             let quantity = +$('.badge').text()+1;
             $('.badge').text(quantity);
             
