@@ -15,23 +15,6 @@ $( window ).resize(function() {
   }
 });
 
-function setDisabled() {
-    $('.disable').prop('checked','checked');
-    $('.disable').attr('disabled','disabled');
-    $('.cart-amt').text('50');
-}
-setDisabled();
-
-//Updates the total of features to be purchased in cart
-$('input[type="checkbox"]').change(function(){
-    if($(this).prop('checked')) {
-        let total = +$('.cart-amt').text()+50;
-        $('.cart-amt').text(total);
-    } else {
-        let total = +$('.cart-amt').text()-50;
-        $('.cart-amt').text(total);
-    }
-});
 
 //Removes an item from the cart
 $('.cart-remove').click(function(){
@@ -57,6 +40,8 @@ $('.cart-remove').click(function(){
                 $('.remove').remove();
                 let quantity = +$('.badge').text()-1;
                 $('.badge').text(quantity);
+                let total = +$('.cart-amt').text()-50;
+                $('.cart-amt').text(total);
             }
           });
 });
