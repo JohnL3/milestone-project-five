@@ -1119,7 +1119,7 @@ section {
 	box-sizing: border-box;
 	padding-top: 40px;
 	display: grid;
-	grid-template-columns: 40px 1fr 60px;
+	grid-template-columns: 40px 1fr 60px 20px;
 	margin-bottom: 15px;
 	border-bottom: 2px solid black;
 	text-align: center;
@@ -1130,7 +1130,7 @@ section {
 .cart-item {
 	box-sizing: border-box;
 	display: grid;
-	grid-template-columns: 40px 1fr 60px;
+	grid-template-columns: 40px 1fr 60px 20px;
 	text-align: center;
 	align-items: center;
 	margin: 5px 0;
@@ -1153,11 +1153,11 @@ section {
 
 .cart-total {
 	display: grid;
-	grid-template-columns: 40px 1fr 65px 10px 50px;
+	grid-template-columns: 1fr 65px 10px 50px 20px;
 }
 
 .cart-label {
-	grid-column: 3;
+	grid-column: 2;
 }
 
 .cart-checkout {
@@ -1186,7 +1186,7 @@ section {
 	box-sizing: border-box;
 	padding-top: 40px;
 	display: grid;
-	grid-template-columns:40px 1fr 60px;
+	grid-template-columns: 40px 1fr 60px;
 	margin-bottom: 15px;
 	border-bottom: 2px solid black;
 	text-align: center;
@@ -1202,7 +1202,7 @@ section {
 	align-items: center;
 	margin: 5px 0;
 	box-sizing: border-box;
-    padding: 2px 0;
+	padding: 2px 0;
 }
 
 .checkout-total {
@@ -1216,6 +1216,37 @@ section {
 
 .checkout-header hr {
 	margin-top: 10px;
+}
+
+#payment-form legend {
+    text-align: center;
+    font-size: 130%;
+    font-weight: 600;
+}
+
+.form-box {
+	margin-top: 10px;
+	box-sizing: border-box;
+	padding: 0 5px;
+}
+
+.payment-form,
+.order-form {
+	display: grid;
+}
+
+.payment-form input,
+.order-form input {
+	height: 25px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 5px;
+}
+
+.payment-form select {
+	height: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 @media only screen and (min-width: 375px) {
@@ -1470,7 +1501,7 @@ section {
 		width: 95%;
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 40px 1fr 60px;
+		grid-template-columns: 40px 1fr 60px 20px;
 		margin-bottom: 15px;
 		border-bottom: 2px solid black;
 		text-align: center;
@@ -1492,21 +1523,28 @@ section {
 	}
 
 	/**************************checkout*********************************************/
-	
 	.checkout-header-titles {
 		width: 95%;
 		margin: 0 auto;
 		margin-bottom: 15px;
 	}
-	
+
 	.checkout-total,
 	.checkout-item {
 		width: 95%;
 		margin: 0 auto;
 	}
-	
+
 	.checkout-header hr {
 		width: 95%
+	}
+
+	.form-box {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 10px;
+		width: 90%;
+		margin: 10px auto;
 	}
 
 }
@@ -1535,10 +1573,14 @@ section {
 	.feature-instructions {
 		margin-top: 67px;
 	}
-	
+
 	.checkout-header,
 	.cart-header {
 		width: 80%;
 		margin: 0 auto;
+	}
+	
+	.form-box {
+		width: 80%;
 	}
 }
