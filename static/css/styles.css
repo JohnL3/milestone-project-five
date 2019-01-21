@@ -88,6 +88,10 @@ label {
 	color: darkslategray;
 }
 
+.hide-label {
+	display: none;
+}
+
 button,
 select {
 	/*	font-size: 110%;*/
@@ -284,6 +288,14 @@ form {
 	display: flex;
 	justify-content: center;
 	border: 1px solid darkslategray;
+}
+
+.new-feature {
+	background-color: lightgray;
+}
+
+.new-feature:hover {
+	background-color: #e8e3e3;
 }
 
 .new-feature a,
@@ -952,6 +964,10 @@ section {
 	padding: 5px 0;
 }
 
+.add-feature-btn span:hover {
+	background-color: #e8e3e3;
+}
+
 .feature-instructions {
 	box-sizing: border-box;
 	padding: 10px;
@@ -1217,6 +1233,9 @@ section {
 .checkout-header hr {
 	margin-top: 10px;
 }
+#payment-form {
+	margin-bottom: 60px;
+}
 
 #payment-form legend {
     text-align: center;
@@ -1247,6 +1266,20 @@ section {
 	height: 30px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.payment-form-submit {
+	margin-top: 15px;
+    padding: 7px 9px;
+    background-color: green;
+    border: 1px solid darkgreen;
+    color: white;
+    cursor: pointer;
+}
+
+.payment-form-submit:hover {
+	background-color: #3caf3c!important;
+    border: 1px solid #64b564;
 }
 
 @media only screen and (min-width: 375px) {
