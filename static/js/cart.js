@@ -19,13 +19,7 @@ $( window ).resize(function() {
 //Removes an item from the cart
 $('.cart-remove').click(function(){
     
-    if( $(this).closest('div').find('[type=checkbox]').prop('checked')) {
-         let amt = +$('.cart-amt').text()-50;
-         $('.cart-amt').text(amt);
-         $(this).closest('div').addClass('remove');
-    } else {
-        $(this).closest('div').addClass('remove');
-    }
+    $(this).closest('div').addClass('remove');
     
     let item_id = +$(this).attr('id');
     let data = {'item_id': item_id};
@@ -39,6 +33,11 @@ $('.cart-remove').click(function(){
             success: function(data){
                 $('.remove').remove();
                 let quantity = +$('.badge').text()-1;
+                if(quantity === 0) {
+                    $('.badge').addClass('hide-label');
+                } else {
+                    $('.badge').removeClass('hide-label');
+                }
                 $('.badge').text(quantity);
                 let total = +$('.cart-amt').text()-50;
                 $('.cart-amt').text(total);
