@@ -8,7 +8,7 @@ def cart_contents(request):
     """
     
     owed_for = Feature.objects.filter(paid=False, feature_author=request.user.id)
-    
+   
     cart = request.session.get('cart', {})
     
     cart_items = []
@@ -25,8 +25,8 @@ def cart_contents(request):
     #if user has suggested feature and it is not paid for and relogs in, add that feature to cart
     if owed_for:
         for feature in owed_for:
-            total+=50
-            feature_count+=1
-            cart_items.append({'item_id': feature.id, 'quantity': 1, 'feature': feature})
+            item_id = feature.id
+            cart[item_id] = cart.get(item_id, 1)
+            request.session['cart'] = cart
             
     return { 'cart_items': cart_items, 'total': total, 'feature_count': feature_count }
