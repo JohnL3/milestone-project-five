@@ -68,9 +68,9 @@
 					</a>
 					{% endif %}
 					<a href="{% url 'view_cart' %}">
-						<li>CART
+						<li id='attach'>CART
 							{% if feature_count %}
-                            <label class="badge badge-warning">{{ feature_count }}</label>
+                            <label class="badge">{{ feature_count }}</label>
                            	{% endif %}
                         </li>
                             
