@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 import json
 from features.models import Feature
 
+@login_required   
 def view_cart(request):
     """A view that renders the cart contents page"""
    
