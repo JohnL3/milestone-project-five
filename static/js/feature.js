@@ -28,14 +28,21 @@ $('.feature-submit-btn').click(function(){
         type : "POST", 
         data : data,
         success : function(data) {
-            
+            let badge = $('.badge').text();
+            if(!badge) {
+               addLabel();
+            }
             let quantity = +$('.badge').text()+1;
             $('.badge').text(quantity);
-            
             $('.feature-success-msg').text('Added to cart');
             setTimeout(function(){
                 $('.feature-success-msg').text('');
             },2000);
         },
     });
-})
+});
+
+function addLabel() {
+    let cartLabel = `<label class='badge'></label>`;
+    $('#attach').append(cartLabel);
+}
