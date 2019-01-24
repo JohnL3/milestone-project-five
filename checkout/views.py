@@ -6,7 +6,7 @@ from .models import OrderLineItem
 from django.conf import settings
 from django.utils import timezone
 import stripe
-from features.models import PurchasedCount, Feature
+from features.models import Feature
 from accounts.models import User
 
 stripe.api_key = settings.STRIPE_SECRET
@@ -14,6 +14,7 @@ stripe.api_key = settings.STRIPE_SECRET
 @login_required()
 def checkout(request):
     cart = request.session.get('cart', {})
+    print('LENGTH',len(cart))
     if request.method == 'POST' and len(cart) > 0:
         user = User.objects.get(pk=request.user.id)
         order_form = OrderForm(request.POST)
@@ -31,7 +32,7 @@ def checkout(request):
                 
                 feature = get_object_or_404(Feature, pk=id)
                 
-                total += 1 * 50
+                total += 1 * feature.price
                 order_line_item = OrderLineItem(
                     order = order, 
                     feature = feature, 
@@ -52,11 +53,13 @@ def checkout(request):
             if customer.paid:
                 
                 for id, quantity in cart.items():
+                    '''
                     purchased_count = PurchasedCount()
                     purchased_count.name = get_object_or_404(Feature, pk=id)
                     
                     purchased_count.creator = user
                     purchased_count.save()
+                    '''
                     
                     #Keep track of how many purchased each feature
                     feature = get_object_or_404(Feature, pk=id)

@@ -19,7 +19,7 @@
     <div class='cart-item'>
         <span class='cart-item-id'>{{ item.feature.id }}</span>
         <span class='cart-item-name'>{{ item.feature.feature_title }}</span>
-        <span class='align-start'>€50.00</span>
+        <span class='align-start'><span>€</span>{{ item.feature.price }}</span>
         
         {% if item.feature.paid %}
        <form>

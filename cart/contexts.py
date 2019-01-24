@@ -17,16 +17,18 @@ def cart_contents(request):
     for item_id, quantity in cart.items():
         feature = get_object_or_404(Feature, pk=item_id)
         
-        total += quantity * 50
+        total += quantity * feature.price
        
         feature_count += quantity
         cart_items.append({'item_id':item_id, 'quantity': quantity, 'feature': feature})
     
     #if user has suggested feature and it is not paid for and relogs in, add that feature to cart
+    
     if owed_for:
         for feature in owed_for:
             item_id = feature.id
             cart[item_id] = cart.get(item_id, 1)
             request.session['cart'] = cart
+    
             
     return { 'cart_items': cart_items, 'total': total, 'feature_count': feature_count }

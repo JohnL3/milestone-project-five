@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Feature, PurchasedCount
+from .models import Feature
 from .forms import FeatureForm
 from accounts.models import User
 
@@ -17,9 +17,15 @@ def get_features(request):
 def single_feature(request, pk):
     '''Create a view that returns a single feature'''
     
+    cart = request.session.get('cart', {})
+    if pk in cart:
+        in_cart = True
+    else:
+        in_cart = False
+        
     feature = get_object_or_404(Feature, pk=pk)
     username = feature.feature_author
-    return render(request, 'singlefeature.html', {'feature': feature, 'username': username})
+    return render(request, 'singlefeature.html', {'feature': feature, 'username': username, 'in_cart': in_cart})
     
 
 def feature_form(request, pk=None):
@@ -36,6 +42,8 @@ def feature_form(request, pk=None):
         if form.is_valid():
             feature=form.save(commit=False)
             feature.feature_author = user
+            
+            feature.price = 50
             feature.save()
             cart = request.session.get('cart', {})
             item_id = feature.pk

@@ -11,13 +11,14 @@ class Feature(models.Model):
     purchased = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False, blank=False)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self):
         return self.feature_title
         
-        
+'''      
 class  PurchasedCount(models.Model):
-    ''' count how many were purchased'''
+   
     
     creator = models.ForeignKey(User)
     name = models.ForeignKey(Feature)
@@ -29,3 +30,4 @@ class  PurchasedCount(models.Model):
        
     def __str__(self):
         return str(self.creator)
+'''

@@ -24,4 +24,4 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(blank=False)
     
     def __str__(self):
-        return "{0} {1} ".format(self.quantity, self.feature.feature_title)
+        return "{0} {1} @ {2}".format(self.quantity, self.feature.feature_title, self.feature.price)
