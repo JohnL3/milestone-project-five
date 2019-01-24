@@ -24,7 +24,11 @@
     </div>
     {% endif %}
     
-    <span class='feature-success-msg'></span>
+    <span class='feature-success-msg'>
+        {% if in_cart %}
+        Allready added to cart.
+        {% endif %}
+    </span>
     
     {% if feature.paid == False %}
     <div class='single-feature-add-to-cart'>
@@ -34,8 +38,11 @@
     <form method="post" action="{% url 'add_to_cart' feature.id %}">
         {% csrf_token %}
     <div class='single-feature-add-to-cart'>
-        <!-- <span><a href="{% url 'view_cart' %}">Add to cart</a></span> -->
+        {% if in_cart %}
+        <button class="feature-submit-btn" type="submit" disabled>Add to cart</button>
+        {% else %}
         <button class="feature-submit-btn" type="submit">Add to cart</button>
+        {% endif %}
     </div>
     </form>
     {% endif %}
