@@ -39,8 +39,8 @@ $('.cart-remove').click(function(){
                     $('.badge').removeClass('hide-label');
                 }
                 $('.badge').text(quantity);
-                let total = +$('.cart-amt').text()-50;
-                $('.cart-amt').text(total);
+                let total = +$('.cart-amt').text()-50.00;
+                $('.cart-amt').text(total+'.00');
             }
           });
 });
