@@ -67,6 +67,7 @@
 						<li>REGISTER/LOGIN</li>
 					</a>
 					{% endif %}
+					{% if user.is_authenticated %}
 					<a href="{% url 'view_cart' %}">
 						<li id='attach'>CART
 							{% if feature_count %}
@@ -75,6 +76,7 @@
                         </li>
                             
 					</a>
+					{% endif %}
 				</ul>
 			</nav>
 	
