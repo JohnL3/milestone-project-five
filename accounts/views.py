@@ -90,7 +90,7 @@ def profile(request):
        
         form = ProfileForm(request.POST, request.FILES)
         
-        avatar_url ='/media/images/'+str(request.FILES['file'])
+        avatar_url ='images/'+str(request.FILES['file'])
         image = request.FILES['file']
         
         if form.is_valid():

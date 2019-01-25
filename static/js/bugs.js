@@ -104,7 +104,8 @@ function createNewComment(json) {
     
     //destructure json
     ({avatar_url, bug_id, bug_status, comment_text,created_date, user_id, username}={...json});
-    
+    console.log('AVATAR URL',avatar_url);
+    let url = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+avatar_url;
     // get avatar image url
     let img = avatar_url; 
     let regex = /\s/;
@@ -114,7 +115,7 @@ function createNewComment(json) {
     // create comment section
     let surround = `<div class='surround'>
         <div class='avatar'>
-            <img src='${img}' alt='avatar'>
+            <img src='${url}' alt='avatar'>
         </div>
         <div class='comment-head'>
             <span class='user-name'>${username}</span>

@@ -37,7 +37,7 @@
 	<div class='surround'>
 		<div class='avatar'>
 			
-				<img class='' src="{{ bug.bug_author_avatar }}" alt='avatar'>
+				<img class='' src="{{ MEDIA_URL }}{{ bug.bug_author_avatar }}" alt='avatar'>
 			
 		</div>
 		<div class='comment-head'>
@@ -55,7 +55,7 @@
 		{% for comment in comments %}
 		<div class='surround'>
 			<div class='avatar'>
-					<img class='' src="{{ comment.author_avatar }}" alt='avatar'>
+					<img class='' src="{{ MEDIA_URL }}{{ comment.author_avatar }}" alt='avatar'>
 			</div>
 			<div class='comment-head'>
 				<span class='user-name'>{{ comment.commentauthor}}</span>
@@ -74,7 +74,7 @@
 	{% if not bug_status == 'Closed' %}
 	<div class='write-comment-area'>
 		<div class='avatar small-screen'>
-			<img src="{{ avatar_url }}" alt='avatar'>
+			<img src="{{ MEDIA_URL }}{{ avatar_url }}" alt='avatar'>
 		</div>
 		
 		

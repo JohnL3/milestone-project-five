@@ -18,7 +18,7 @@ class Bug(models.Model):
     upvotes = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now_add=True)
     initial_comment = models.TextField(blank=False)
-    bug_author_avatar = models.CharField(max_length=200, blank=True, default='/media/images/user.jpg')
+    bug_author_avatar = models.CharField(max_length=200, blank=True, default='images/user.jpg')
     
     
     def __str__(self):
@@ -32,7 +32,7 @@ class BugComment(models.Model):
     comment = models.TextField(blank=False)
     commentauthor = models.ForeignKey(User)
     created_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    author_avatar = models.CharField(max_length=200, blank=True, default='/media/images/user.jpg')
+    author_avatar = models.CharField(max_length=200, blank=True, default='images/user.jpg')
     
     
     def __str__(self):
