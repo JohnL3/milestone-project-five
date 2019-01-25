@@ -25,7 +25,7 @@
     {% endif %}
     
     <span class='feature-success-msg'>
-        {% if in_cart %}
+        {% if in_cart and feature.paid == True %}
         Allready added to cart.
         {% endif %}
     </span>
