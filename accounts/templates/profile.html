@@ -1,106 +1,107 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
 <title>Profile Page</title>
 {% endblock page_title%} {% block content %}
-<div class="profile-header">
-	<div class="profile-header-title">
-
-	</div>
-
-	<div class='profile-header-section'>
-		<div class="profile-avatar">
-			<img id='img-avatar' src='{{ MEDIA_URL }}{{avatar}}' alt='avatar image'>
+<div class='container'>
+	<div class="profile-header">
+		<div class="profile-header-title">
+	
 		</div>
-		<div class="profile-name">
-			<span> {{user.username}}</span>
+	
+		<div class='profile-header-section'>
+			<div class="profile-avatar">
+				<img id='img-avatar' src='{{ MEDIA_URL }}{{avatar}}' alt='avatar image'>
+			</div>
+			<div class="profile-name">
+				<span> {{user.username}}</span>
+			</div>
 		</div>
-	</div>
-
-	<!-- Profile Tabs -->
-
-	<ul class='profile-tabs'>
-		<li class='tab-a profile-tab-active'><span>My Features</span></li>
-		<li class='tab-b'><span>My Issues</span></li>
-		<li class='tab-c'><span>Edit Profile</span></li>
-	</ul>
-
-	<!-- Edit Profile section -->
-
-	<div class='edit-profile'>
-		<span>Image: 50px by 50px</span>
-		<form id='profile-edit-form' method='POST' enctype='multipart/form-data'>
-			{% csrf_token%} {% for item in profile_form %} {% if item.name == 'image' %}
-
-			<div class='img-box'>
-				<div id='preview' class='img-preview'>
-
+	
+		<!-- Profile Tabs -->
+	
+		<ul class='profile-tabs'>
+			<li class='tab-a profile-tab-active'><span>My Features</span></li>
+			<li class='tab-b'><span>My Issues</span></li>
+			<li class='tab-c'><span>Edit Profile</span></li>
+		</ul>
+	
+		<!-- Edit Profile section -->
+	
+		<div class='edit-profile'>
+			<span>Image: 50px by 50px</span>
+			<form id='profile-edit-form' method='POST' enctype='multipart/form-data'>
+				{% csrf_token%} {% for item in profile_form %} {% if item.name == 'image' %}
+	
+				<div class='img-box'>
+					<div id='preview' class='img-preview'>
+	
+					</div>
+					<div class='avatar-file'>
+						<span>Choose File</span> {{ item }}
+					</div>
 				</div>
-				<div class='avatar-file'>
-					<span>Choose File</span> {{ item }}
+	
+				{% endif %} {% endfor %}
+				<button class='edit-profile-btn'>Submit</button> <span class='img-error error'>File size to large!!</span>
+			</form>
+		</div>
+	
+		<!-- Show users bug Issues -->
+		<div class='user-issues'>
+			<div class='issue-new'>
+				<div class='new-issue'>
+					<a href='{% url "issue" %}'>New Issue</a>
 				</div>
 			</div>
-
-			{% endif %} {% endfor %}
-			<button class='edit-profile-btn'>Submit</button> <span class='img-error error'>File size to large!!</span>
-		</form>
-	</div>
-
-	<!-- Show users bug Issues -->
-	<div class='user-issues'>
-		<div class='issue-new'>
-			<div class='new-issue'>
-				<a href='{% url "issue" %}'>New Issue</a>
+			<div class='issue-area-header'>
+				<span>ID</span>
+				<span>STATUS</span>
+				<span>TITLE</span>
+				<span class='date-header'>DATE</span>
 			</div>
-		</div>
-		<div class='issue-area-header'>
-			<span>ID</span>
-			<span>STATUS</span>
-			<span>TITLE</span>
-			<span class='date-header'>DATE</span>
-		</div>
-		{% for issue in my_issues %}
-		<div class='issue-table'>
-			<span>{{issue.id}}</span> {% if issue.bug_status == 'O' %}
-			<span>Open</span> {% elif issue.bug_status == 'D' %}
-			<span>Doing</span> {% else %}
-			<span>Closed</span> {% endif %}
-			<a href='{% url "bug_details" issue.id %}'><span>{{issue.bug_title}}</span></a>
-			<span class='date-section'>{{issue.created_date}}</span>
-		</div>
-		{% endfor%}
-	</div>
-
-	<!-- Features -->
-
-	<div class='user-features'>
-		{% if not show_button %}
-		<div class='feature-new'>
-			<div class='new-feature'>
-				<a href='{% url "details" %}'>New Feature</a>
+			{% for issue in my_issues %}
+			<div class='issue-table'>
+				<span>{{issue.id}}</span> {% if issue.bug_status == 'O' %}
+				<span>Open</span> {% elif issue.bug_status == 'D' %}
+				<span>Doing</span> {% else %}
+				<span>Closed</span> {% endif %}
+				<a href='{% url "bug_details" issue.id %}'><span>{{issue.bug_title}}</span></a>
+				<span class='date-section'>{{issue.created_date}}</span>
 			</div>
+			{% endfor%}
 		</div>
-		{% endif %}
-		<div class='issue-area-header'>
-			<span>ID</span>
-			<span>STATUS</span>
-			<span>TITLE</span>
-			<span class='date-header'>DATE</span>
-		</div>
-		{% for feature in features %}
-		<div class='issue-table'>
-			<span>{{feature.id}}</span> 
-			{% if feature.paid %}
-			<span>Paid</span> 
-			{% else %}
-			<span><a class='feature-owed' href='{% url "single_feature" feature.id %}'>Owed</a></span> 
+	
+		<!-- Features -->
+	
+		<div class='user-features'>
+			{% if not show_button %}
+			<div class='feature-new'>
+				<div class='new-feature'>
+					<a href='{% url "details" %}'>New Feature</a>
+				</div>
+			</div>
 			{% endif %}
-			<a href='{% url "single_feature" feature.id %}'><span>{{feature.feature_title}}</span></a>
-			<span class='date-section'>{{ feature.created_date }}</span>
+			<div class='issue-area-header'>
+				<span>ID</span>
+				<span>STATUS</span>
+				<span>TITLE</span>
+				<span class='date-header'>DATE</span>
+			</div>
+			{% for feature in features %}
+			<div class='issue-table'>
+				<span>{{feature.id}}</span> 
+				{% if feature.paid %}
+				<span>Paid</span> 
+				{% else %}
+				<span><a class='feature-owed' href='{% url "single_feature" feature.id %}'>Owed</a></span> 
+				{% endif %}
+				<a href='{% url "single_feature" feature.id %}'><span>{{feature.feature_title}}</span></a>
+				<span class='date-section'>{{ feature.created_date }}</span>
+			</div>
+			{% endfor%}
 		</div>
-		{% endfor%}
+	
 	</div>
-
 </div>
-
 {% endblock content %} {% block body_js %}
 <script src="{% static 'js/profile.js' %}"></script>
 {% endblock body_js %}

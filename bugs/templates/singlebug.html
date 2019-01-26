@@ -4,123 +4,125 @@
 
 {% block content %}
 
-<!-- header section of page -->
-
-<div class='comment-issue-header'>
-	<h1>{{ bug.bug_title }} #<span class='bug-id' id='{{bug.id}}'>{{ bug.id}}</span></h1>
-
-	<div class='issue-count'>
-		<span>Upvote count: </span><span id='upvote-count'>{{ bug.upvotes}}</span>
-		{% if not bug_status == 'Closed' %}
-		<div class='upvote'>
-			<button class='upvote-btn'>Upvote</button>
-		</div>
-		{% endif %}
-	</div>
-
-	<div class='issue-header-section'>
-		<div class='issue-details'>
-			<label id='status' >{{ bug_status }}</label>
-			<span class='user-name side-padding'>{{ bug.bug_author }}</span>
-			<span class='side-padding'>opened on: </span>
-			<span class='side-padding date'>{{ bug.created_date }}</span>
-		</div>
+<div class='container'>
+	<!-- header section of page -->
 	
-	</div>
-</div>
-
-
-<div class='comment-container'>
-
-	<!-- Details of bug -->
-
-	<div class='surround'>
-		<div class='avatar'>
-			
-				<img class='' src="{{ MEDIA_URL }}{{ bug.bug_author_avatar }}" alt='avatar'>
-			
-		</div>
-		<div class='comment-head'>
-			<span class='user-name'>{{ bug.bugauthor }}</span>
-			<span>commented: </span>
-			<span class='date'>{{ bug.created_date }}</span>
-		</div>
-
-
-		<div class='comment-area'>
-			<p>{{ bug.initial_comment }}</p>
-		</div>
-	</div>
-	<div id='all-comments'>
-		{% for comment in comments %}
-		<div class='surround'>
-			<div class='avatar'>
-					<img class='' src="{{ MEDIA_URL }}{{ comment.author_avatar }}" alt='avatar'>
-			</div>
-			<div class='comment-head'>
-				<span class='user-name'>{{ comment.commentauthor}}</span>
-				<span>commented: </span>
-				<span class='date'>{{ comment.created_date }}</span>
-			</div>
-			<div class='comment-area'>
-				<p> {{ comment.comment }} </p>
-			</div>
-		</div>
-		{% endfor %}
-	</div>
-
-	<!-- Area to write a comment -->
+	<div class='comment-issue-header'>
+		<h1>{{ bug.bug_title }} #<span class='bug-id' id='{{bug.id}}'>{{ bug.id}}</span></h1>
 	
-	{% if not bug_status == 'Closed' %}
-	<div class='write-comment-area'>
-		<div class='avatar small-screen'>
-			<img src="{{ MEDIA_URL }}{{ avatar_url }}" alt='avatar'>
-		</div>
-		
-		
-		<div class='write-comment-head'>
-			<ul>
-				<li class='write'>Write</li>
-				<li class='preview'>Preview</li>
-			</ul>
-		</div>
-		
-		<form  id='comment-form' method='POST' action="{% url 'bug_details' bug.id %}" enctype='multipart/form-data' class='create-comment-form'>
-			<div id='{{ user_id }}' class='comment'>
-
-				{% csrf_token %}
-				{% for field in form %}
-            	{% if field.name == "comment" %}
-				{{ field }}
-				{% else %}
-				{{ field }}
-				{% endif %}
-				
-				{% endfor %}
-
-			</div>
-			<div class='comment-footer'>
-				{% if bug_status == 'Closed' %}
-				<button disabled >comment</button>
-				{% else %}
-				<button>comment</button>
-				{% endif %}
-		
-			{% if user.is_superuser or user.is_staff %}
-			<div class='bug-status'>
-				<label>Set Status</label>
-				<select id='status-select' class='set-bug-status'>
-					<option value='O'>Open</option>
-					<option value='D'>Doing</option>
-					<option value='C'>Closed</option>
-				</select>
+		<div class='issue-count'>
+			<span>Upvote count: </span><span id='upvote-count'>{{ bug.upvotes}}</span>
+			{% if not bug_status == 'Closed' %}
+			<div class='upvote'>
+				<button class='upvote-btn'>Upvote</button>
 			</div>
 			{% endif %}
+		</div>
+	
+		<div class='issue-header-section'>
+			<div class='issue-details'>
+				<label id='status' >{{ bug_status }}</label>
+				<span class='user-name side-padding'>{{ bug.bug_author }}</span>
+				<span class='side-padding'>opened on: </span>
+				<span class='side-padding date'>{{ bug.created_date }}</span>
 			</div>
-		</form>
-		{% endif %}
+		
+		</div>
 	</div>
-
+	
+	
+	<div class='comment-container'>
+	
+		<!-- Details of bug -->
+	
+		<div class='surround'>
+			<div class='avatar'>
+				
+					<img class='' src="{{ MEDIA_URL }}{{ bug.bug_author_avatar }}" alt='avatar'>
+				
+			</div>
+			<div class='comment-head'>
+				<span class='user-name'>{{ bug.bugauthor }}</span>
+				<span>commented: </span>
+				<span class='date'>{{ bug.created_date }}</span>
+			</div>
+	
+	
+			<div class='comment-area'>
+				<p>{{ bug.initial_comment }}</p>
+			</div>
+		</div>
+		<div id='all-comments'>
+			{% for comment in comments %}
+			<div class='surround'>
+				<div class='avatar'>
+						<img class='' src="{{ MEDIA_URL }}{{ comment.author_avatar }}" alt='avatar'>
+				</div>
+				<div class='comment-head'>
+					<span class='user-name'>{{ comment.commentauthor}}</span>
+					<span>commented: </span>
+					<span class='date'>{{ comment.created_date }}</span>
+				</div>
+				<div class='comment-area'>
+					<p> {{ comment.comment }} </p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	
+		<!-- Area to write a comment -->
+		
+		{% if not bug_status == 'Closed' %}
+		<div class='write-comment-area'>
+			<div class='avatar small-screen'>
+				<img src="{{ MEDIA_URL }}{{ avatar_url }}" alt='avatar'>
+			</div>
+			
+			
+			<div class='write-comment-head'>
+				<ul>
+					<li class='write'>Write</li>
+					<li class='preview'>Preview</li>
+				</ul>
+			</div>
+			
+			<form  id='comment-form' method='POST' action="{% url 'bug_details' bug.id %}" enctype='multipart/form-data' class='create-comment-form'>
+				<div id='{{ user_id }}' class='comment'>
+	
+					{% csrf_token %}
+					{% for field in form %}
+	            	{% if field.name == "comment" %}
+					{{ field }}
+					{% else %}
+					{{ field }}
+					{% endif %}
+					
+					{% endfor %}
+	
+				</div>
+				<div class='comment-footer'>
+					{% if bug_status == 'Closed' %}
+					<button disabled >comment</button>
+					{% else %}
+					<button>comment</button>
+					{% endif %}
+			
+				{% if user.is_superuser or user.is_staff %}
+				<div class='bug-status'>
+					<label>Set Status</label>
+					<select id='status-select' class='set-bug-status'>
+						<option value='O'>Open</option>
+						<option value='D'>Doing</option>
+						<option value='C'>Closed</option>
+					</select>
+				</div>
+				{% endif %}
+				</div>
+			</form>
+			{% endif %}
+		</div>
+	
+	</div>
 </div>
 {% endblock content %} {% block body_js %}
 <script src="{% static 'js/bugs.js' %}"></script>

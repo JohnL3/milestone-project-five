@@ -8,36 +8,37 @@
 
 {% block content %}
 
-<!-- Heading section of page -->
-
-<div class='page-heading'>
-	<h1 class='issue-title'>Bug Tickets</h1>
-	<div class='new-issue'>
-		<a href ='{% url "issue" %}'>New Issue</a>
-	</div>
-</div>
-
-<!-- Bug issue section -->
-{% for bug in bugs %}
-<div class='outer-issue'>
-	<div class='issue-box'>
-		<div class="issue-icon"></div>
-		<div class="issue-header">
-			<a href="{% url 'bug_details' bug.id %}">{{ bug.bug_title }}</a>
-			
+<div class='container'>
+	<!-- Heading section of page -->
+	
+	<div class='page-heading'>
+		<h1 class='issue-title'>Bug Tickets</h1>
+		<div class='new-issue'>
+			<a href ='{% url "issue" %}'>New Issue</a>
 		</div>
-		<div class="issue-by">
-			<time datetime="{{ bug.created_date }}"></time>
-			<span>
-	         #{{ bug.id }} Opened <span>{{ bug.created_date }}</span>
-			</span>
+	</div>
+	
+	<!-- Bug issue section -->
+	{% for bug in bugs %}
+	<div class='outer-issue'>
+		<div class='issue-box'>
+			<div class="issue-icon"></div>
+			<div class="issue-header">
+				<a href="{% url 'bug_details' bug.id %}">{{ bug.bug_title }}</a>
+				
+			</div>
+			<div class="issue-by">
+				<time datetime="{{ bug.created_date }}"></time>
+				<span>
+		         #{{ bug.id }} Opened <span>{{ bug.created_date }}</span>
+				</span>
+			</div>
+			
 		</div>
 		
 	</div>
-	
+	{% endfor %}
 </div>
-{% endfor %}
-
 {% endblock content %}
 
 {% block body_js %}
