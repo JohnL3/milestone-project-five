@@ -7,8 +7,8 @@
 
 {% block head_js %}
 
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
+<script  src="https://js.stripe.com/v2/"></script>
+<script>
     //<![CDATA[
     Stripe.publishableKey = '{{ publishable }}';
     //]]>
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+<form  method="post" id="payment-form" action="{% url 'checkout' %}">
     <legend>Payment Details</legend>
     {% csrf_token %}
     <div id="credit-card-errors" style="display:none">

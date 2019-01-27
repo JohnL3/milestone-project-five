@@ -32,50 +32,31 @@
 			  <nav>
 				<ul>
 					{% if user.is_authenticated %}
-					<a href='{% url "index" %}'>
-						<li>HOME</li>
-					</a>
+					<li><a href='{% url "index" %}'>HOME</a></li>
 					{% if not user.is_staff and not user.is_superuser %}
-					<a href='{% url "profile" %}'>
-						<li>PROFILE</li>
-					</a>
+					<li><a href='{% url "profile" %}'>PROFILE</a></li>
 					{% endif %}
-					<a href='{% url "bugs" %}'>
-						<li>BUGS</li>
-					</a>
-					<a href='{% url "features" %}'>
-						<li>FEATURES</li>
-					</a>
-					<a href='{% url "get_posts" %}'>
-						<li>BLOG</li>
-					</a>
+					<li><a href='{% url "bugs" %}'>BUGS</a></li>
+					<li><a href='{% url "features" %}'>FEATURES</a></li>
+					<li><a href='{% url "get_posts" %}'>BLOG</a></li>
 					{% else %}
-					<a href='{% url "index" %}'>
-						<li>HOME</li>
-					</a>
-					<a href='{% url "get_posts" %}'>
-						<li>BLOG</li>
-					</a>
+					<li><a href='{% url "index" %}'>HOME</a></li>
+					
+					<li><a href='{% url "get_posts" %}'>BLOG</a></li>
 					{% endif %} 
 					
 					{% if user.is_authenticated %}
-					<a href='{% url "logout" %}'>
-						<li>LOGOUT</li>
-					</a>
+					<li><a href='{% url "logout" %}'>LOGOUT</a></li>
 					{% else %}
-					<a href='{% url "register_login" %}'>
-						<li>REGISTER/LOGIN</li>
-					</a>
+					<li><a href='{% url "register_login" %}'>REGISTER/LOGIN</a></li>
+					
 					{% endif %}
 					{% if user.is_authenticated %}
-					<a href="{% url 'view_cart' %}">
-						<li id='attach'>CART
+					<li id='attach'><a href="{% url 'view_cart' %}">CART
 							{% if feature_count %}
                             <label class="badge">{{ feature_count }}</label>
                            	{% endif %}
-                        </li>
-                            
-					</a>
+                        </a></li>
 					{% endif %}
 				</ul>
 			</nav>
