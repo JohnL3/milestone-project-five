@@ -106,9 +106,9 @@ $('#profile-edit-form').on('submit', function(event){
         success : function(json) {
             
             $('#comment-text').val('');
-            
+            let src = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+json.avatar_url;
             $('#pre').remove();
-            $("#img-avatar").attr("src",json.avatar_url);
+            $("#img-avatar").attr("src",src);
 
         },
     });
