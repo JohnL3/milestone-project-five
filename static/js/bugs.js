@@ -8,7 +8,6 @@ $('#burger').click(function(){
 
 $( window ).resize(function() {
   if($(window).width() > 767) {
-     //$('header').css('display', 'grid');
 	   $('nav').css('display','grid');
   } else {
       $('nav').css('display','none');
@@ -38,8 +37,6 @@ $( "#status-select").val(tx[0]);
 
 $('#comment-form').on('submit', function(event){
     event.preventDefault();
-    console.log("form submitted!");
-
     create_comment();
 });
 
@@ -61,15 +58,12 @@ function create_comment() {
         data : data,
         success : function(json) {
             $('#comment-text').val('');
-            console.log(json);
             
             if (!json.message){
-            $('#status').text(json.bug_status);
-            // create a new comment box and append to dom
-            createNewComment(json);
-            } else {
-                alert('comment is closed');
-            }
+                $('#status').text(json.bug_status);
+                // create a new comment box and append to dom
+                createNewComment(json);
+            } 
         },
     });
     
@@ -80,7 +74,7 @@ $('.upvote-btn').click(function(){
     let data = {};
     data.bugid = +$('.bug-id').prop('id');
     data.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
-    console.log(data);
+    
     let url ='/bugs/upvote/';
     
     $.ajax({
@@ -90,10 +84,8 @@ $('.upvote-btn').click(function(){
         success : function(json) {
             
             if (!json.message){
-                console.log(json);
+                
                 $('#upvote-count').text(json.count);
-            } else {
-                console.log(json.message);
             }
         },
     });
@@ -104,7 +96,7 @@ function createNewComment(json) {
     
     //destructure json
     ({avatar_url, bug_id, bug_status, comment_text,created_date, user_id, username}={...json});
-    console.log('AVATAR URL',avatar_url);
+    
     let url = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+avatar_url;
     // get avatar image url
     let img = avatar_url; 

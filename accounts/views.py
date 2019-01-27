@@ -16,8 +16,10 @@ def logout(request):
     messages.success(request, "You have been successfully logged out.")
     return redirect(reverse('index'))
     
+    
 def index(request):
     return render(request, 'index.html')
+
 
 def register_login(request):
     if request.user.is_authenticated:
@@ -26,6 +28,7 @@ def register_login(request):
     registration_form = UserRegistrationForm()
     login_form = UserLoginForm()
     return render(request, 'register_login.html', {'registration_form': registration_form, 'login_form': login_form})
+    
     
 def login(request):
     if request.user.is_authenticated:

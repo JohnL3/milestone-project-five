@@ -14,7 +14,7 @@ stripe.api_key = settings.STRIPE_SECRET
 @login_required()
 def checkout(request):
     cart = request.session.get('cart', {})
-    print('LENGTH',len(cart))
+    
     if request.method == 'POST' and len(cart) > 0:
         user = User.objects.get(pk=request.user.id)
         order_form = OrderForm(request.POST)
@@ -41,7 +41,6 @@ def checkout(request):
                 order_line_item.save()
                 
             try:
-                print('TOTAL',total)
                 customer = stripe.Charge.create(
                     amount = int(total * 100),
                     currency = "EUR",
@@ -53,13 +52,6 @@ def checkout(request):
             if customer.paid:
                 
                 for id, quantity in cart.items():
-                    '''
-                    purchased_count = PurchasedCount()
-                    purchased_count.name = get_object_or_404(Feature, pk=id)
-                    
-                    purchased_count.creator = user
-                    purchased_count.save()
-                    '''
                     
                     #Keep track of how many purchased each feature
                     feature = get_object_or_404(Feature, pk=id)
@@ -78,7 +70,6 @@ def checkout(request):
             else:
                 messages.error(request, "Unable to take payment")
         else:
-            print(payment_form.errors)
             messages.error(request, "We were unable to take a payment with that card!")
     else:
         payment_form = MakePaymentForm()

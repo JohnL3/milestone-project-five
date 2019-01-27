@@ -94,7 +94,6 @@ label {
 
 button,
 select {
-	/*	font-size: 110%;*/
 	font-weight: bold;
 	color: darkslategray;
 }
@@ -249,16 +248,6 @@ form {
 	width: 100%;
 }
 
-/*
-.create-post-form label,
-.register label,
-.login label {
-	font-size: 18px;
-	font-weight: bold;
-	color: darkslategray;
-}
-*/
-
 .create-comment-form input,
 .create-post-form input,
 .main-signup-page input {
@@ -326,7 +315,6 @@ header {
 	grid-template-columns: 1fr auto;
 	box-sizing: border-box;
 	background: #171616;
-	/*lightsalmon;*/
 	width: 100%;
 	position: fixed;
 	z-index: 30;
@@ -344,19 +332,12 @@ nav ul {
 	margin: 0;
 }
 
-/*
-nav ul {
-	list-style-type: none;
-}
-*/
-
 nav ul a {
 	color: papayawhip;
 }
 
 nav ul li:hover {
 	background: #2d2c2c;
-	/*#e48762;*/
 }
 
 nav ul li {
@@ -469,7 +450,6 @@ nav ul li {
 .write-comment-head,
 .comment-head {
 	border: 1px solid lightgray;
-	/*margin-top: 20px;*/
 	height: 45px;
 	display: flex;
 	align-items: center;
@@ -583,15 +563,6 @@ textarea {
 	display: flex;
 	justify-content: center;
 }
-
-/*
-element.style {
-    padding: 8px 25px;
-    font-size: 65%;
-    font-weight: 600;
-    color: darkslategray;
-}
-*/
 
 .upvote-btn:hover {
 	background: #e6e3e3;
@@ -779,7 +750,7 @@ section {
 	display: none;
 }
 
-.profile-header {
+.profile-container {
 	margin-top: 20px;
 	box-sizing: border-box;
 	padding: 0 10px;
@@ -1138,7 +1109,7 @@ section {
 
 /************************************Cart***************************************/
 
-.cart-header {
+.cart-container {
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -1174,7 +1145,7 @@ section {
 	justify-self: flex-start;
 }
 
-.cart-header hr {
+.cart-container hr {
 	width: 100%;
 	margin-top: 10px;
 }
@@ -1444,7 +1415,6 @@ section {
 
 	.details {
 		display: grid;
-		/*grid-template-columns: 60px 40px 95px 190px 120px;*/
 	}
 
 	.create-post-form {
@@ -1453,7 +1423,7 @@ section {
 	}
 
 	/**********************profile***************************/
-	.profile-header {
+	.profile-container {
 		width: 70%;
 		margin: 0 auto;
 		margin-top: 30px;
@@ -1559,7 +1529,7 @@ section {
 		margin: 0 auto;
 	}
 
-	.cart-header hr {
+	.cart-container hr {
 		width: 95%;
 	}
 
@@ -1619,13 +1589,12 @@ section {
 		text-align: center;
 	}
 
-
 	.feature-instructions {
 		margin-top: 67px;
 	}
 
 	.checkout-header,
-	.cart-header {
+	.cart-container {
 		width: 80%;
 		margin: 0 auto;
 	}

@@ -8,7 +8,6 @@ $('#burger').click(function(){
 
 $( window ).resize(function() {
   if($(window).width() > 767) {
-     //$('header').css('display', 'grid');
 	   $('nav').css('display','grid');
   } else {
       $('nav').css('display','none');

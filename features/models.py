@@ -16,18 +16,3 @@ class Feature(models.Model):
     def __str__(self):
         return self.feature_title
         
-'''      
-class  PurchasedCount(models.Model):
-   
-    
-    creator = models.ForeignKey(User)
-    name = models.ForeignKey(Feature)
-    
-    
-    class Meta:
-       unique_together = ("creator", "name")
-     
-       
-    def __str__(self):
-        return str(self.creator)
-'''

@@ -10,7 +10,6 @@ $('#burger').click(function(){
 
 $( window ).resize(function() {
   if($(window).width() > 767) {
-     //$('header').css('display', 'grid');
 	   $('nav').css('display','grid');
   } else {
       $('nav').css('display','none');
@@ -70,7 +69,7 @@ fileUpload.addEventListener('change', function(event){
               IMAGE = document.createElement('IMG');
               IMAGE.id = 'pre';
               IMAGE.src = URL.createObjectURL(file);
-              console.log(IMAGE.width);
+              
               preview.prepend(IMAGE);
               URL.revokeObjectURL(file);
             } else {
@@ -107,7 +106,7 @@ $('#profile-edit-form').on('submit', function(event){
         success : function(json) {
             
             $('#comment-text').val('');
-            console.log(json);
+            
             $('#pre').remove();
             $("#img-avatar").attr("src",json.avatar_url);
 

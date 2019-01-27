@@ -78,7 +78,6 @@ def bug_details(request, pk):
                 content_type="application/json"
             )
     else:
-        print('Avatar url',request.user.profile.avatar_url)
         # get a bug by an id 
         bug = get_object_or_404(Bug, pk=pk)
        
@@ -158,7 +157,7 @@ def bug_issue(request, pk=None):
     if request.method == 'POST':
         #get instance of bug object
         bug = Bug()
-        print('Here with Bug')
+       
         bug_title = request.POST.get('bug_title')
         initial_comment =request.POST.get('initial_comment')
         

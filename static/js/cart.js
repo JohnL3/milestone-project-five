@@ -8,7 +8,6 @@ $('#burger').click(function(){
 
 $( window ).resize(function() {
   if($(window).width() > 767) {
-     //$('header').css('display', 'grid');
 	   $('nav').css('display','grid');
   } else {
       $('nav').css('display','none');
@@ -33,11 +32,13 @@ $('.cart-remove').click(function(){
             success: function(data){
                 $('.remove').remove();
                 let quantity = +$('.badge').text()-1;
+                
                 if(quantity === 0) {
                     $('.badge').addClass('hide-label');
                 } else {
                     $('.badge').removeClass('hide-label');
                 }
+                
                 $('.badge').text(quantity);
                 let total = +$('.cart-amt').text()-50.00;
                 $('.cart-amt').text(total+'.00');
