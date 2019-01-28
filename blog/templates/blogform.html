@@ -7,34 +7,35 @@
 
 
 {% block content %}
-<h1>New Post</h1>
 
-<!-- Blog Form -->
-
-<form method='POST' enctype='multipart/form-data' class='create-post-form'>
-    {% csrf_token %}
+<div class='container'>
     
-    {% for item in form %}
-        {% if item.name == 'title' %}
-        <label>{{item.label }}</label>
-        {{ item }}
-        {% endif%}
-    {% if item.name == 'content'%}
-        <label>{{item.label }}</label>
-        {{ item }}
+    <!-- Blog Form -->
+    
+    <form method='POST' enctype='multipart/form-data' class='create-post-form'>
+        {% csrf_token %}
+        
+        {% for item in form %}
+            {% if item.name == 'title' %}
+            <label>{{item.label }}</label>
+            {{ item }}
+            {% endif%}
+        {% if item.name == 'content'%}
+            <label>{{item.label }}</label>
+            {{ item }}
+            {% endif %}
+        {% if item.name == 'image'%}
+                <div class='img-section'>
+                    <label>{{item.label }}</label>
+                    {{ item }}
+                </div>
         {% endif %}
-    {% if item.name == 'image'%}
-            <div class='img-section'>
-                <label>{{item.label }}</label>
-                {{ item }}
-            </div>
-    {% endif %}
-    
-    {% endfor %}
-    <button type='submit'>Save</button>
-    
-</form>
-
+        
+        {% endfor %}
+        <button type='submit'>Save</button>
+        
+    </form>
+</div>
 {% endblock%}
 
 {% block body_js %}

@@ -1,49 +1,41 @@
-{% extends 'base.html' %} 
-{% load static from staticfiles %} 
-
-{% block page_title %}
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %}
 <title>Bug Form</title>
-{% endblock page_title%} 
-
-
-{% block content %}
+{% endblock page_title%} {% block content %}
 <div class='container'>
-    <div class='title-section'>
-    	<h1>Fill in Bug issue details below</h1>
-    </div>
-    
+
+
     <!-- The form section -->
-    
+
     <div class='bug-form-container'>
-        <form  method='POST'  enctype='multipart/form-data' class='create-comment-form'>
+
+        <div class='title-section'>
+            <h1>Fill in Bug issue details below</h1>
+        </div>
+
+        <!-- The form section -->
+        <form method='POST' enctype='multipart/form-data' class='create-comment-form'>
             {% csrf_token %}
-            
+
             <!-- Pull out individual fields in form -->
-            {% for field in form %}
-            
-                {% if field.name == "bug_title" %}
-                
-                    <div class='{{ field.name }}'>
-                        <label style='padding-left: 2px'>{{ field.label|upper }}</label>
-                        {{ field }}
-                        <div><label>ISSUE DETAILS</label></div>
-                    </div>
-                    
-                {% else %}
-                
-                    <div class='{{ field.name }}'>
-                        {{ field }}
-                        <div class='comment-footer issue'><button class='submit-btn'>Submit</button></div>
-                    </div>
-                
-                {% endif %}
-            {% endfor%}
-           
+            {% for field in form %} {% if field.name == "bug_title" %}
+
+            <div class='{{ field.name }}'>
+                <label style='padding-left: 2px'>{{ field.label|upper }}</label> {{ field }}
+                <div><label>ISSUE DETAILS</label></div>
+            </div>
+
+            {% else %}
+
+            <div class='{{ field.name }}'>
+                {{ field }}
+                <div class='comment-footer issue'><button class='submit-btn'>Submit</button></div>
+            </div>
+
+            {% endif %} {% endfor%}
+
         </form>
     </div>
 </div>
-{% endblock content %}
-
-{% block body_js %}
-<script src="{% static 'js/bugForm.js' %}"></script> 
+{% endblock content %} {% block body_js %}
+<script src="{% static 'js/bugForm.js' %}"></script>
 {% endblock body_js %}

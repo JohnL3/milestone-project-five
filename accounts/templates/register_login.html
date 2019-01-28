@@ -8,45 +8,45 @@
 
 
 {% block content %}
-
-<!-- register/login tabs -->
-
-<div class='signup-login-header'>
-	<ul>
-		<li class='signup-tab sm'>REGISTER</li>
-		<li class='login-tab'>LOGIN</li>
-	</ul>
-</div>
-
-
-
-<div class='tab-page-holder'>
+<div class='container'>
+	<!-- register/login tabs -->
 	
-	<!-- form for login -->
+	<div class='signup-login-header'>
+		<ul>
+			<li class='signup-tab sm'>REGISTER</li>
+			<li class='login-tab'>LOGIN</li>
+		</ul>
+	</div>
 	
-	<div class='main-signup-page'>
-		<div class='form-box-login'>
-			<form method="POST" action='{% url "login" %}' class='login'>
-				{% csrf_token %}
-				{{ login_form }}
-				<button type="submit">Login</button>
-			</form>
-		</div>
+	
+	
+	<div class='tab-page-holder'>
 		
-		<!-- form for register -->
+		<!-- form for login -->
 		
-		<div class='form-box-register'>
-			<form method="POST" action='{% url "register" %}' class='register'>
-				{% csrf_token %}
-				{{ registration_form }}
-				<button type="submit">Register</button>
-			</form>
+		<div class='main-signup-page'>
+			<div class='form-box-login'>
+				<form method="POST" action='{% url "login" %}' class='login'>
+					{% csrf_token %}
+					{{ login_form.as_p }}
+					<button type="submit">Login</button>
+				</form>
+			</div>
 			
+			<!-- form for register -->
+			
+			<div class='form-box-register'>
+				<form method="POST" action='{% url "register" %}' class='register'>
+					{% csrf_token %}
+					{{ registration_form.as_p }}
+					<button type="submit">Register</button>
+				</form>
+				
+			</div>
 		</div>
 	</div>
+
 </div>
-
-
 {% endblock %}
 
 {% block body_js %}
