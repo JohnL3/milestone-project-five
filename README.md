@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/JohnL3/bug_features.svg?branch=master)](https://travis-ci.org/JohnL3/bug_features)
