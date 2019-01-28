@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/JohnL3/milestone-project-five.svg?branch=master)](https://travis-ci.org/JohnL3/milestone-project-five)
+[![Build Status](https://travis-ci.com/JohnL3/milestone-project-five.svg?branch=master)](https://travis-ci.com/JohnL3/milestone-project-five)
