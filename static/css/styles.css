@@ -33,13 +33,15 @@ html {
 
 .register,
 .login {
-	display: -ms-grid;
-	display: grid;
-	-ms-grid-columns: 1fr 2fr;
-	grid-template-columns: 1fr 2fr;
+	margin-bottom: 40px;
 	-webkit-box-align: center;
 	    -ms-flex-align: center;
 	        align-items: center;
+}
+
+.register p,
+.login p {
+	margin: 5px 0;
 }
 
 .small-screen {
@@ -242,7 +244,7 @@ form {
 	grid-template-columns: 1fr 1fr;
 	text-align: center;
 	margin-bottom: 5px;
-	padding-top: 120px;
+	padding-bottom: 2px;
 }
 
 .signup-tab,
@@ -275,7 +277,6 @@ form {
 	max-width: 600px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 40px;
 	background: #f1ececb3;
 }
 
@@ -881,6 +882,7 @@ section {
 .create-post-form button {
 	font-size: 16px;
 	padding: 7px 20px;
+	margin-bottom: 40px;
 }
 
 /*********************profile*************************/
@@ -1476,10 +1478,11 @@ section {
 	padding: 0 5px;
 }
 
-.payment-form,
-.order-form {
+.payment-form p,
+.order-form p {
 	display: -ms-grid;
 	display: grid;
+	margin: 5px 0;
 }
 
 .payment-form input,
@@ -1573,8 +1576,7 @@ section {
 		float: none;
 		max-width: 600px;
 		margin: 0 auto;
-		padding-top: 120px;
-		padding-bottom: 2px;
+		padding-top: 20px;
 	}
 
 	/******************************************************************************/
