@@ -1,72 +1,67 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang='en'>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		{% block page_title %}
-		{% endblock page_title %}
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-		{% block head_js %}
-    	{% endblock head_js %}
-	</head>
-	<body>
-		
-		<!-- header section -->
-		<header>
-			  <div class='title'>
-				<span>Bugs & Features</span>
-				
-				<div id='burger'>
-					<span class='burger'></span>
-					<span class='burger'></span>
-					<span class='burger'></span>
-				</div>
-				
-			  </div>
-			  
-			  <!-- Nav section -->
-			  
-			  <nav>
-				<ul>
-					{% if user.is_authenticated %}
-					<li><a href='{% url "index" %}'>HOME</a></li>
-					{% if not user.is_staff and not user.is_superuser %}
-					<li><a href='{% url "profile" %}'>PROFILE</a></li>
-					{% endif %}
-					<li><a href='{% url "bugs" %}'>BUGS</a></li>
-					<li><a href='{% url "features" %}'>FEATURES</a></li>
-					<li><a href='{% url "get_posts" %}'>BLOG</a></li>
-					{% else %}
-					<li><a href='{% url "index" %}'>HOME</a></li>
-					
-					<li><a href='{% url "get_posts" %}'>BLOG</a></li>
-					{% endif %} 
-					
-					{% if user.is_authenticated %}
-					<li><a href='{% url "logout" %}'>LOGOUT</a></li>
-					{% else %}
-					<li><a href='{% url "register_login" %}'>REGISTER/LOGIN</a></li>
-					
-					{% endif %}
-					{% if user.is_authenticated %}
-					<li id='attach'><a href="{% url 'view_cart' %}">CART
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"> {% block page_title %} {% endblock page_title %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% block head_js %} {% endblock head_js %}
+</head>
+
+<body>
+
+	<!-- header section -->
+	<header>
+		<div class='title'>
+			<span>Bugs & Features</span>
+
+			<div id='burger'>
+				<span class='burger'></span>
+				<span class='burger'></span>
+				<span class='burger'></span>
+			</div>
+
+		</div>
+
+		<!-- Nav section -->
+
+		<nav>
+			<ul>
+				{% if user.is_authenticated %}
+				<li><a href='{% url "index" %}'>HOME</a></li>
+				{% if not user.is_staff and not user.is_superuser %}
+				<li><a href='{% url "profile" %}'>PROFILE</a></li>
+				{% endif %}
+				<li><a href='{% url "bugs" %}'>BUGS</a></li>
+				<li><a href='{% url "features" %}'>FEATURES</a></li>
+				<li><a href='{% url "get_posts" %}'>BLOG</a></li>
+				{% else %}
+				<li><a href='{% url "index" %}'>HOME</a></li>
+
+				<li><a href='{% url "get_posts" %}'>BLOG</a></li>
+				{% endif %} {% if user.is_authenticated %}
+				<li><a href='{% url "logout" %}'>LOGOUT</a></li>
+				{% else %}
+				<li><a href='{% url "register_login" %}'>REGISTER/LOGIN</a></li>
+
+				{% endif %} {% if user.is_authenticated %}
+				<li id='attach'><a href="{% url 'view_cart' %}">CART
 							{% if feature_count %}
                             <label class="badge">{{ feature_count }}</label>
                            	{% endif %}
                         </a></li>
-					{% endif %}
-				</ul>
-			</nav>
-	
-		  </header>
-		  
-		  {% block content %} {% endblock %}
-		  
-		  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-		  {% block body_js %}
-		  {% endblock body_js %}
-	</body>
+				{% endif %}
+			</ul>
+		</nav>
+
+	</header>
+
+	{% block content %} {% endblock %}
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	{% block body_js %} {% endblock body_js %}
+</body>
+
 </html>
