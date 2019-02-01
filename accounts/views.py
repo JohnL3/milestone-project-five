@@ -18,7 +18,21 @@ def logout(request):
     
     
 def index(request):
-    return render(request, 'index.html')
+    # This ensures if a user suggests a feature and has not paid for it and logsout
+    # as soon as he logs back in its added to cart and visible to him that he has an item in cart 
+    # that needs to be paid for
+    if request.user.is_authenticated:
+        cart = request.session.get('cart', {})
+        owed_for = Feature.objects.filter(paid=False, feature_author=request.user.id)
+        if owed_for and len(cart) == 0:
+            for feature in owed_for:
+                item_id = feature.id
+                cart[item_id] = cart.get(item_id, 1)
+                request.session['cart'] = cart
+        
+        return render(request, 'index.html')
+    else:
+        return render(request, 'index.html')
 
 
 def register_login(request):
