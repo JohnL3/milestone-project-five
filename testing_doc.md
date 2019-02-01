@@ -6,7 +6,7 @@ I ran: coverage html
 This created an index file that I could open and check what test were required to be done and showed a precentage of test covered.  
 
 - For accounts app
-  - I did tests for forms.py and views.py
+  - I did tests for [forms.py](./accounts/test_forms.py) and [views.py](./accounts/test_views.py)
 - For blog app
   - I did tests for models.py and views.py
 - For bugs app
