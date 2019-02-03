@@ -3,6 +3,18 @@
 # Milestone Project 5
 Project hosted at: [BUGS & FEATURES](https://bugs-features.herokuapp.com/) 
 
+
+### For use during testing
+
+Staff user details  
+username: Ems_1  
+password: generic22staff  
+
+I have supplied a user with staff credentials for visiting pages an ordinary user cannot.
+This user can be used to see the form for creating a blog post and the form for editing a blog post.
+They cannot Though, create or edit a post.
+
+
 ## UX
 
 ## Features
@@ -113,6 +125,7 @@ python3 manage.py runserver $IP:$C9_PORT
 
 - On heroku in the reveal config vars section, make sure you have filled in
   - STRIPE_PUBLISHABLE key, STRIPE_SECRET key, SECRET_KEY key, AWS_ACCESS_KEY_ID key and AWS_SECRET_ACCESS_KEY key
+  - Add one final key: DISABLE_COLLECTSTATIC set it to 1
 - On cloud9 go to settings.py and comment out import env ... as this is not being pushed to Heroku
 - On cloud9 go to settings.py and set: DEBUG = False
 - On cloud9 go to eny.py and uncomment out os.environ.setdefault('DATABASE_URL', '') if you previously had it commented out

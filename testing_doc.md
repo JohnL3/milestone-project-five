@@ -89,6 +89,57 @@ This created an index file that I could open and check what test were required t
   - On bug details page I should see a comment area to fill in to create a comment: True
   - If user is Admin i should see a button in comment area to change the status of the issue from OPEN, DOING CLOSED: True
   - If commenting is closed I should not see the area for creating a comment: True
-  - If a user upvotes a comment the button to upvote should not be visible: True
+  - If a user upvotes a comment any further clicks should not upvote: True
   - If a user posts a comment it should append to the bottom of the other comments and display avatar of user: True
+
+- Features page
+  - On Feactures page a user should see a button to create a new feature: True
+  - If user clicks this button they should be brought to a form to fill in to create a feature: True
+  - On Feactures page a user should see a list of all available features: True
+  - On Each feature a user should see how many of the feature were purchased: True
+  - On Each feature there is a link a user can click that brings them to the feature details page: True
+  - If a user clicks on link and goes to feature details page, user will see details of feature: True
+    - Feature details including name of user who suggested the feature
+  - A user should also see an Add to cart button: True
+  - If a user clicks this button it should add to cart
+    - Cart should update and display a new count of items: True
+    - A user should also get a temporary message stating: added to cart: True
+    - It should not let a user add to cart again if a user clicks button when item is in cart: True
+    - Admin or Staff cannot add a feature to cart or see an add to cart button: True
+  
+- Blog page
+  - On blog page a loggedin or logged out user should see short version of all blog posts: True
+  - They should see a link to click which will bring the to a full blog post: True
+  - They should see a view count showing how many times a blog post has being viewed: True
+  - If they try to go to the create a blog route they should get redirected back to blog page: True
+  - If user is Admin or Staff
+    - Admin and Staff will see an edit button if the go to a full blog post: True
+    - If they click this they go to the edit blog post page which contains a form with all blog details: True
+      - A Staff user has only rights to view this page and if they edit it changes wont be saved: True
+      - A Admin user can edit the blog post and any changes he makes will be saved: True
+-Cart page
+  - On cart page user should see any item that has being added to the cart: True
+  - If an item is a suggested feature by that user and not paid for he should be able to see this in cart but not be able to remove it from cart: True
+  - If an item is a suggested feature by him that is paid for or by another user It will have a red X beside it: True
+  - If the X is clicked on the item will be removed from the cart and the total cost for items in cart adjusted down: True
+  - User should see the cost of each item and a total cost of all items in cart: True
+  - If a user adds another item to cart they should see the total cost go up: True
+  - Users should see a checkout button: True
+  - If checkout button is clicked they should be brought to the checkout page: True
+- Checkout page
+  -  Checkout page will show items being purchased and cost and a total price: True
+  -  Checkout page will have form to fill in with personal and banking details: True
+  -  Checkout page will have a submit payment button: True
+  -  A user cannot Submit a payment with a blank field: True
+  -  If a user fills in form but has no items to pay for and submits it justs redirects back: True
+  -  If a user has an item showing to be purchased and fills in form correctly and submits a payment is made: True
+  -  The cart is cleared on successful payement: True
+- Logout
+  - Logout should only appear to a logged in user: True
+  - Clicking logout should logout user: True
+  
+
+
+
+
 
