@@ -38,10 +38,12 @@
     <form method="post" action="{% url 'add_to_cart' feature.id %}">
         {% csrf_token %}
     <div class='single-feature-add-to-cart'>
-        {% if in_cart %}
-        <button class="feature-submit-btn" type="submit" disabled>Add to cart</button>
-        {% else %}
-        <button class="feature-submit-btn" type="submit">Add to cart</button>
+        {% if not user.is_staff and not user.is_superuser %}
+            {% if in_cart %}
+            <button class="feature-submit-btn" type="submit" disabled>Add to cart</button>
+            {% else %}
+            <button class="feature-submit-btn" type="submit">Add to cart</button>
+            {% endif %}
         {% endif %}
     </div>
     </form>
