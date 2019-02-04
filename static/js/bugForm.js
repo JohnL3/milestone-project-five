@@ -14,7 +14,7 @@ $( window ).resize(function() {
   }
 });
 
-$('.submit-btn').click(function(){
+$('.submit-btn').click(function(event){
     event.preventDefault();
     let data = {};
     data.bug_title = $('#id_bug_title').val();

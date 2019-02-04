@@ -15,7 +15,7 @@ $( window ).resize(function() {
 });
 
 //Add a feature to the cart
-$('.feature-submit-btn').click(function(){
+$('.feature-submit-btn').click(function(event){
      event.preventDefault();
      if($('this').is('[disabled=disabled]') === false) {
          let data = {};
