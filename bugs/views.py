@@ -84,7 +84,7 @@ def bug_details(request, pk):
         bug_status = bug.get_bug_status_display()
         
         # get all comments associated with bug
-        comments = BugComment.objects.filter(bugid=pk)
+        comments = BugComment.objects.filter(bugid=pk).order_by('created_date')
         
         ''' Send a form down for users to add comments on bug issue'''
         form = BugCommentForm()
