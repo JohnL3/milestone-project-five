@@ -17,11 +17,28 @@ They cannot though, create or edit a post.
 
 ## UX
 
+The idea for this website is that imaginary users who previously got websites from me now have a website available to them
+where they can 
+
+- Report any bug issues they have on their website
+  - Track whether the issues is being dealt with
+  - And see when the issue is sorted and closed
+- Suggest features 
+  - Also suggest features that they find they now require on their site for their users and that I can create and incorprate into their website
+- A Profile area
+  - A profile area where they have access to all there information with regards to bug issues and feature suggestions 
+- A cart and checkout area
+  - Cart and checkout area giving them the ability to purchase the features they suggest or others have suggested 
+- A Blog
+  - A blog section where they can read post about various topics
+
+
+
 ## Features
 
 - A accounts app:  
   - For signup, login, logout
-  - Profile page for user to show bug issues submitted, features submitted, and adding a user avatar.
+  - Profile page for user to see bug issues they have submitted, suggested features they have submitted, and adding a user avatar.
 - A Bugs app:
   - For showing all bug issues and for showing single bug issues and form to submit bug issues.
 - A Features app:
@@ -61,6 +78,7 @@ They cannot though, create or edit a post.
 Write up for testing is done here: ['Testing documentation'](./testing_doc.md)  
 
 ## TO RUN LOCALLY ON CLOUD9
+
 - Set up a virtual env: Type the following into terminal.  
   - wget -q https://git.io/v77xs -O /tmp/setup-workspace.sh && source /tmp/setup-workspace.sh
 
