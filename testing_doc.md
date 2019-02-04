@@ -117,7 +117,7 @@ This created an index file that I could open and check what test were required t
     - If they click this they go to the edit blog post page which contains a form with all blog details: True
       - A Staff user has only rights to view this page and if they edit it changes wont be saved: True
       - A Admin user can edit the blog post and any changes he makes will be saved: True
--Cart page
+- Cart page
   - On cart page user should see any item that has being added to the cart: True
   - If an item is a suggested feature by that user and not paid for he should be able to see this in cart but not be able to remove it from cart: True
   - If an item is a suggested feature by him that is paid for or by another user It will have a red X beside it: True
@@ -137,8 +137,15 @@ This created an index file that I could open and check what test were required t
 - Logout
   - Logout should only appear to a logged in user: True
   - Clicking logout should logout user: True
-  
 
+
+### Visual checks
+
+- I opend web site in Chrome and opened each page to make sure everything looked fine.
+ - In Chrome dev tools I used the mobile setting to check each page in various mobile sizes
+ - Dev tools showed how it would look in HTC, iPhone 6/7/8 ,iPhone 6/7/8 plus, iPhone x, iPad, iPad Pro, Galaxy S5 and it looked fine in all
+- I also viewed it in Firefox with only one small issue wihch was a button label wrapping, so I adjusted styles to accomidate this
+- I also viewed it in edge with only one issue which was a text not centreing, so I adjusted styles to accomidate this
 
 
 

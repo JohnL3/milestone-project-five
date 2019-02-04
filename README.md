@@ -12,7 +12,7 @@ password: generic22staff
 
 I have supplied a user with staff credentials for visiting pages an ordinary user cannot.
 This user can be used to see the form for creating a blog post and the form for editing a blog post.
-They cannot Though, create or edit a post.
+They cannot though, create or edit a post.
 
 
 ## UX
