@@ -815,8 +815,7 @@ section {
 
 .avatar-file {
 	display: grid;
-	grid-template-columns: 1fr;
-	width: fit-content;
+	grid-template-columns: 120px;
 	text-align: center;
 	align-items: center;
 	margin-top: 15px;
@@ -1025,7 +1024,7 @@ section {
 
 .single-feature-section {
 	display: grid;
-	grid-template-columns: 105px 1fr 95px;
+	grid-template-columns: 105px 1fr 100px;
 	box-sizing: border-box;
 	padding: 0 5px;
 }
@@ -1197,6 +1196,7 @@ section {
 	text-align: center;
 	font-size: 130%;
 	font-weight: 600;
+	width: 100%;
 }
 
 .form-box {
