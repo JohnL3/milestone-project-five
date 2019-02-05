@@ -14,7 +14,7 @@
 	<section>
 		{% if post.image %}
         <div class='blog-img'>
-			<img src='/media/{{ post.image }}' alt=''>
+			<img src='{{ MEDIA_URL }}{{ post.image }}' alt=''>
 		</div>
         {% endif %}
 		<h1>{{ post.title }}</h1>
