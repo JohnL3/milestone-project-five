@@ -658,7 +658,7 @@ textarea {
 }
 
 .blog-container {
-	margin-top: 100px;
+	margin-top: 75px;
 }
 
 .part-post {
@@ -674,7 +674,7 @@ section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 180px;
+	height: auto;
 	overflow: hidden;
 }
 
@@ -1295,6 +1295,15 @@ section {
 		padding: 0;
 		padding-bottom: 40px;
 	}
+	
+	.blog-container {
+		padding-top: 90px;
+	}
+	
+	.blog-img {
+		height: 180px;
+	}
+	
 	.issue-box,
 	.page-heading {
 		width: 75%;
