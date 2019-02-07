@@ -42,13 +42,13 @@ where they can
 - A Bugs app:
   - For showing all bug issues and for showing single bug issues and form to submit bug issues.
 - A Features app:
-  - For showing all features and for showing single features and a from to submit features. 
+  - For showing all features and for showing single features and a form to submit features. 
 - A Blog app:
   - For writing blog posts and forms for creating blog posts and editing blog posts. 
 - A Cart app:
-  - For showing what items are stroed in cart that user intends to purchase.
+  - For showing what items are stored in cart that user intends to purchase.
 - A Checkout app:
-  - For purchaseing features and form to fill out for purchases.
+  - For purchasing features and form to fill out for purchases.
 - A database
   - Used for storing all user details, bug issues details and feature details
 
