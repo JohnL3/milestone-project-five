@@ -99,10 +99,11 @@ function createNewComment(json) {
     
     let url = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+avatar_url;
     // get avatar image url
-    let img = avatar_url; 
-    let regex = /\s/;
-    let num = created_date.search(regex);
-    created_date = created_date.substr(0,num);
+    //let img = avatar_url; 
+    //let regex = /\s/;
+    //let num = created_date.search(regex);
+    
+    created_date = thisDate(created_date);
     
     // create comment section
     let surround = `<div class='surround'>
@@ -122,3 +123,11 @@ function createNewComment(json) {
     $('#all-comments').append(surround);
 }
 
+function thisDate(date) {
+    let m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  
+    let md = new Date(date);
+    
+    //format return as Month Day, year
+    return `${m[md.getMonth()]} ${date.substring(8,10)}, ${md.getFullYear()}`;
+}
