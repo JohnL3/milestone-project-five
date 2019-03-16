@@ -98,10 +98,6 @@ function createNewComment(json) {
     ({avatar_url, bug_id, bug_status, comment_text,created_date, user_id, username}={...json});
     
     let url = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+avatar_url;
-    // get avatar image url
-    //let img = avatar_url; 
-    //let regex = /\s/;
-    //let num = created_date.search(regex);
     
     created_date = thisDate(created_date);
     
