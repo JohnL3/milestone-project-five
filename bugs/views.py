@@ -47,11 +47,8 @@ def bug_details(request, pk):
             created_date = request.POST.get('created_date')
            
             
-            #get users avatar url
-            author_avatar = request.user.profile.avatar_url
-            
             # save comment to the database
-            comment = BugComment(bugid_id = pk, comment=comment_text, commentauthor_id = request.user.id, author_avatar = author_avatar)
+            comment = BugComment(bugid_id = pk, comment=comment_text, commentauthor_id = request.user.id)
             comment.save()
             
         
@@ -80,7 +77,7 @@ def bug_details(request, pk):
     else:
         # get a bug by an id 
         bug = get_object_or_404(Bug, pk=pk)
-       
+        
         bug_status = bug.get_bug_status_display()
         
         # get all comments associated with bug
