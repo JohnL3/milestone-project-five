@@ -18,7 +18,6 @@ class TestBugModel(TestCase):
         self.assertEqual(bug.bug_status, 'O')
         self.assertEqual(bug.upvotes, 0)
         self.assertEqual(bug.initial_comment, 'A test comment')
-        self.assertEqual(bug.bug_author_avatar, 'images/user.jpg')
         self.assertEqual(bug.__str__(), bug.bug_title)
         
         
