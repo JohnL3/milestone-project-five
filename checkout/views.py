@@ -16,7 +16,6 @@ def checkout(request):
     cart = request.session.get('cart', {})
     
     if request.method == 'POST' and len(cart) > 0:
-        user = User.objects.get(pk=request.user.id)
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
         
