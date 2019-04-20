@@ -13,7 +13,7 @@
         </div>
 
         <!-- The form section -->
-        <form method='POST' enctype='multipart/form-data' class='create-comment-form'>
+        <form action="{% url 'issue' %}" method='POST'  class='create-comment-form' id='bug-form' >
             {% csrf_token %}
 
             <!-- Pull out individual fields in form -->
