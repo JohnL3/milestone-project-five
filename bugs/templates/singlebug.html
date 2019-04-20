@@ -109,7 +109,7 @@
 				{% if user.is_superuser or user.is_staff %}
 				<div class='bug-status'>
 					<label>Set Status</label>
-					<select id='status-select' class='set-bug-status'>
+					<select id='status-select' name='bug_status' class='set-bug-status'>
 						<option value='O'>Open</option>
 						<option value='D'>Doing</option>
 						<option value='C'>Closed</option>
