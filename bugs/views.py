@@ -25,6 +25,7 @@ def bug_details(request, pk):
         # get bug object 
         bug = Bug.objects.get(pk=pk)
         
+        comment_form = BugCommentForm(request.POST)
         # if bug_status not closed proceed eles return message stateing commenting is close
         # doing a check here in case anyone tries to get around my disableing comment section on frontend
         if not bug.bug_status == 'C':
@@ -43,29 +44,31 @@ def bug_details(request, pk):
             # get the users comment about the bug
             comment_text = request.POST.get('comment')
            
-            # wont accept date format so cant add it to model
+            # get the created date
             created_date = request.POST.get('created_date')
            
+            if comment_form.is_valid():
+                comment_data = comment_form.save(commit=False)
+                comment_data.bugid_id=pk
+                comment_data.commentauthor_id=request.user.id
+                comment_data=comment_form.save()
+                
             
-            # save comment to the database
-            comment = BugComment(bugid_id = pk, comment=comment_text, commentauthor_id = request.user.id)
-            comment.save()
-            
-        
-            response_data = {}
-            
-            response_data['comment_text'] = comment_text
-            response_data['bug_id'] = pk
-            response_data['user_id'] = request.user.id
-            response_data['created_date'] = created_date
-            response_data['username'] = request.user.username
-            response_data['avatar_url'] = request.user.profile.avatar_url
-            response_data['bug_status']= bug.get_bug_status_display()
-            
-            return HttpResponse(
-                json.dumps(response_data),
-                content_type="application/json"
-            )
+                response_data = {}
+                
+                response_data['comment_text'] = comment_text
+                response_data['bug_id'] = pk
+                response_data['user_id'] = request.user.id
+                response_data['created_date'] = created_date
+                response_data['username'] = request.user.username
+                response_data['avatar_url'] = request.user.profile.avatar_url
+                response_data['bug_status']= bug.get_bug_status_display()
+                
+
+                return HttpResponse(
+                    json.dumps(response_data),
+                    content_type="application/json"
+                )
         else:
             response_data = {}
             response_data['message'] = 'Commenting is closed'
