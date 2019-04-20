@@ -37,24 +37,19 @@ $( "#status-select").val(tx[0]);
 
 $('#comment-form').on('submit', function(event){
     event.preventDefault();
-    create_comment();
+    let post_url = $(this).attr("action"); //get form action url
+	let request_method = $(this).attr("method"); //get form GET/POST method
+	let form_data = $(this).serialize();
+
+    create_comment(post_url, request_method, form_data);
 });
 
-function create_comment() {
-    
-    let data = {};
- 
-    let bug_id = +$('.bug-id').prop('id');
-    data.comment = $('#comment-text').val();
-    data.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
-    data.created_date = $('#date-comment').val();
-    data.bug_status = $( ".set-bug-status option:selected" ).val();
-    
-    let url ='/bugs/'+bug_id+"/";
-    
+
+function create_comment(url, method, data) {
+   
     $.ajax({
         url : url,
-        type : "POST", 
+        type : method, 
         data : data,
         success : function(json) {
             $('#comment-text').val('');
@@ -68,7 +63,6 @@ function create_comment() {
     });
     
 }
-
 
 $('.upvote-btn').click(function(){
     let data = {};
