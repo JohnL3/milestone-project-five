@@ -152,24 +152,24 @@ def bug_issue(request, pk=None):
     ''' Add new issue to database or get bug form'''
     
     if request.method == 'POST':
-        #get instance of bug object
-        bug = Bug()
-       
-        bug_title = request.POST.get('bug_title')
-        initial_comment =request.POST.get('initial_comment')
+    
+        bug_form = BugForm(request.POST)
         
-        #get the author id
-        author_id = request.user.id
-        
-        # fill in the details and save
-        bug.bug_title=bug_title 
-        bug.bugauthor_id=author_id
-        bug.initial_comment=initial_comment
-        bug.bug_author_avatar=request.user.profile.avatar_url
-        bug.save()
-        
-        response = {'status_code': 1} 
-        return HttpResponse(json.dumps(response), content_type='application/json')
+        if bug_form.is_valid():
+            issue= bug_form.save(commit=False)
+            
+            #get the author id
+            author_id = request.user.id
+            
+            issue.bugauthor_id = author_id
+            issue.bug_author_avatar=request.user.profile.avatar_url
+            issue = bug_form.save()
+            
+            response = {'status_code': 1} 
+            return HttpResponse(json.dumps(response), content_type='application/json')
+        else:
+            response = {'status_code': 2} 
+            return HttpResponse(json.dumps(response), content_type='application/json')
     else:
         #get form and send with html
         form = BugForm()
