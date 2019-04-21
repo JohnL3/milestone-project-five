@@ -69,6 +69,14 @@ def bug_details(request, pk):
                     json.dumps(response_data),
                     content_type="application/json"
                 )
+            else:
+                response_data = {}
+                response_data['message']='Invalid form'
+                return HttpResponse(
+                    json.dumps(response_data),
+                    content_type="application/json"
+                )
+                
         else:
             response_data = {}
             response_data['message'] = 'Commenting is closed'
