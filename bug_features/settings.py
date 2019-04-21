@@ -25,7 +25,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if os.environ.get('C9_HOSTNAME'):
+    import env
+    DEBUG = True
+else:
+    DEBUG = False
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'),'bugs-features.herokuapp.com']
 
