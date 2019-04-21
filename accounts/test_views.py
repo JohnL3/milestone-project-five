@@ -132,7 +132,7 @@ class Test_accounts_views(TestCase):
         '''test with valid form post to register route you get redirected to index route'''
         
         client = Client()
-        response = client.post(reverse('register'),{'username': 'Ems_1','password1': 'generic','password2': 'generic'})
+        response = client.post(reverse('register'),{'email': 'emily@test.com','username': 'Ems_1','password1': 'generic','password2': 'generic'})
                                           
         self.assertRedirects(response, expected_url=reverse('index'), status_code=302, 
         target_status_code=200, fetch_redirect_response=True)

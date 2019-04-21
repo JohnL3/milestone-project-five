@@ -68,7 +68,7 @@ class test_bugs_views(TestCase):
     def test_posting_comment_to_bug_details_route(self):
         '''test user posting a comment on a bug'''
         
-        user = User.objects.create_user(username='Lethal_Adam', password='generic')
+        user = User.objects.create_user(email='lethaladam@test.com', username='Lethal_Adam', password='generic')
         client = Client()
     
         client.post('/accounts/login/', {'username': 'Lethal_Adam', 'password': 'generic'})
@@ -88,7 +88,7 @@ class test_bugs_views(TestCase):
         Should get a message back stating commenting is closed
         '''
         
-        user = User.objects.create_user(username='Lethal_Adam', password='generic')
+        user = User.objects.create_user(email='lethaladam@test.com', username='Lethal_Adam', password='generic')
         user.is_superuser=True
         user.save()
         client = Client()
@@ -113,7 +113,7 @@ class test_bugs_views(TestCase):
     def test_admin_can_set_comments_closed(self):
         '''test admin can set comments status to close'''
         
-        user = User.objects.create_user(username='Lethal_Adam', password='generic')
+        user = User.objects.create_user(email='lethaladam@test.com', username='Lethal_Adam', password='generic')
         user.is_superuser=True
         user.save()
         
@@ -123,7 +123,7 @@ class test_bugs_views(TestCase):
         bug = Bug(bug_title='Test bug', bugauthor=user, initial_comment='Test comment')
         bug.bug_status = 'O'
         bug.save()
-       
+        
         data = {'bug_status': 'C', 'comment': 'commenting closed', 'created_date': '01-02-2019'}
         response = client.post('/bugs/{0}/'.format(bug.id), data, format='json',follow=True)
         if not bug.bug_status == 'C':
