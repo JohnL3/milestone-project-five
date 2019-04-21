@@ -1,5 +1,20 @@
 [![Build Status](https://travis-ci.com/JohnL3/milestone-project-five.svg?branch=master)](https://travis-ci.com/JohnL3/milestone-project-five)
 
+# UPDATED PROJECT
+
+##### NEW UPDATES I HAVE APPLIED
+
+- I have refactored code in accounts app
+  - I have added email to form when registering
+  - I have added check in form.py to make sure duplicate emails are not used
+- I made changes to Bug model and BugComment model
+  - Made changes to models as everything to do with profile image is handled within accounts user profile
+- I made changes to how ajax functions are used
+  - I changed js functions to use submit rather than on click
+  - And now submit a form via ajax 
+  - I adjusted views.py so i can use django function is_valid() to check forms submitted via ajax
+- I updated relevant tests.py to make sure they passed after all changes had being made. 
+
 # Milestone Project 5
 Project hosted at: [BUGS & FEATURES](https://bugs-features.herokuapp.com/) 
 
