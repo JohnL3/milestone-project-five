@@ -28,19 +28,19 @@
 		<div class='edit-profile'>
 			<span>Image: 50px by 50px</span>
 			<form id='profile-edit-form' method='POST' enctype='multipart/form-data'>
-				{% csrf_token%} {% for item in profile_form %} {% if item.name == 'image' %}
-	
+				{% csrf_token%}
+
 				<div class='img-box'>
 					<div id='preview' class='img-preview'>
 	
 					</div>
 					<div class='avatar-file'>
-						<span>Choose File</span> {{ item }}
+						<span>Choose Image</span> 
+						<input type='file' name='image' id='id_image'>
 					</div>
 				</div>
-	
-				{% endif %} {% endfor %}
-				<button class='edit-profile-btn'>Submit</button> <span class='img-error error'>File size to large!!</span>
+				
+				<button class='edit-profile-btn'>Submit</button> <span class='img-error error'>The image should be square with width and height less or equal to 200</span>
 			</form>
 		</div>
 	
