@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from .models import Profile
+from django.core.files.images import get_image_dimensions
 
 
 
@@ -61,4 +62,18 @@ class UserRegistrationForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['avatar_url', 'image']
+        fields = ['image']
+    
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        
+        if image:
+            w, h = get_image_dimensions(image)
+            if w <= 200 and h <= 200 and w == h:
+                return image
+            else:
+                raise forms.ValidationError("The image should be square with width and height less or equal to 200")
+        else:
+            raise forms.ValidationError("No image found")
+        return image
+    
