@@ -53,7 +53,7 @@ def bug_details(request, pk):
                 comment_data.commentauthor_id=request.user.id
                 comment_data=comment_form.save()
                 
-            
+                avatar=str(request.user.profile.image)
                 response_data = {}
                 
                 response_data['comment_text'] = comment_text
@@ -61,7 +61,7 @@ def bug_details(request, pk):
                 response_data['user_id'] = request.user.id
                 response_data['created_date'] = created_date
                 response_data['username'] = request.user.username
-                response_data['avatar_url'] = request.user.profile.avatar_url
+                response_data['avatar'] = avatar
                 response_data['bug_status']= bug.get_bug_status_display()
                 
 
@@ -103,7 +103,7 @@ def bug_details(request, pk):
             'form': form,
             'comments': comments,
             'bug_status': bug_status,
-            'avatar_url': request.user.profile.avatar_url
+            'avatar': request.user.profile.image
         }
            
         return render(request, 'singlebug.html', context)
@@ -173,7 +173,6 @@ def bug_issue(request, pk=None):
             author_id = request.user.id
             
             issue.bugauthor_id = author_id
-            issue.bug_author_avatar=request.user.profile.avatar_url
             issue = bug_form.save()
             
             response = {'status_code': 1} 
