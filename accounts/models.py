@@ -6,8 +6,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_url = models.CharField(max_length=200, blank=True, default='images/user.jpg')
-    image = models.ImageField(upload_to="images", blank=True, null=True)
+    image = models.ImageField(upload_to="images", blank=True, null=True, default='images/user.jpg')
     
     def __str__(self):
         return str(self.user)
