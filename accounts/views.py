@@ -103,26 +103,22 @@ def register(request):
 def profile(request):
     
     if request.method == 'POST':
-        user = User.objects.get(pk=request.user.id)
-       
-        form = ProfileForm(request.POST, request.FILES)
         
-        avatar_url ='images/'+str(request.FILES['file'])
-        image = request.FILES['file']
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         
         if form.is_valid():
-            user.profile.avatar_url = avatar_url
-            user.profile.image = image
-            user.profile.save()
+            form.save()
+            avatar = str(request.FILES['image'])
+            return JsonResponse({'avatar': avatar})
+        else:
+            return JsonResponse({'error': 'Not a valid image'})
             
-            avatar_url = user.profile.avatar_url
-            
-        return JsonResponse({'error': False, 'avatar_url': avatar_url})
     else:
         
         user = request.user
-        avatar = request.user.profile.avatar_url
-        profile_form = ProfileForm()
+        avatar = request.user.profile.image
+        
+        profile_form = ProfileForm(instance=request.user.profile)
         
         my_issues = Bug.objects.filter(bugauthor=request.user.id)
         features = Feature.objects.filter(feature_author=request.user.id)
