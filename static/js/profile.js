@@ -51,64 +51,58 @@ $('.tab-b').click(function(){
      $('#pre').remove();
 });
 
-let formData = new FormData();
 
+// Show preview of Image
 fileUpload.addEventListener('change', function(event){
     
     let preview = document.getElementById('preview');
     let file = event.target.files[0];
-    let size = file.size / 1024;
-   
-    if(size < 200) {
-        size = Math.round(size*100)/100;
-        
-        let IMAGE = '';
-        let prev = document.getElementById('pre');
-        
-        if(prev === null) {
-              IMAGE = document.createElement('IMG');
-              IMAGE.id = 'pre';
-              IMAGE.src = URL.createObjectURL(file);
-              
-              preview.prepend(IMAGE);
-              URL.revokeObjectURL(file);
-            } else {
-              prev.style.transform = 'none';
-              prev.src = URL.createObjectURL(file);
-              document.getElementById("pre").style.maxWidth = '50px';
-            }
-        
-	    formData.append('file', file);
-	    
-    } else {
-        $('.img-error').css('display', 'inline');
-        setTimeout(function(){
-            $('.img-error').css('display', 'none');
-        },3000);
-    }
     
+    let IMAGE = '';
+    let prev = document.getElementById('pre');
+    
+    if(prev === null) {
+          IMAGE = document.createElement('IMG');
+          IMAGE.id = 'pre';
+          IMAGE.src = URL.createObjectURL(file);
+          
+          preview.prepend(IMAGE);
+          URL.revokeObjectURL(file);
+        } else {
+          prev.style.transform = 'none';
+          prev.src = URL.createObjectURL(file);
+          document.getElementById("pre").style.maxWidth = '50px';
+        }
+	  
 });
 
 
 $('#profile-edit-form').on('submit', function(event){
     event.preventDefault();
-    let csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
     
-    formData.append('csrfmiddlewaretoken', csrfmiddlewaretoken);
-    let url ='/accounts/profile/';
+    let url = $(this).attr("action"); //get form action url
+	let method = $(this).attr("method"); //get form GET/POST method
+    let data = new FormData(this);
     
     $.ajax({
         url : url,
-        type : "POST", 
-        data : formData,
+        type : method, 
+        data : data,
         processData:false,
         contentType: false,
         success : function(json) {
             
-            $('#comment-text').val('');
-            let src = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+json.avatar_url;
-            $('#pre').remove();
-            $("#img-avatar").attr("src",src);
+            if (json.error) {
+                 $('.img-error').css('display', 'inline');
+                    setTimeout(function(){
+                        $('.img-error').css('display', 'none');
+                    },3000);
+            } else {
+                $('#comment-text').val('');
+                let src = 'https://s3-eu-west-1.amazonaws.com/features-bugs/media/'+json.avatar;
+                $('#pre').remove();
+                $("#img-avatar").attr("src",src);
+            }
 
         },
     });
