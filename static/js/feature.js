@@ -14,19 +14,18 @@ $( window ).resize(function() {
   }
 });
 
-//Add a feature to the cart
-$('.feature-submit-btn').click(function(event){
+// Add an item to the cart 
+$('#add-to-cart').on('submit', function(event){
      event.preventDefault();
      if($('this').is('[disabled=disabled]') === false) {
-         let data = {};
-         data.item_id = $('.feature-id').prop('id');
-         data.csrfmiddlewaretoken = $("[name=csrfmiddlewaretoken]").val();
          
-         let url = '/cart/add/'+data.item_id;
-         
+         let url = $(this).attr("action");
+         let method = $(this).attr("method");
+         let data = $(this).serialize();
+       
          $.ajax({
             url : url,
-            type : "POST", 
+            type : method, 
             data : data,
             success : function(data) {
                 let badge = $('.badge').text();
@@ -44,6 +43,9 @@ $('.feature-submit-btn').click(function(event){
         });
      }
 });
+
+
+
 
 function addLabel() {
     let cartLabel = `<label class='badge'></label>`;
