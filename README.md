@@ -4,6 +4,11 @@
 
 ##### NEW UPDATES I HAVE APPLIED
 
+- I adjusted Profile model
+  - I removed avatar_url as I realized i did not need it
+  - I removed all references to avatar_url in views.py files that contained it
+- I made changes to the profile form for updateing avatar profile
+  - I added a image validation check to check the size of an image to be uploaded 
 - I have refactored code in accounts app
   - I have added email to form when registering
   - I have added check in form.py to make sure duplicate emails are not used
@@ -11,7 +16,6 @@
   - Made changes to models as everything to do with profile image is handled within accounts user profile
 - I made changes to how ajax functions are used
   - I changed js functions to use submit rather than on click
-  - And now submit a form via ajax 
   - I adjusted views.py so i can use django function is_valid() to check forms submitted via ajax
 - I updated relevant tests.py to make sure they passed after all changes had being made. 
 
