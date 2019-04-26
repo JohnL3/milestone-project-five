@@ -35,7 +35,7 @@
         
     </div>
     {% else %}
-    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+    <form method="post" action="{% url 'add_to_cart' feature.id %}" id="add-to-cart">
         {% csrf_token %}
     <div class='single-feature-add-to-cart'>
         {% if not user.is_staff and not user.is_superuser %}
